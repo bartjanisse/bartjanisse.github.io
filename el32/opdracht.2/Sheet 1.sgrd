@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE KSysGuardWorkSheet>
+<WorkSheet title="Sheet 1" interval="0.5" locked="0" rows="3" columns="1">
+ <host port="-1" command="ksysguardd" shell="" name="localhost"/>
+ <display title="User" columnSpan="1" hScale="6" svgBackground="" version="1" vLines="0" labels="1" manualRange="0" autoRange="1" rowSpan="1" stacked="0" vDistance="30" fontSize="8" vScroll="0" column="0" unit="" hLines="1" showUnit="0" class="FancyPlotter" row="0">
+  <beam sensorName="cpu/system/user" sensorType="float" hostName="localhost" color="0xff0057ae"/>
+  <beam sensorName="cpu/system/nice" sensorType="float" hostName="localhost" color="0xffe20800"/>
+  <beam sensorName="cpu/system/sys" sensorType="float" hostName="localhost" color="0xfff3c300"/>
+ </display>
+ <display title="Context" columnSpan="1" hScale="6" svgBackground="" version="1" vLines="0" labels="1" manualRange="0" autoRange="1" rowSpan="1" stacked="0" vDistance="30" fontSize="8" vScroll="0" column="0" unit="" hLines="1" showUnit="0" class="FancyPlotter" row="1">
+  <beam sensorName="cpu/context" sensorType="float" hostName="localhost" color="0xff0057ae"/>
+ </display>
+</WorkSheet>

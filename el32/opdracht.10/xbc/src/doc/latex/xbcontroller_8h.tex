@@ -1,0 +1,231 @@
+\subsection{xbcontroller.\-h File Reference}
+\label{xbcontroller_8h}\index{xbcontroller.\-h@{xbcontroller.\-h}}
+
+
+Function prototypes for the console driver.  
+
+
+{\ttfamily \#include $<$libusb-\/1.\-0/libusb.\-h$>$}\\*
+{\ttfamily \#include $<$stdbool.\-h$>$}\\*
+\subsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct {\bf Buttons}
+\begin{DoxyCompactList}\small\item\em Structure representing the buttons and joysticks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bf V\-E\-N\-D\-O\-R\-\_\-\-I\-D}~0x045e
+\item 
+\#define {\bfseries V\-E\-N\-D\-O\-R\-\_\-\-P\-R\-O\-D}~0x028e\label{xbcontroller_8h_a5e3488b5b71cdfe6df1cc517b54f9abd}
+
+\item 
+\#define {\bfseries E\-P\-\_\-\-I\-N}~0x81\label{xbcontroller_8h_ab79ba3999449c3d32abd0462936ca52c}
+
+\item 
+\#define {\bfseries E\-P\-\_\-\-O\-U\-T}~0x02\label{xbcontroller_8h_a3a942d7df9f25be538925b91fa1317c3}
+
+\end{DoxyCompactItemize}
+\subsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bf leds} \{ \\*
+{\bf all\-\_\-off} = 0x00, 
+{\bf blink\-\_\-all} = 0x01, 
+{\bf flash\-\_\-1\-\_\-on} = 0x02, 
+{\bf flash\-\_\-2\-\_\-on} = 0x03, 
+\\*
+{\bf flash\-\_\-3\-\_\-on} = 0x04, 
+{\bf flash\-\_\-4\-\_\-on} = 0x05, 
+{\bf led\-\_\-1\-\_\-on} = 0x06, 
+{\bf led\-\_\-2\-\_\-on} = 0x07, 
+\\*
+{\bf led\-\_\-3\-\_\-on} = 0x08, 
+{\bf led\-\_\-4\-\_\-on} = 0x09, 
+{\bf rotate} = 0x0\-A, 
+{\bf blink\-\_\-select} = 0x0\-B, 
+\\*
+{\bf blink\-\_\-slow} = 0x0\-C, 
+{\bf alt} = 0x0\-D
+ \}
+\begin{DoxyCompactList}\small\item\em Availlable L\-E\-D patterns. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bf get\-Devices} (libusb\-\_\-device $\ast$$\ast$devices)
+\begin{DoxyCompactList}\small\item\em Retreives a fresh list of connected U\-S\-B devives. \end{DoxyCompactList}\item 
+int {\bf print\-All\-Devices} (libusb\-\_\-device $\ast$$\ast$devices)
+\begin{DoxyCompactList}\small\item\em Prints a list of connected U\-S\-B devices. \end{DoxyCompactList}\item 
+int {\bf rumble} (libusb\-\_\-device\-\_\-handle $\ast$handle, uint16\-\_\-t speed)
+\begin{DoxyCompactList}\small\item\em Controll the rumble actuator from the Xbox 360 controller. \end{DoxyCompactList}\item 
+int {\bf set\-Leds} (libusb\-\_\-device\-\_\-handle $\ast$handle, enum {\bf leds} led)
+\begin{DoxyCompactList}\small\item\em Controll the L\-E\-D's from the Xbox 360 controller. \end{DoxyCompactList}\item 
+int {\bf get\-Input} (libusb\-\_\-device\-\_\-handle $\ast$handle, struct {\bf Buttons} $\ast$buttons)
+\begin{DoxyCompactList}\small\item\em Retreives the state of the buttons and joysticks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+Function prototypes for the console driver. This contains the prototypes for xxxxxxxxxxxxxxxxxxxxxxx
+
+\begin{DoxyAuthor}{Author}
+A.\-W Janisse 
+\end{DoxyAuthor}
+\begin{DoxyRefDesc}{Bug}
+\item[{\bf Bug}]No known bugs. \end{DoxyRefDesc}
+
+
+\subsubsection{Macro Definition Documentation}
+\index{xbcontroller.\-h@{xbcontroller.\-h}!V\-E\-N\-D\-O\-R\-\_\-\-I\-D@{V\-E\-N\-D\-O\-R\-\_\-\-I\-D}}
+\index{V\-E\-N\-D\-O\-R\-\_\-\-I\-D@{V\-E\-N\-D\-O\-R\-\_\-\-I\-D}!xbcontroller.h@{xbcontroller.\-h}}
+\paragraph[{V\-E\-N\-D\-O\-R\-\_\-\-I\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define V\-E\-N\-D\-O\-R\-\_\-\-I\-D~0x045e}\label{xbcontroller_8h_a5e2fdecfea0fad3bdb8fa4eedf041a3d}
+Microsoft corporation vendor id. 
+
+\subsubsection{Enumeration Type Documentation}
+\index{xbcontroller.\-h@{xbcontroller.\-h}!leds@{leds}}
+\index{leds@{leds}!xbcontroller.h@{xbcontroller.\-h}}
+\paragraph[{leds}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf leds}}\label{xbcontroller_8h_a840c9267db46ce0db0f44d473c562e66}
+
+
+Availlable L\-E\-D patterns. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{all\-\_\-off@{all\-\_\-off}!xbcontroller.\-h@{xbcontroller.\-h}}\index{xbcontroller.\-h@{xbcontroller.\-h}!all\-\_\-off@{all\-\_\-off}}\item[{\em 
+all\-\_\-off\label{xbcontroller_8h_a840c9267db46ce0db0f44d473c562e66a5744956c2a75d7f08502bf9eb52db56f}
+}]All led's off. \index{blink\-\_\-all@{blink\-\_\-all}!xbcontroller.\-h@{xbcontroller.\-h}}\index{xbcontroller.\-h@{xbcontroller.\-h}!blink\-\_\-all@{blink\-\_\-all}}\item[{\em 
+blink\-\_\-all\label{xbcontroller_8h_a840c9267db46ce0db0f44d473c562e66a2040b2792c2d14984b958e00e6189b4b}
+}]All blinking. \index{flash\-\_\-1\-\_\-on@{flash\-\_\-1\-\_\-on}!xbcontroller.\-h@{xbcontroller.\-h}}\index{xbcontroller.\-h@{xbcontroller.\-h}!flash\-\_\-1\-\_\-on@{flash\-\_\-1\-\_\-on}}\item[{\em 
+flash\-\_\-1\-\_\-on\label{xbcontroller_8h_a840c9267db46ce0db0f44d473c562e66aa69975e19b7da2c0d7251d995891a668}
+}]1 flashes, then on \index{flash\-\_\-2\-\_\-on@{flash\-\_\-2\-\_\-on}!xbcontroller.\-h@{xbcontroller.\-h}}\index{xbcontroller.\-h@{xbcontroller.\-h}!flash\-\_\-2\-\_\-on@{flash\-\_\-2\-\_\-on}}\item[{\em 
+flash\-\_\-2\-\_\-on\label{xbcontroller_8h_a840c9267db46ce0db0f44d473c562e66a502a3fc79bff4af26fb485afb789af32}
+}]2 flashes, then on \index{flash\-\_\-3\-\_\-on@{flash\-\_\-3\-\_\-on}!xbcontroller.\-h@{xbcontroller.\-h}}\index{xbcontroller.\-h@{xbcontroller.\-h}!flash\-\_\-3\-\_\-on@{flash\-\_\-3\-\_\-on}}\item[{\em 
+flash\-\_\-3\-\_\-on\label{xbcontroller_8h_a840c9267db46ce0db0f44d473c562e66aa3bfcdd124be7e80d1e350b50aef738e}
+}]3 flashes, then on \index{flash\-\_\-4\-\_\-on@{flash\-\_\-4\-\_\-on}!xbcontroller.\-h@{xbcontroller.\-h}}\index{xbcontroller.\-h@{xbcontroller.\-h}!flash\-\_\-4\-\_\-on@{flash\-\_\-4\-\_\-on}}\item[{\em 
+flash\-\_\-4\-\_\-on\label{xbcontroller_8h_a840c9267db46ce0db0f44d473c562e66a01f47e256143fe5f4771e17d440359fe}
+}]4 flashes, then on \index{led\-\_\-1\-\_\-on@{led\-\_\-1\-\_\-on}!xbcontroller.\-h@{xbcontroller.\-h}}\index{xbcontroller.\-h@{xbcontroller.\-h}!led\-\_\-1\-\_\-on@{led\-\_\-1\-\_\-on}}\item[{\em 
+led\-\_\-1\-\_\-on\label{xbcontroller_8h_a840c9267db46ce0db0f44d473c562e66a857f4b52703a580a0844f38bb35fd783}
+}]1 on \index{led\-\_\-2\-\_\-on@{led\-\_\-2\-\_\-on}!xbcontroller.\-h@{xbcontroller.\-h}}\index{xbcontroller.\-h@{xbcontroller.\-h}!led\-\_\-2\-\_\-on@{led\-\_\-2\-\_\-on}}\item[{\em 
+led\-\_\-2\-\_\-on\label{xbcontroller_8h_a840c9267db46ce0db0f44d473c562e66aeb5cc16081a91436d24e8d9ebafc6238}
+}]2 on \index{led\-\_\-3\-\_\-on@{led\-\_\-3\-\_\-on}!xbcontroller.\-h@{xbcontroller.\-h}}\index{xbcontroller.\-h@{xbcontroller.\-h}!led\-\_\-3\-\_\-on@{led\-\_\-3\-\_\-on}}\item[{\em 
+led\-\_\-3\-\_\-on\label{xbcontroller_8h_a840c9267db46ce0db0f44d473c562e66ac1dadd994482a729ef111458f3a69e2a}
+}]3 on \index{led\-\_\-4\-\_\-on@{led\-\_\-4\-\_\-on}!xbcontroller.\-h@{xbcontroller.\-h}}\index{xbcontroller.\-h@{xbcontroller.\-h}!led\-\_\-4\-\_\-on@{led\-\_\-4\-\_\-on}}\item[{\em 
+led\-\_\-4\-\_\-on\label{xbcontroller_8h_a840c9267db46ce0db0f44d473c562e66a656750bee9a9ac55cc579ce60c9b2f1d}
+}]4 on \index{rotate@{rotate}!xbcontroller.\-h@{xbcontroller.\-h}}\index{xbcontroller.\-h@{xbcontroller.\-h}!rotate@{rotate}}\item[{\em 
+rotate\label{xbcontroller_8h_a840c9267db46ce0db0f44d473c562e66a26d30288a9243336cb334fe193a7fd61}
+}]Rotating (e.\-g. 1-\/2-\/4-\/3) \index{blink\-\_\-select@{blink\-\_\-select}!xbcontroller.\-h@{xbcontroller.\-h}}\index{xbcontroller.\-h@{xbcontroller.\-h}!blink\-\_\-select@{blink\-\_\-select}}\item[{\em 
+blink\-\_\-select\label{xbcontroller_8h_a840c9267db46ce0db0f44d473c562e66ab2d652b4cd2b87c2dc3004fdfdeb8eac}
+}]previous setting will be used (all blinking, or 1, 2, 3 or 4 on). \index{blink\-\_\-slow@{blink\-\_\-slow}!xbcontroller.\-h@{xbcontroller.\-h}}\index{xbcontroller.\-h@{xbcontroller.\-h}!blink\-\_\-slow@{blink\-\_\-slow}}\item[{\em 
+blink\-\_\-slow\label{xbcontroller_8h_a840c9267db46ce0db0f44d473c562e66a4185d37fdbe5aa1fb945dfc42364965d}
+}]Slow blinking. \index{alt@{alt}!xbcontroller.\-h@{xbcontroller.\-h}}\index{xbcontroller.\-h@{xbcontroller.\-h}!alt@{alt}}\item[{\em 
+alt\label{xbcontroller_8h_a840c9267db46ce0db0f44d473c562e66a7f564926136a18c80a8a14a53d0e98ce}
+}]Alternating (e.\-g. 1+4-\/2+3), then back to previous$\ast$. \end{description}
+\end{Desc}
+
+
+\subsubsection{Function Documentation}
+\index{xbcontroller.\-h@{xbcontroller.\-h}!get\-Devices@{get\-Devices}}
+\index{get\-Devices@{get\-Devices}!xbcontroller.h@{xbcontroller.\-h}}
+\paragraph[{get\-Devices}]{\setlength{\rightskip}{0pt plus 5cm}void get\-Devices (
+\begin{DoxyParamCaption}
+\item[{libusb\-\_\-device $\ast$$\ast$}]{devices}
+\end{DoxyParamCaption}
+)}\label{xbcontroller_8h_a9d85258426e1fb8a6177467f4575bcfd}
+
+
+Retreives a fresh list of connected U\-S\-B devives. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em devices} & is a pointer to the list \\
+\hline
+\end{DoxyParams}
+\index{xbcontroller.\-h@{xbcontroller.\-h}!get\-Input@{get\-Input}}
+\index{get\-Input@{get\-Input}!xbcontroller.h@{xbcontroller.\-h}}
+\paragraph[{get\-Input}]{\setlength{\rightskip}{0pt plus 5cm}int get\-Input (
+\begin{DoxyParamCaption}
+\item[{libusb\-\_\-device\-\_\-handle $\ast$}]{handle, }
+\item[{struct {\bf Buttons} $\ast$}]{buttons}
+\end{DoxyParamCaption}
+)}\label{xbcontroller_8h_af42433842ee970c9ea4e7a6bba94f8ea}
+
+
+Retreives the state of the buttons and joysticks. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & is a pointer to the U\-S\-B device handle. \\
+\hline
+{\em buttons} & is a pointer to a \doxyref{Buttons}{p.}{struct_buttons} struct which will be filled with the button states and joystick values. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if succefull or error code if fails. 
+\end{DoxyReturn}
+\index{xbcontroller.\-h@{xbcontroller.\-h}!print\-All\-Devices@{print\-All\-Devices}}
+\index{print\-All\-Devices@{print\-All\-Devices}!xbcontroller.h@{xbcontroller.\-h}}
+\paragraph[{print\-All\-Devices}]{\setlength{\rightskip}{0pt plus 5cm}int print\-All\-Devices (
+\begin{DoxyParamCaption}
+\item[{libusb\-\_\-device $\ast$$\ast$}]{devices}
+\end{DoxyParamCaption}
+)}\label{xbcontroller_8h_aba84b8560d0c66badfc142ca40b702de}
+
+
+Prints a list of connected U\-S\-B devices. 
+
+This function prints information about all the current connected U\-S\-B devices to the standard console.
+
+
+\begin{DoxyParams}{Parameters}
+{\em devices} & is a pointer to the list with devices. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if succefull or error code if fails. 
+\end{DoxyReturn}
+\index{xbcontroller.\-h@{xbcontroller.\-h}!rumble@{rumble}}
+\index{rumble@{rumble}!xbcontroller.h@{xbcontroller.\-h}}
+\paragraph[{rumble}]{\setlength{\rightskip}{0pt plus 5cm}int rumble (
+\begin{DoxyParamCaption}
+\item[{libusb\-\_\-device\-\_\-handle $\ast$}]{handle, }
+\item[{uint16\-\_\-t}]{speed}
+\end{DoxyParamCaption}
+)}\label{xbcontroller_8h_ab730d3235aaef82c840ce3687319c115}
+
+
+Controll the rumble actuator from the Xbox 360 controller. 
+
+Controll the rumble actuator with the desired speed. The speed can varry from 0 (no rumble) to 0x\-F\-F\-F\-F (max rumble).
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & is a pointer to the U\-S\-B device handle. \\
+\hline
+{\em speed} & is the value for the rumble actuator. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if succefull or error code if fails. 
+\end{DoxyReturn}
+\index{xbcontroller.\-h@{xbcontroller.\-h}!set\-Leds@{set\-Leds}}
+\index{set\-Leds@{set\-Leds}!xbcontroller.h@{xbcontroller.\-h}}
+\paragraph[{set\-Leds}]{\setlength{\rightskip}{0pt plus 5cm}int set\-Leds (
+\begin{DoxyParamCaption}
+\item[{libusb\-\_\-device\-\_\-handle $\ast$}]{handle, }
+\item[{enum {\bf leds}}]{led}
+\end{DoxyParamCaption}
+)}\label{xbcontroller_8h_a45e8f96f6cb26ce96ecc1647667df956}
+
+
+Controll the L\-E\-D's from the Xbox 360 controller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & is a pointer to the U\-S\-B device handle. \\
+\hline
+{\em led} & holds the desired pattern for the L\-E\-D's. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if succefull or error code if fails. 
+\end{DoxyReturn}

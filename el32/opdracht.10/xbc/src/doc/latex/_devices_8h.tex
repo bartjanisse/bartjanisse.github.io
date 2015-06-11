@@ -1,0 +1,76 @@
+\subsection{Devices.\-h File Reference}
+\label{_devices_8h}\index{Devices.\-h@{Devices.\-h}}
+
+
+Function prototypes for Devices.  
+
+
+{\ttfamily \#include $<$libusb-\/1.\-0/libusb.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}Controller.\-h\char`\"{}}\\*
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bf print\-All\-Devices} ()
+\begin{DoxyCompactList}\small\item\em Prints a list of {\bfseries all} the U\-S\-B devices to the console. \end{DoxyCompactList}\item 
+libusb\-\_\-device\-\_\-handle $\ast$ {\bf get\-And\-Claim\-Handle} (uint16\-\_\-t vendor\-\_\-id, uint16\-\_\-t product\-\_\-id)
+\begin{DoxyCompactList}\small\item\em Retreives a handle for the specified vendor\-\_\-id and product\-\_\-is. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+Function prototypes for Devices. This contains the prototypes for the Devices.
+
+\begin{DoxyAuthor}{Author}
+A.\-W Janisse 
+\end{DoxyAuthor}
+\begin{DoxyRefDesc}{Bug}
+\item[{\bf Bug}]No known bugs.\end{DoxyRefDesc}
+
+
+\begin{DoxyVersion}{Version}
+1.\-0 First release. 
+\end{DoxyVersion}
+
+
+\subsubsection{Function Documentation}
+\index{Devices.\-h@{Devices.\-h}!get\-And\-Claim\-Handle@{get\-And\-Claim\-Handle}}
+\index{get\-And\-Claim\-Handle@{get\-And\-Claim\-Handle}!Devices.h@{Devices.\-h}}
+\paragraph[{get\-And\-Claim\-Handle}]{\setlength{\rightskip}{0pt plus 5cm}libusb\-\_\-device\-\_\-handle$\ast$ get\-And\-Claim\-Handle (
+\begin{DoxyParamCaption}
+\item[{uint16\-\_\-t}]{vendor\-\_\-id, }
+\item[{uint16\-\_\-t}]{product\-\_\-id}
+\end{DoxyParamCaption}
+)}\label{_devices_8h_af4d44651871175f88640bc44f5acc9e8}
+
+
+Retreives a handle for the specified vendor\-\_\-id and product\-\_\-is. 
+
+When the kernel is attached to this device it will try to detach it. After detaching it will claim the interface. If claiming is not succesfulle the application will be aborted.
+
+
+\begin{DoxyParams}{Parameters}
+{\em vendor\-\_\-id} & The macro \doxyref{V\-E\-N\-D\-O\-R\-\_\-\-I\-D}{p.}{_controller_8h_a5e2fdecfea0fad3bdb8fa4eedf041a3d} specified in in controller.\-h and is used to retreive a handle to the Xbox controller device. \\
+\hline
+{\em product\-\_\-id} & The macro \doxyref{P\-R\-O\-D\-U\-C\-T\-\_\-\-I\-D}{p.}{_controller_8h_a6b41096e44c646df97fba9581acb4b4a} specified in in controller.\-h and is used to retreive a handle to the Xbox controller device.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if succefull.
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+A valid pointer to handle and button. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+The structure buttons is filled with the current state. 
+\end{DoxyPostcond}
+\index{Devices.\-h@{Devices.\-h}!print\-All\-Devices@{print\-All\-Devices}}
+\index{print\-All\-Devices@{print\-All\-Devices}!Devices.h@{Devices.\-h}}
+\paragraph[{print\-All\-Devices}]{\setlength{\rightskip}{0pt plus 5cm}void print\-All\-Devices (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{_devices_8h_a2e1129c53b1f65b610817829c474b081}
+
+
+Prints a list of {\bfseries all} the U\-S\-B devices to the console. 
+
+This function prints a list of all the usb devives to the standard console. 

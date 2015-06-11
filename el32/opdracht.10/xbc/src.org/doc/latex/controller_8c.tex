@@ -1,0 +1,106 @@
+\subsection{controller.\-c File Reference}
+\label{controller_8c}\index{controller.\-c@{controller.\-c}}
+
+
+Function prototypes for the console driver.  
+
+
+{\ttfamily \#include $<$libusb-\/1.\-0/libusb.\-h$>$}\\*
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}controller.\-h\char`\"{}}\\*
+\subsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries T\-I\-M\-E\-O\-U\-T}~1000\label{controller_8c_a45ba202b05caf39795aeca91b0ae547e}
+
+\end{DoxyCompactItemize}
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int {\bf rumble} (libusb\-\_\-device\-\_\-handle $\ast$handle, uint16\-\_\-t speed)
+\begin{DoxyCompactList}\small\item\em Controll the rumble actuator from the Xbox 360 controller. \end{DoxyCompactList}\item 
+int {\bf set\-Leds} (libusb\-\_\-device\-\_\-handle $\ast$handle, {\bf Leds} led)
+\begin{DoxyCompactList}\small\item\em Controll the L\-E\-D's from the Xbox 360 controller. \end{DoxyCompactList}\item 
+int {\bf get\-Input} (libusb\-\_\-device\-\_\-handle $\ast$handle, {\bf Buttons} $\ast$buttons)
+\begin{DoxyCompactList}\small\item\em Retreives the state of the buttons and joysticks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+Function prototypes for the console driver. This contains the prototypes for xxxxxxxxxxxxxxxxxxxxxxx
+
+\begin{DoxyAuthor}{Author}
+A.\-W Janisse 
+\end{DoxyAuthor}
+\begin{DoxyRefDesc}{Bug}
+\item[{\bf Bug}]No known bugs. \end{DoxyRefDesc}
+
+
+\subsubsection{Function Documentation}
+\index{controller.\-c@{controller.\-c}!get\-Input@{get\-Input}}
+\index{get\-Input@{get\-Input}!controller.c@{controller.\-c}}
+\paragraph[{get\-Input}]{\setlength{\rightskip}{0pt plus 5cm}int get\-Input (
+\begin{DoxyParamCaption}
+\item[{libusb\-\_\-device\-\_\-handle $\ast$}]{handle, }
+\item[{{\bf Buttons} $\ast$}]{buttons}
+\end{DoxyParamCaption}
+)}\label{controller_8c_ac99caf44600d91c9e514d3e5e0f0cfa6}
+
+
+Retreives the state of the buttons and joysticks. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & is a pointer to the U\-S\-B device handle. \\
+\hline
+{\em buttons} & is a pointer to a \doxyref{Buttons}{p.}{struct_buttons} struct which will be filled with the button states and joystick values. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if succefull or error code if fails. 
+\end{DoxyReturn}
+\index{controller.\-c@{controller.\-c}!rumble@{rumble}}
+\index{rumble@{rumble}!controller.c@{controller.\-c}}
+\paragraph[{rumble}]{\setlength{\rightskip}{0pt plus 5cm}int rumble (
+\begin{DoxyParamCaption}
+\item[{libusb\-\_\-device\-\_\-handle $\ast$}]{handle, }
+\item[{uint16\-\_\-t}]{speed}
+\end{DoxyParamCaption}
+)}\label{controller_8c_ab730d3235aaef82c840ce3687319c115}
+
+
+Controll the rumble actuator from the Xbox 360 controller. 
+
+Controll the rumble actuator with the desired speed. The speed can varry from 0 (no rumble) to 0x\-F\-F\-F\-F (max rumble).
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & is a pointer to the U\-S\-B device handle. \\
+\hline
+{\em speed} & is the value for the rumble actuator. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if succefull or error code if fails. 
+\end{DoxyReturn}
+\index{controller.\-c@{controller.\-c}!set\-Leds@{set\-Leds}}
+\index{set\-Leds@{set\-Leds}!controller.c@{controller.\-c}}
+\paragraph[{set\-Leds}]{\setlength{\rightskip}{0pt plus 5cm}int set\-Leds (
+\begin{DoxyParamCaption}
+\item[{libusb\-\_\-device\-\_\-handle $\ast$}]{handle, }
+\item[{{\bf Leds}}]{led}
+\end{DoxyParamCaption}
+)}\label{controller_8c_adb132c1b27b902965b8f7aedc42e022c}
+
+
+Controll the L\-E\-D's from the Xbox 360 controller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & is a pointer to the U\-S\-B device handle. \\
+\hline
+{\em led} & holds the desired pattern for the L\-E\-D's. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if succefull or error code if fails. 
+\end{DoxyReturn}

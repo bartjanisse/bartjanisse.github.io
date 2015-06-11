@@ -1,0 +1,157 @@
+
+/** @mainpage Course: DES (EL32), Assignment 10
+ 
+	@author A.W. Janisse
+   	<br><br>
+   	<p>
+ 	<h3>Assignment description</h3>
+   	The main goal of this application is to explore how specific USB hardware can be controlled. For this goal a Datel Xbox 360 controller will be used. Although it is not an original Microsoft one it should be 100% compatible. Below an image of this controller is given.
+
+   	<img src="controller.jpeg" alt="Smiley face" height="171" width="294"> 
+ 
+   	The software developed for this assignment is using the <a href="http://libusb.info/"><b>libusb</b></a> library. This library provides an abstraction for communication with USB devices. The assignment has the following requirements:
+
+   	<ul>
+   		<li>The program can show the states of all the buttons;</li>
+   		<li>The program can controll the LED's;</li>
+   		<li>The program can controll the rumble actuator;</li>
+   		<li>The program can be build with a Makefile;</li>
+   		<li>The program can run on the Raspberry Pi;</li>
+   		<li>The software is documentated.</li>
+   	</ul>
+  	
+  	<h3>Building the source</h3>
+   	Please refer to the @ref page1 page for more information on this topic.
+ 	</p>
+
+  	<h3>How it all works</h3>
+   	On the @ref page3 page a detailed description is given on this topic.
+ 	</p>
+
+   	<h3>Extra's</h3>
+   	During this assignment I got excited about <a href="http://www.stack.nl/~dimitri/doxygen/index.html"><b>Doxygen</b></a>. Dogygen is a tool which can be used to produce documentation in broad sense. One of the possibilities is to generate documentation from comments in source file. The webpage you are reading right now is created with Doxygen.
+*/
+
+/** @page page1 Building the source files
+ 	
+	<h3>Commandline parameters</h3>
+ 	
+ 	The software can be build with make which can be started with several commandline parameters. With these parameters several build options will be selectected. The table below gives an overview of the parameters and describes what will be build.
+ 	<br><br>
+ 	Running Make is done through the commandline and can be executed like this: <b>make \<parameter></b>. Make can also be run without any parameters which will be the same as make all. The complete Makefile can be found @ref page2 "here"
+ 
+    <table>
+	 	 <tr>
+	 	   <th>Parameter</th>
+	 	   <th>Builds</th>
+	 	 </tr>
+	 	 <tr>
+	 		<td>all</td>
+	 		<td>Build the executable with the default (gcc) toolchain.</td>
+	 	 </tr>
+	 	 <tr>
+	  	 	<td>debug</td>
+	  	 	<td>Build with debugger information using the default toolchain (gcc).</td>
+	 	 </tr>
+	 	 <tr>
+	 	 	<td>clean</td>
+	 	 	<td>Clean up. Removes the target executable and all object files (.o)</td>
+	 	 </tr>
+	 	 <tr>
+	 	 	<td>info</td>
+	 	 	<td>Print information regarding the files, used compiler and compiler flags.</td>
+	 	 </tr>
+	 	 <tr>
+	 	 	<td>pi</td>
+	 	 	<td>Builds the executable with the arm-linux-gcc toolchain. The produced executable can run on the Raspberry Pi. Lease note that a clean could be needed after using the default make.</td>
+	 	 </tr>
+	 	 <tr>
+	 	 	<td>install</td>
+	 	 	<td>Copy the target executable to the Raspberry Pi. Please note that the ip-address for the Pi
+	       			must be 10.0.0.42 and the username must be 'root'. Also note the executable will be
+	       			copied on the target /bin directory. </td>
+	 	 </tr>
+	 	 <tr>
+	 	 	<td>backup</td>
+	 	 	<td>Calls clean and produces a tar archive file.</td>
+	 	 </tr>
+	 	 <tr>
+	 	 	<td>html</td>
+	 	 	<td>Produces (this) html documentation.</td>
+	 	 </tr>
+ 	 </table> 
+
+	<h3>Used built-in functions</h3> 
+ 
+	Advantage is taken from several built-in functions. These functions are listed and described below:
+ 	
+ 	<ul> 
+ 		<li><b>$(wildcard pattern...)</b>
+ 		<br>
+ 	 	Find file names matching a shell file name pattern (not a `%' pattern). 
+ 		In the Makefile this command is used like: @code SOURCES = $(wildcard *.c) @endcode
+ 		This creates a list with all the .c into the variable SOURCES.
+ 		</li>
+  		<li><b>$(patsubst pattern,replacement,text)</b>
+ 		<br>
+ 		Replace words matching pattern with replacement in text.
+ 		In the Makefile this commands is used like: @code OBJECTS = $(patsubst %.c, %.o, $(SOURCES)) @endcode
+ 		The used pattern is '%.c' and the replacement is '%.o'. Since the wildcard '\%' is used effectively all 
+ 		items in the SOURCES variable will be renamed and stored in the OBJECTS variable.
+ 		</li>
+   </ul>
+*/
+
+
+/** @page page2 Makefile
+   @include Makefile
+*/
+
+/** @page page3 How it all works
+    When the application is executed several steps are made from within the #main routine. These steps are listed and descibed in more detail below.
+
+    <ol>
+    	<li>Initialize USB;</li>
+    	<li>Print all devices;</li>
+    	<li>Claim the USB device and retrieve a handle;</li>
+    	<li>Demonstrate the controller capabilities;</li>
+    	<li>Close the USB device;</li>
+    	<li>Exit the program.</li>
+    </ol>
+
+    <h3>1. Initialize USB</h3>
+    Bedore any of the libsb function can be called the library must be initialized. In this step this is done by calling the 
+    libusb_init function. Click <a href="http://libusb.sourceforge.net/api-1.0/group__lib.html#ga9517c37281bba0b51cc62eba728be48b"><b>here</b></a> to get more information about this function.
+    
+
+    <h3>2. Print all devices</h3>
+    In this step an overview of USB devices is given to the standard console output.
+
+    <h3>3. Claim the USB device and retrieve a handle</h3>
+    It is possible that the kernel is attached to this device. When so, it must be detached first before using it. When claiming is succesfull a handle to the USB device is retreived. It is this handle that makes it possible to communicate with the USB device.
+
+    This proces is done in three steps:
+    <ol>
+    	<li><a href="http://libusb.sourceforge.net/api-1.0/group__dev.html#ga11ba48adb896b1492bbd3d0bf7e0f665"><b>Open</b></a> the device and get the <a href="http://libusb.sourceforge.net/api-1.0/group__dev.html#ga7df95821d20d27b5597f1d783749d6a4"><b>handle</b></a>;</li>
+    	<li>Find out if the kernel is <a href="http://libusb.sourceforge.net/api-1.0/group__dev.html#gab14d11ed6eac7519bb94795659d2c971"><b>active</b></a> and <a href="http://libusb.sourceforge.net/api-1.0/group__dev.html#ga21bd343325f558987ca57e4e281a6d47"><b>detach</b></a> it;</li>
+    	<li><a href="http://libusb.sourceforge.net/api-1.0/group__dev.html#ga32fabedf5f13fdecf1cb33acdb19b57a"><b>Claim</b></a> the USB device.</li>
+    </ol>
+
+
+    <h3>4. Demonstrate the controller capabilities</h3>
+    As required for this assignment the capabilities of the Xbox controller must be demonstrated. Again for demonstrating there are several steps made:
+    <ol>
+    	<li>The first step is to demonstrade the LED's. The user can press the A, B, X or Y button to illuminate one of the LED's.</li>
+    	<li>In this step the user can controll the rumble actuator with the left-X joystick.</li>
+    	<li>For demonstrating the buttons in this step the user can press each of the buttons. When pressed a message on de console will be printed.</li>
+    	<li>The last step is for demonstrating the analog joysticks. In a continuous loop the analog values are printed to the console.</li>
+    </ol>
+
+    To finish a step and continue with the next step the <b>back</b> button on the Xbox controller can be pressed.
+    <h3>5. Close the USB device</h3>
+    When finished with controlling a USB device the retreived handle must be <a href="http://libusb.sourceforge.net/api-1.0/group__dev.html#ga779bc4f1316bdb0ac383bddbd538620e"><b>closed</b></a>. Also the libusb library must be <a href="http://libusb.sourceforge.net/api-1.0/group__lib.html#ga86532f222d4f1332a5f8f5eef9a92da9"><b>deinitialized</b></a>.
+
+    <h3>6. Exit the program</h3>
+    When all went well the apllication will be exited.
+*/
+

@@ -1,0 +1,35 @@
+#!/bin/sh
+#
+# (C) 2015, A.W. Janisse
+# 
+# place this file in: /etc/init.d/ 
+# 
+# pleasse note to make it executable (for example: chmod u+x S60httpd)
+# 
+
+case "$1" in
+	start)
+		# Start the httpd webserver.
+ 		echo "Starting httpd..."
+		/usr/sbin/httpd -h /var/www	
+		;;
+  
+  	stop)
+		# Stop httpd webserver
+		echo -n "Stopping httpd..."
+		/usr/bin/killall httpd
+		;;
+  
+  	restart|reload)
+		# Restart / Reload rhe httpd webserver
+		"$0" stop
+		"$0" start
+		;;
+  	*)
+	
+	# No params -> print usage
+	echo "Usage: $0 {start|stop|restart}"
+	exit 1
+esac
+
+exit $?

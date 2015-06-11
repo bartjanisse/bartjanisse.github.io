@@ -1,0 +1,140 @@
+\subsection{xbcontroller.\-c File Reference}
+\label{xbcontroller_8c}\index{xbcontroller.\-c@{xbcontroller.\-c}}
+
+
+Function prototypes for the console driver.  
+
+
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}xbcontroller.\-h\char`\"{}}\\*
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bf get\-Devices} (libusb\-\_\-device $\ast$$\ast$devices)
+\begin{DoxyCompactList}\small\item\em Retreives a fresh list of connected U\-S\-B devives. \end{DoxyCompactList}\item 
+int {\bf print\-All\-Devices} (libusb\-\_\-device $\ast$$\ast$devices)
+\begin{DoxyCompactList}\small\item\em Prints a list of connected U\-S\-B devices. \end{DoxyCompactList}\item 
+int {\bf rumble} (libusb\-\_\-device\-\_\-handle $\ast$handle, uint16\-\_\-t speed)
+\begin{DoxyCompactList}\small\item\em Controll the rumble actuator from the Xbox 360 controller. \end{DoxyCompactList}\item 
+int {\bf set\-Leds} (libusb\-\_\-device\-\_\-handle $\ast$handle, enum {\bf leds} led)
+\begin{DoxyCompactList}\small\item\em Controll the L\-E\-D's from the Xbox 360 controller. \end{DoxyCompactList}\item 
+int {\bf get\-Input} (libusb\-\_\-device\-\_\-handle $\ast$handle, struct {\bf Buttons} $\ast$buttons)
+\begin{DoxyCompactList}\small\item\em Retreives the state of the buttons and joysticks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+Function prototypes for the console driver. This contains the prototypes for xxxxxxxxxxxxxxxxxxxxxxx
+
+\begin{DoxyAuthor}{Author}
+A.\-W Janisse 
+\end{DoxyAuthor}
+\begin{DoxyRefDesc}{Bug}
+\item[{\bf Bug}]No known bugs. \end{DoxyRefDesc}
+
+
+\subsubsection{Function Documentation}
+\index{xbcontroller.\-c@{xbcontroller.\-c}!get\-Devices@{get\-Devices}}
+\index{get\-Devices@{get\-Devices}!xbcontroller.c@{xbcontroller.\-c}}
+\paragraph[{get\-Devices}]{\setlength{\rightskip}{0pt plus 5cm}void get\-Devices (
+\begin{DoxyParamCaption}
+\item[{libusb\-\_\-device $\ast$$\ast$}]{devices}
+\end{DoxyParamCaption}
+)}\label{xbcontroller_8c_a9d85258426e1fb8a6177467f4575bcfd}
+
+
+Retreives a fresh list of connected U\-S\-B devives. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em devices} & is a pointer to the list \\
+\hline
+\end{DoxyParams}
+\index{xbcontroller.\-c@{xbcontroller.\-c}!get\-Input@{get\-Input}}
+\index{get\-Input@{get\-Input}!xbcontroller.c@{xbcontroller.\-c}}
+\paragraph[{get\-Input}]{\setlength{\rightskip}{0pt plus 5cm}int get\-Input (
+\begin{DoxyParamCaption}
+\item[{libusb\-\_\-device\-\_\-handle $\ast$}]{handle, }
+\item[{struct {\bf Buttons} $\ast$}]{buttons}
+\end{DoxyParamCaption}
+)}\label{xbcontroller_8c_af42433842ee970c9ea4e7a6bba94f8ea}
+
+
+Retreives the state of the buttons and joysticks. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & is a pointer to the U\-S\-B device handle. \\
+\hline
+{\em buttons} & is a pointer to a \doxyref{Buttons}{p.}{struct_buttons} struct which will be filled with the button states and joystick values. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if succefull or error code if fails. 
+\end{DoxyReturn}
+\index{xbcontroller.\-c@{xbcontroller.\-c}!print\-All\-Devices@{print\-All\-Devices}}
+\index{print\-All\-Devices@{print\-All\-Devices}!xbcontroller.c@{xbcontroller.\-c}}
+\paragraph[{print\-All\-Devices}]{\setlength{\rightskip}{0pt plus 5cm}int print\-All\-Devices (
+\begin{DoxyParamCaption}
+\item[{libusb\-\_\-device $\ast$$\ast$}]{devices}
+\end{DoxyParamCaption}
+)}\label{xbcontroller_8c_aba84b8560d0c66badfc142ca40b702de}
+
+
+Prints a list of connected U\-S\-B devices. 
+
+This function prints information about all the current connected U\-S\-B devices to the standard console.
+
+
+\begin{DoxyParams}{Parameters}
+{\em devices} & is a pointer to the list with devices. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if succefull or error code if fails. 
+\end{DoxyReturn}
+\index{xbcontroller.\-c@{xbcontroller.\-c}!rumble@{rumble}}
+\index{rumble@{rumble}!xbcontroller.c@{xbcontroller.\-c}}
+\paragraph[{rumble}]{\setlength{\rightskip}{0pt plus 5cm}int rumble (
+\begin{DoxyParamCaption}
+\item[{libusb\-\_\-device\-\_\-handle $\ast$}]{handle, }
+\item[{uint16\-\_\-t}]{speed}
+\end{DoxyParamCaption}
+)}\label{xbcontroller_8c_ab730d3235aaef82c840ce3687319c115}
+
+
+Controll the rumble actuator from the Xbox 360 controller. 
+
+Controll the rumble actuator with the desired speed. The speed can varry from 0 (no rumble) to 0x\-F\-F\-F\-F (max rumble).
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & is a pointer to the U\-S\-B device handle. \\
+\hline
+{\em speed} & is the value for the rumble actuator. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if succefull or error code if fails. 
+\end{DoxyReturn}
+\index{xbcontroller.\-c@{xbcontroller.\-c}!set\-Leds@{set\-Leds}}
+\index{set\-Leds@{set\-Leds}!xbcontroller.c@{xbcontroller.\-c}}
+\paragraph[{set\-Leds}]{\setlength{\rightskip}{0pt plus 5cm}int set\-Leds (
+\begin{DoxyParamCaption}
+\item[{libusb\-\_\-device\-\_\-handle $\ast$}]{handle, }
+\item[{enum {\bf leds}}]{led}
+\end{DoxyParamCaption}
+)}\label{xbcontroller_8c_a45e8f96f6cb26ce96ecc1647667df956}
+
+
+Controll the L\-E\-D's from the Xbox 360 controller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & is a pointer to the U\-S\-B device handle. \\
+\hline
+{\em led} & holds the desired pattern for the L\-E\-D's. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if succefull or error code if fails. 
+\end{DoxyReturn}

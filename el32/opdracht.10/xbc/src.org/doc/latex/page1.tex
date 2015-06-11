@@ -1,0 +1,40 @@
+\paragraph*{Commandline parameters}
+
+The software can be build with make which can be started with several commandline parameters. With these parameters several build options will be selectected. The table below gives an overview of the parameters and describes what will be build. \par
+\par
+ Running Make is done through the commandline and can be executed like this\-: {\bfseries make $<$paramater$>$}. Make can also be run without any paramets which will be the same as make all. The complete Makefile can be found \doxyref{here}{p.}{page2}
+
+\begin{TabularC}{2}
+\hline
+\rowcolor{lightgray}{\bf Parameter }&{\bf Builds  }\\\cline{1-2}
+all &Build target the executable.  \\\cline{1-2}
+debug &Build with debugger information.  \\\cline{1-2}
+clean &Clean up. Removes the target executable and all object files (.o)  \\\cline{1-2}
+info &Print information regarding the files, used compiler and compiler flags.  \\\cline{1-2}
+pi &Builds the executable with the arm-\/linux-\/gcc toolchain. The produced executable can run on the Raspberry Pi  \\\cline{1-2}
+install &Copy the target executable to the Raspberry Pi. Please note that the ip-\/address for the Pi must be 10.\-0.\-0.\-42 and the username must be 'root'. Also note the executable will be copied on the target /bin directory.   \\\cline{1-2}
+backup &Calls clean and produces a tar archive file.  \\\cline{1-2}
+html &Produces (this) html documentation.  \\\cline{1-2}
+pdf&Produces P\-D\-F documentation.  \\\cline{1-2}
+\end{TabularC}
+
+
+\paragraph*{Used built-\/in functions}
+
+Advantage is taken from several built-\/in functions. These functions are listed and described below.
+
+
+\begin{DoxyItemize}
+\item {\bfseries \$(wildcard pattern...)} \par
+ Find file names matching a shell file name pattern (not a `' pattern). In the Makefile this command is used like\-:
+\begin{DoxyCode}
+SOURCES = $(wildcard *.c) 
+\end{DoxyCode}
+ This creates a list with all the .c into the variable S\-O\-U\-R\-C\-E\-S.  
+\item {\bfseries \$(patsubst pattern,replacement,text)} \par
+ Replace words matching pattern with replacement in text. In the Makefile this commands is used like\-:
+\begin{DoxyCode}
+OBJECTS = $(patsubst %.c, %.o, $(SOURCES)) 
+\end{DoxyCode}
+ The used pattern is '\%.c' and the replacement is '\%.o'. Since the wildcard '\%' is used effectively all items in the S\-O\-U\-R\-C\-E\-S variable will be renamed and stored in the O\-B\-J\-E\-C\-T\-S variable.  
+\end{DoxyItemize}

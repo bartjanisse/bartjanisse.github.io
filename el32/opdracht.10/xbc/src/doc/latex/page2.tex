@@ -1,0 +1,98 @@
+
+\begin{DoxyCodeInclude}
+\textcolor{preprocessor}{# }
+\textcolor{preprocessor}{}\textcolor{preprocessor}{#   Generic Makefile for simple projects.}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{#}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{#   (C) 2015, A.W. Janisse}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{#}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{#   Macro's:}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{#       OUTPUT  : Name of the executable}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{#       PIDIR   : Place for installation on the Raspberry PI}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{#       CC      : Default compiler. (Note make pi will build for the Raspberry Pi platform)}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{#       LIBS    : Libraries to use when building}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{#       CFLAGS  : Compiler flags}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{#       ZIPDIR  : Directory to put the backup archive files}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{#}
+\textcolor{preprocessor}{}
+OUTPUT  = xbc
+PIDIR   = root@10.0.0.42:/bin
+CC      = gcc
+LIBS    = -lusb-1.0
+CFLAGS  = -O2 -Wall -Werror
+ZIPDIR  = ../backup
+
+\textcolor{preprocessor}{### -----[ Do not change anything below this line ]----- ###}
+\textcolor{preprocessor}{}
+\textcolor{preprocessor}{# Remove any unwanted leading and trailing spaces}
+\textcolor{preprocessor}{}TARGET = $(strip $(OUTPUT))
+\textcolor{preprocessor}{# Retreive a list of source files (ending with .c)}
+\textcolor{preprocessor}{}SOURCES = $(wildcard *.c)
+# Replace all .c in the sources list to .o
+OBJECTS = $(patsubst %.c, %.o, $(SOURCES))
+# Retreive a list of header files (ending with .h)
+HEADERS = $(wildcard *.h)   
+# Build the archive name and set extension
+TARNAME = $(ZIPDIR)/$(TARGET)\_$(shell date +\textcolor{stringliteral}{'%Y%m%d\_%H%M'})$(TAREXT)
+TAREXT  = .tar
+
+.PHONY: all debug clean install info html pdf backup pi
+
+# Rule to perform when just make is executed.
+all: $(TARGET)
+
+\textcolor{preprocessor}{# implicit rule for building the object files.}
+\textcolor{preprocessor}{}%.o: %.c $(HEADERS)
+    $(CC) $(CFLAGS) -c $< -o $@
+
+# Don\textcolor{stringliteral}{'t delete intermediate files when this make is aborted for some reason.}
+\textcolor{stringliteral}{.PRECIOUS: $(TARGET) $(OBJECTS)}
+\textcolor{stringliteral}{}
+\textcolor{stringliteral}{# Here the compiling hapens }
+\textcolor{stringliteral}{$(TARGET): $(OBJECTS)}
+\textcolor{stringliteral}{    $(CC) $(OBJECTS) -Wall $(LIBS) -o $@}
+\textcolor{stringliteral}{}
+\textcolor{stringliteral}{# Build all with debug information. The X86 toolchain is used.}
+\textcolor{stringliteral}{debug: CFLAGS += -g}
+\textcolor{stringliteral}{debug: all}
+\textcolor{stringliteral}{}
+\textcolor{stringliteral}{# Build all with the arm-linux-gcc toolchain.}
+\textcolor{stringliteral}{pi: CC=arm-linux-gcc}
+\textcolor{stringliteral}{pi: all}
+\textcolor{stringliteral}{}
+\textcolor{stringliteral}{# Just cleanup by removing the exectable en .obj files.}
+\textcolor{stringliteral}{clean:}
+\textcolor{stringliteral}{    @rm -rf $(TARGET) $(OBJECTS)}
+\textcolor{stringliteral}{}
+\textcolor{stringliteral}{# Give information about this Makefile.}
+\textcolor{stringliteral}{info: }
+\textcolor{stringliteral}{    @echo ==================================================================}
+\textcolor{stringliteral}{    @echo Output"   ":   $(TARGET)}
+\textcolor{stringliteral}{    @echo Sources"  ": $(SOURCES)}
+\textcolor{stringliteral}{    @echo Headers"  ": $(HEADERS)}
+\textcolor{stringliteral}{    @echo Objects"  ": $(OBJECTS)}
+\textcolor{stringliteral}{    @echo Libraries: $(LIBS)}
+\textcolor{stringliteral}{    @echo Compiler : $(CC)}
+\textcolor{stringliteral}{    @echo CFlags"   ": $(CFLAGS)}
+\textcolor{stringliteral}{    @echo Zip dir"  ": $(ZIPDIR)}
+\textcolor{stringliteral}{    @echo ==================================================================}
+\textcolor{stringliteral}{}
+\textcolor{stringliteral}{# Copy the executable over to the Raspberry PI.}
+\textcolor{stringliteral}{install:}
+\textcolor{stringliteral}{    @echo Connecting...}
+\textcolor{stringliteral}{    @scp $(TARGET) $(PIDIR)}
+\textcolor{stringliteral}{    @echo installation done!}
+\textcolor{stringliteral}{}
+\textcolor{stringliteral}{# Create an archive file containing all the essential files for reproduction.}
+\textcolor{stringliteral}{backup: clean}
+\textcolor{stringliteral}{backup:}
+\textcolor{stringliteral}{    @mkdir -p $(ZIPDIR)}
+\textcolor{stringliteral}{    @tar -cf $(TARNAME) .}
+\textcolor{stringliteral}{    @echo Created archive: $(TARNAME)}
+\textcolor{stringliteral}{}
+\textcolor{stringliteral}{# Produce the HTML documentation based on the settings in Doxyfile.}
+\textcolor{stringliteral}{html:}
+\textcolor{stringliteral}{    @doxygen}
+\textcolor{stringliteral}{    @echo HTML documentation is generated in doc/html}
+\textcolor{stringliteral}{}
+\end{DoxyCodeInclude}
+ 

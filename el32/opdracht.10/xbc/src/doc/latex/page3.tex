@@ -1,0 +1,48 @@
+When the application is executed several steps are made from within the \doxyref{main}{p.}{main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4} routine. These steps are listed and descibed in more detail below.
+
+
+\begin{DoxyEnumerate}
+\item Initialize U\-S\-B; 
+\item Print all devices; 
+\item Claim the U\-S\-B device and retrieve a handle; 
+\item Demonstrate the controller capabilities; 
+\item Close the U\-S\-B device; 
+\item Exit the program. 
+\end{DoxyEnumerate}
+
+\paragraph*{1. Initialize U\-S\-B}
+
+Bedore any of the libsb function can be called the library must be initialized. In this step this is done by calling the libusb\-\_\-init function. Click {\tt {\bfseries here}} to get more information about this function.
+
+\paragraph*{2. Print all devices}
+
+In this step an overview of U\-S\-B devices is given to the standard console output.
+
+\paragraph*{3. Claim the U\-S\-B device and retrieve a handle}
+
+It is possible that the kernel is attached to this device. When so, it must be detached first before using it. When claiming is succesfull a handle to the U\-S\-B device is retreived. It is this handle that makes it possible to communicate with the U\-S\-B device.
+
+This proces is done in three steps\-: 
+\begin{DoxyEnumerate}
+\item {\tt {\bfseries Open}} the device and get the {\tt {\bfseries handle}}; 
+\item Find out if the kernel is {\tt {\bfseries active}} and {\tt {\bfseries detach}} it; 
+\item {\tt {\bfseries Claim}} the U\-S\-B device. 
+\end{DoxyEnumerate}
+
+\paragraph*{4. Demonstrate the controller capabilities}
+
+As required for this assignment the capabilities of the Xbox controller must be demonstrated. Again for demonstrating there are several steps made\-: 
+\begin{DoxyEnumerate}
+\item The first step is to demonstrade the L\-E\-D's. The user can press the A, B, X or Y button to illuminate one of the L\-E\-D's. 
+\item In this step the user can controll the rumble actuator with the left-\/\-X joystick. 
+\item For demonstrating the buttons in this step the user can press each of the buttons. When pressed a message on de console will be printed. 
+\item The last step is for demonstrating the analog joysticks. In a continuous loop the analog values are printed to the console. 
+\end{DoxyEnumerate}
+
+To finish a step and continue with the next step the {\bfseries back} button on the Xbox controller can be pressed. \paragraph*{5. Close the U\-S\-B device}
+
+When finished with controlling a U\-S\-B device the retreived handle must be {\tt {\bfseries closed}}. Also the libusb library must be {\tt {\bfseries deinitialized}}.
+
+\paragraph*{6. Exit the program}
+
+When all went well the apllication will be exited. 

@@ -1,0 +1,223 @@
+
+Opvragen van het usb devive => lsusb -d 045e:028e -v
+
+http://www.dreamincode.net/forums/topic/148707-introduction-to-using-libusb-10/
+
+ldd xbc => geeft aan welke dynamische libraries gebruikt worden. 
+
+http://www.jfranken.de/homepages/johannes/vortraege/make_inhalt.en.html
+
+
+Installatie libusb: sudo apt-get install libusb-1.0-0-dev
+
+==============================================================================================================================
+.ssh
+==============================================================================================================================
+
+SSH zonder password
+
+1. Login op de pi met ssh
+2. Maak een directory: mkdir .ssh
+3. exit de sessie
+4. Maak een certificaat: ssh-keygen
+5. Ga naar: cd ~/.ssh
+6. Kopieer: scp id_rsa.pub root@10.0.0.42:.ssh/authorized_keys
+7. vanaf nu kun je vanaf je machine met ssh zonder password op de pi
+
+==============================================================================================================================
+Input report
+==============================================================================================================================
+Offset	 Length (bits)	 Description	 Windows driver
+0x00.0	 8	 Message type
+0x01.0	 8	 Packet size (20 bytes = 0x14)
+
+0x02.0	 1	 D-Pad up	 D-Pad up
+0x02.1	 1	 D-Pad down	 D-Pad down
+0x02.2	 1	 D-Pad left	 D-Pad left
+0x02.3	 1	 D-pad right	 D-Pad right
+0x02.4	 1	 Start button	 Button 8
+0x02.5	 1	 Back button	 Button 7
+0x02.6	 1	 Left stick press	 Button 9
+0x02.7	 1	 Right stick press	 Button 10
+
+0x03.0	 1	 Button LB	 Button 5
+0x03.1	 1	 Button RB	 Button 6
+0x03.2	 1	 Xbox logo button
+0x03.3	 1	 Unused
+0x03.4	 1	 Button A	 Button 1
+0x03.5	 1	 Button B	 Button 2
+0x03.6	 1	 Button X	 Button 3
+0x03.7	 1	 Button Y	 Button 4
+
+0x04.0	 8	 Left trigger	 Z-axis down
+0x05.0	 8	 Right trigger	 Z-axis up
+0x06.0	 16	 Left stick X-axis	 X-axis
+0x08.0	 16	 Left stick Y-axis	 Y-axis
+0x0a.0	 16	 Right stick X-axis	 X-turn
+0x0c.0	 16	 Right stick Y-axis	 Y-turn
+0x0e.0	 48	 Unused
+
+==============================================================================================================================
+Output report
+==============================================================================================================================
+
+Kan zijn dat sommige patterns niet werken omdat we een cloon xbox controller hebben.
+
+Pattern	 Description
+0x00	 All Off     
+0x01	 All blinking
+0x02	 1 flashes, then on
+0x03	 2 flashes, then on
+0x04	 3 flashes, then on
+0x05	 4 flashes, then on
+0x06	 1 on
+0x07	 2 on
+0x08	 3 on
+0x09	 4 on
+0x0A	 Rotating (e.g. 1-2-4-3)
+0x0B	 Blinking*
+0x0C	 Slow blinking*
+0x0D	 Alternating (e.g. 1+4-2+3), then back to previous*
+
+Rumbler Control
+
+Rumbling is also similar to on the original controller. Rumble commands take the following 8-byte form:
+
+00 08 00 bb ll 00 00 00
+
+Where b is the speed to set the motor with the big weight, and l is the speed to set the small weight (0x00 to 0xFF in both cases). 
+
+0x00, 0x08, 0x00, 0xff, 0xff, 0x00, 0x00, 0x00
+
+==============================================================================================================================
+LibUsb functies
+==============================================================================================================================
+libusb_init    						        Initialize the library and create a session.
+libusb_get_device_list				    Get a list of connected devices.
+libusb_free_device_list				    Clear the list you got from libusb_get_device_list.
+libusb_open 						          Open the device.
+libusb_open_device_with_vid_pid	  Open the device when you know vendor and product id of the device.
+libusb_claim_interface				    Claim the interface (requires you to know the interface numbers of device).
+libusb_release_interface			    Release the device.
+libusb_close						          Close the device you openedbefore.
+libusb_exit							          Close the session.
+libusb_detach_kernel_driver			  Detach kernel from your device.
+libusb_kernel_driver_active			  Returned value is 1 when then kernel attached a driver to your device.
+
+==============================================================================================================================
+Doxygen
+==============================================================================================================================
+sudo apt-get install doxygen
+sudo apt-get install doxygen-gui
+
+gebruik eventueel doxywizard
+
+doxygen -g => maakt een config file aan
+
+in de file 'Doxygen' de volgende settings gedaan:
+
+PROJECT_NAME           = "Xbox 360 controller demo"
+PROJECT_BRIEF          = "Program to demonstrate the capabilities of the Xbox 360 controller."
+OUTPUT_DIRECTORY       = doc
+INPUT                  = xbc.c xbcontroller.c xboxcontroller.h
+
+Om een pdf te maken moet je make draaien vanuit /doc/latex
+jiervoor moet je wel texlive installeren met: sudo apt-get install texlive
+
+voorbeelden: http://www.cs.cmu.edu/~410/doc/doxygen.html
+==============================================================================================================================
+Structs
+==============================================================================================================================
+struct someStruct {
+    unsigned int total;
+};
+
+/*
+ * Modifies the struct that exists in the calling function.
+ */
+int test(struct someStruct *state) {
+    state->total = 4;
+    return 0;
+}
+
+/* 
+ * Modifies the local copy of the struct, the original
+ * in the calling function is not modified.
+ */
+int test2(struct someStruct state) {
+    state.total = 8;
+    return 0;
+}
+
+int test3(struct someStruct *state) {
+    struct someStruct  stateCopy;
+    stateCopy = *state;    // make a local copy of the struct
+    stateCopy.total = 12;  // modify the local copy of the struct
+    *state = stateCopy;    /* copy the local copy back to the original 
+                              in the calling function. */
+    return 0;
+}
+
+int main () {
+    struct someStruct s;
+
+    /* Set the value then call a function that will change the value. */
+    s.total = 5;
+    test(&s);
+    printf("after test(): s.total = %d\n", s.total);
+
+    /*
+     * Set the value then call a function that will change its local copy 
+     * but not this one.
+     */
+    s.total = 5;
+    test2(s);
+    printf("after test2(): s.total = %d\n", s.total);
+
+    /* 
+     * Call a function that will make a copy, change the copy,
+       then put the copy into this one.
+     */
+    test3(&s);
+    printf("after test3(): s.total = %d\n", s.total);
+
+    return 0;
+}
+
+==================================
+
+void printbits(unsigned char v) 
+{
+  int i; 
+  printf("0b");
+  for(i = 7; i >= 0; i--) putchar('0' + ((v >> i) & 1));
+  printf("\n");
+}
+
+==========================================
+
+
+There are also predefined macros EXIT_SUCCESS and EXIT_FAILURE, e.g. exit(EXIT_SUCCESS);
+
+==========================================
+
+
+
+
+            _                            _
+       _.-'` `-._                    _,-' `'-._
+    ,-'          `-.,____________,.-'    .-.   `-.
+   /   .---.             ___            ( Y )     \
+  /  ,' ,-. `.     __   / X \   __   .-. `-` .-.   \
+ /   | |   | |    (__) | / \ | (__) ( X )   ( B )   \
+/    `. `-' ,'    __    \___/        `-` ,-. `-`     \
+|      `---`   ,-`  `-.       .---.     ( A )        |
+|             / -'  `- \    ,'  .  `.    `-`         |
+|            |          |   | -   - |                |
+!             \ -.  ,- /    `.  '  ,'                |
+|              `-.__,-'       `---`                  |
+|                  ________________                  |
+|             _,-'`                ``-._             |
+|          ,-'                          `-.          |
+ \       ,'                                `.       /
+  `.__,-'                                    `-.__,'

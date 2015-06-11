@@ -1,0 +1,227 @@
+\subsection{Controller.\-h File Reference}
+\label{_controller_8h}\index{Controller.\-h@{Controller.\-h}}
+
+
+Function prototypes for the controller.  
+
+
+{\ttfamily \#include $<$libusb-\/1.\-0/libusb.\-h$>$}\\*
+{\ttfamily \#include $<$stdbool.\-h$>$}\\*
+\subsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct {\bf Buttons}
+\begin{DoxyCompactList}\small\item\em struct \doxyref{Buttons}{p.}{struct_buttons} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bf V\-E\-N\-D\-O\-R\-\_\-\-I\-D}~0x045e
+\begin{DoxyCompactList}\small\item\em V\-E\-N\-D\-O\-R\-\_\-\-I\-D. \end{DoxyCompactList}\item 
+\#define {\bf P\-R\-O\-D\-U\-C\-T\-\_\-\-I\-D}~0x028e
+\begin{DoxyCompactList}\small\item\em P\-R\-O\-D\-U\-C\-T\-\_\-\-I\-D. \end{DoxyCompactList}\item 
+\#define {\bf E\-P\-\_\-\-I\-N}~0x81
+\begin{DoxyCompactList}\small\item\em E\-P\-\_\-\-I\-N. \end{DoxyCompactList}\item 
+\#define {\bf E\-P\-\_\-\-O\-U\-T}~0x02
+\begin{DoxyCompactList}\small\item\em E\-P\-\_\-\-O\-U\-T. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bf Leds} \{ \\*
+{\bf all\-\_\-off} = 0x00, 
+{\bf blink\-\_\-all} = 0x01, 
+{\bf flash\-\_\-1\-\_\-on} = 0x02, 
+{\bf flash\-\_\-2\-\_\-on} = 0x03, 
+\\*
+{\bf flash\-\_\-3\-\_\-on} = 0x04, 
+{\bf flash\-\_\-4\-\_\-on} = 0x05, 
+{\bf led\-\_\-1\-\_\-on} = 0x06, 
+{\bf led\-\_\-2\-\_\-on} = 0x07, 
+\\*
+{\bf led\-\_\-3\-\_\-on} = 0x08, 
+{\bf led\-\_\-4\-\_\-on} = 0x09, 
+{\bf rotate} = 0x0\-A, 
+{\bf blink\-\_\-select} = 0x0\-B, 
+\\*
+{\bf blink\-\_\-slow} = 0x0\-C, 
+{\bf alt} = 0x0\-D
+ \}
+\begin{DoxyCompactList}\small\item\em Enum Leds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int {\bf set\-Controller\-Rumble} (libusb\-\_\-device\-\_\-handle $\ast$handle, uint16\-\_\-t speed)
+\begin{DoxyCompactList}\small\item\em Controll the Xbox 360 controller rumble actuator with the desired speed. \end{DoxyCompactList}\item 
+int {\bf set\-Controller\-Leds} (libusb\-\_\-device\-\_\-handle $\ast$handle, {\bf Leds} led)
+\begin{DoxyCompactList}\small\item\em Controll the L\-E\-D's from the Xbox 360 controller. \end{DoxyCompactList}\item 
+int {\bf get\-Controller\-Input} (libusb\-\_\-device\-\_\-handle $\ast$handle, {\bf Buttons} $\ast${\bf buttons})
+\begin{DoxyCompactList}\small\item\em Retreives the state of the buttons and joysticks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+Function prototypes for the controller. This contains the prototypes for the controller and eventually any macros, constants or global variables you will need.
+
+\begin{DoxyAuthor}{Author}
+A.\-W Janisse 
+\end{DoxyAuthor}
+\begin{DoxyRefDesc}{Bug}
+\item[{\bf Bug}]No known bugs.\end{DoxyRefDesc}
+
+
+\begin{DoxyVersion}{Version}
+1.\-0 First release. 
+\end{DoxyVersion}
+
+
+\subsubsection{Macro Definition Documentation}
+\index{Controller.\-h@{Controller.\-h}!E\-P\-\_\-\-I\-N@{E\-P\-\_\-\-I\-N}}
+\index{E\-P\-\_\-\-I\-N@{E\-P\-\_\-\-I\-N}!Controller.h@{Controller.\-h}}
+\paragraph[{E\-P\-\_\-\-I\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-P\-\_\-\-I\-N~0x81}\label{_controller_8h_ab79ba3999449c3d32abd0462936ca52c}
+
+
+E\-P\-\_\-\-I\-N. 
+
+Constant for the endpoint in. \index{Controller.\-h@{Controller.\-h}!E\-P\-\_\-\-O\-U\-T@{E\-P\-\_\-\-O\-U\-T}}
+\index{E\-P\-\_\-\-O\-U\-T@{E\-P\-\_\-\-O\-U\-T}!Controller.h@{Controller.\-h}}
+\paragraph[{E\-P\-\_\-\-O\-U\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-P\-\_\-\-O\-U\-T~0x02}\label{_controller_8h_a3a942d7df9f25be538925b91fa1317c3}
+
+
+E\-P\-\_\-\-O\-U\-T. 
+
+Constant for the endpoint out. \index{Controller.\-h@{Controller.\-h}!P\-R\-O\-D\-U\-C\-T\-\_\-\-I\-D@{P\-R\-O\-D\-U\-C\-T\-\_\-\-I\-D}}
+\index{P\-R\-O\-D\-U\-C\-T\-\_\-\-I\-D@{P\-R\-O\-D\-U\-C\-T\-\_\-\-I\-D}!Controller.h@{Controller.\-h}}
+\paragraph[{P\-R\-O\-D\-U\-C\-T\-\_\-\-I\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\-R\-O\-D\-U\-C\-T\-\_\-\-I\-D~0x028e}\label{_controller_8h_a6b41096e44c646df97fba9581acb4b4a}
+
+
+P\-R\-O\-D\-U\-C\-T\-\_\-\-I\-D. 
+
+Constant for product id. This constant can be used to derive the handle. \index{Controller.\-h@{Controller.\-h}!V\-E\-N\-D\-O\-R\-\_\-\-I\-D@{V\-E\-N\-D\-O\-R\-\_\-\-I\-D}}
+\index{V\-E\-N\-D\-O\-R\-\_\-\-I\-D@{V\-E\-N\-D\-O\-R\-\_\-\-I\-D}!Controller.h@{Controller.\-h}}
+\paragraph[{V\-E\-N\-D\-O\-R\-\_\-\-I\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define V\-E\-N\-D\-O\-R\-\_\-\-I\-D~0x045e}\label{_controller_8h_a5e2fdecfea0fad3bdb8fa4eedf041a3d}
+
+
+V\-E\-N\-D\-O\-R\-\_\-\-I\-D. 
+
+Constant for vendor id. This constant can be used to derive the handle. 
+
+\subsubsection{Enumeration Type Documentation}
+\index{Controller.\-h@{Controller.\-h}!Leds@{Leds}}
+\index{Leds@{Leds}!Controller.h@{Controller.\-h}}
+\paragraph[{Leds}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Leds}}\label{_controller_8h_a1e4b1d1d1b6272a280f18efef4db3f5e}
+
+
+Enum Leds. 
+
+This enumeration contains all the command availlable to controll the L\-E\-D's. The function \doxyref{set\-Controller\-Leds}{p.}{_controller_8h_acc1e0a36aea4db307a6700c13a74b4fb} can be used to controll the states of the indvidual L\-E\-D's. \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{all\-\_\-off@{all\-\_\-off}!Controller.\-h@{Controller.\-h}}\index{Controller.\-h@{Controller.\-h}!all\-\_\-off@{all\-\_\-off}}\item[{\em 
+all\-\_\-off\label{_controller_8h_a1e4b1d1d1b6272a280f18efef4db3f5ea5744956c2a75d7f08502bf9eb52db56f}
+}]All led's off. \index{blink\-\_\-all@{blink\-\_\-all}!Controller.\-h@{Controller.\-h}}\index{Controller.\-h@{Controller.\-h}!blink\-\_\-all@{blink\-\_\-all}}\item[{\em 
+blink\-\_\-all\label{_controller_8h_a1e4b1d1d1b6272a280f18efef4db3f5ea2040b2792c2d14984b958e00e6189b4b}
+}]All blinking. \index{flash\-\_\-1\-\_\-on@{flash\-\_\-1\-\_\-on}!Controller.\-h@{Controller.\-h}}\index{Controller.\-h@{Controller.\-h}!flash\-\_\-1\-\_\-on@{flash\-\_\-1\-\_\-on}}\item[{\em 
+flash\-\_\-1\-\_\-on\label{_controller_8h_a1e4b1d1d1b6272a280f18efef4db3f5eaa69975e19b7da2c0d7251d995891a668}
+}]1 flashes, then on \index{flash\-\_\-2\-\_\-on@{flash\-\_\-2\-\_\-on}!Controller.\-h@{Controller.\-h}}\index{Controller.\-h@{Controller.\-h}!flash\-\_\-2\-\_\-on@{flash\-\_\-2\-\_\-on}}\item[{\em 
+flash\-\_\-2\-\_\-on\label{_controller_8h_a1e4b1d1d1b6272a280f18efef4db3f5ea502a3fc79bff4af26fb485afb789af32}
+}]2 flashes, then on \index{flash\-\_\-3\-\_\-on@{flash\-\_\-3\-\_\-on}!Controller.\-h@{Controller.\-h}}\index{Controller.\-h@{Controller.\-h}!flash\-\_\-3\-\_\-on@{flash\-\_\-3\-\_\-on}}\item[{\em 
+flash\-\_\-3\-\_\-on\label{_controller_8h_a1e4b1d1d1b6272a280f18efef4db3f5eaa3bfcdd124be7e80d1e350b50aef738e}
+}]3 flashes, then on \index{flash\-\_\-4\-\_\-on@{flash\-\_\-4\-\_\-on}!Controller.\-h@{Controller.\-h}}\index{Controller.\-h@{Controller.\-h}!flash\-\_\-4\-\_\-on@{flash\-\_\-4\-\_\-on}}\item[{\em 
+flash\-\_\-4\-\_\-on\label{_controller_8h_a1e4b1d1d1b6272a280f18efef4db3f5ea01f47e256143fe5f4771e17d440359fe}
+}]4 flashes, then on \index{led\-\_\-1\-\_\-on@{led\-\_\-1\-\_\-on}!Controller.\-h@{Controller.\-h}}\index{Controller.\-h@{Controller.\-h}!led\-\_\-1\-\_\-on@{led\-\_\-1\-\_\-on}}\item[{\em 
+led\-\_\-1\-\_\-on\label{_controller_8h_a1e4b1d1d1b6272a280f18efef4db3f5ea857f4b52703a580a0844f38bb35fd783}
+}]1 on \index{led\-\_\-2\-\_\-on@{led\-\_\-2\-\_\-on}!Controller.\-h@{Controller.\-h}}\index{Controller.\-h@{Controller.\-h}!led\-\_\-2\-\_\-on@{led\-\_\-2\-\_\-on}}\item[{\em 
+led\-\_\-2\-\_\-on\label{_controller_8h_a1e4b1d1d1b6272a280f18efef4db3f5eaeb5cc16081a91436d24e8d9ebafc6238}
+}]2 on \index{led\-\_\-3\-\_\-on@{led\-\_\-3\-\_\-on}!Controller.\-h@{Controller.\-h}}\index{Controller.\-h@{Controller.\-h}!led\-\_\-3\-\_\-on@{led\-\_\-3\-\_\-on}}\item[{\em 
+led\-\_\-3\-\_\-on\label{_controller_8h_a1e4b1d1d1b6272a280f18efef4db3f5eac1dadd994482a729ef111458f3a69e2a}
+}]3 on \index{led\-\_\-4\-\_\-on@{led\-\_\-4\-\_\-on}!Controller.\-h@{Controller.\-h}}\index{Controller.\-h@{Controller.\-h}!led\-\_\-4\-\_\-on@{led\-\_\-4\-\_\-on}}\item[{\em 
+led\-\_\-4\-\_\-on\label{_controller_8h_a1e4b1d1d1b6272a280f18efef4db3f5ea656750bee9a9ac55cc579ce60c9b2f1d}
+}]4 on \index{rotate@{rotate}!Controller.\-h@{Controller.\-h}}\index{Controller.\-h@{Controller.\-h}!rotate@{rotate}}\item[{\em 
+rotate\label{_controller_8h_a1e4b1d1d1b6272a280f18efef4db3f5ea26d30288a9243336cb334fe193a7fd61}
+}]Rotating (e.\-g. 1-\/2-\/4-\/3) \index{blink\-\_\-select@{blink\-\_\-select}!Controller.\-h@{Controller.\-h}}\index{Controller.\-h@{Controller.\-h}!blink\-\_\-select@{blink\-\_\-select}}\item[{\em 
+blink\-\_\-select\label{_controller_8h_a1e4b1d1d1b6272a280f18efef4db3f5eab2d652b4cd2b87c2dc3004fdfdeb8eac}
+}]previous setting will be used (all blinking, or 1, 2, 3 or 4 on). \index{blink\-\_\-slow@{blink\-\_\-slow}!Controller.\-h@{Controller.\-h}}\index{Controller.\-h@{Controller.\-h}!blink\-\_\-slow@{blink\-\_\-slow}}\item[{\em 
+blink\-\_\-slow\label{_controller_8h_a1e4b1d1d1b6272a280f18efef4db3f5ea4185d37fdbe5aa1fb945dfc42364965d}
+}]Slow blinking. \index{alt@{alt}!Controller.\-h@{Controller.\-h}}\index{Controller.\-h@{Controller.\-h}!alt@{alt}}\item[{\em 
+alt\label{_controller_8h_a1e4b1d1d1b6272a280f18efef4db3f5ea7f564926136a18c80a8a14a53d0e98ce}
+}]Alternating (e.\-g. 1+4-\/2+3), then back to previous. \end{description}
+\end{Desc}
+
+
+\subsubsection{Function Documentation}
+\index{Controller.\-h@{Controller.\-h}!get\-Controller\-Input@{get\-Controller\-Input}}
+\index{get\-Controller\-Input@{get\-Controller\-Input}!Controller.h@{Controller.\-h}}
+\paragraph[{get\-Controller\-Input}]{\setlength{\rightskip}{0pt plus 5cm}int get\-Controller\-Input (
+\begin{DoxyParamCaption}
+\item[{libusb\-\_\-device\-\_\-handle $\ast$}]{handle, }
+\item[{{\bf Buttons} $\ast$}]{buttons}
+\end{DoxyParamCaption}
+)}\label{_controller_8h_ada7bb69f660d82b468b40aeab8ad8c9d}
+
+
+Retreives the state of the buttons and joysticks. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & is a pointer to the U\-S\-B device handle. \\
+\hline
+{\em buttons} & is a pointer to a \doxyref{Buttons}{p.}{struct_buttons} struct which will be filled with the button states and joystick values.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if succefull.
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+A valid pointer to handle and button. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+The structure buttons is filled with the current state. 
+\end{DoxyPostcond}
+\index{Controller.\-h@{Controller.\-h}!set\-Controller\-Leds@{set\-Controller\-Leds}}
+\index{set\-Controller\-Leds@{set\-Controller\-Leds}!Controller.h@{Controller.\-h}}
+\paragraph[{set\-Controller\-Leds}]{\setlength{\rightskip}{0pt plus 5cm}int set\-Controller\-Leds (
+\begin{DoxyParamCaption}
+\item[{libusb\-\_\-device\-\_\-handle $\ast$}]{handle, }
+\item[{{\bf Leds}}]{led}
+\end{DoxyParamCaption}
+)}\label{_controller_8h_acc1e0a36aea4db307a6700c13a74b4fb}
+
+
+Controll the L\-E\-D's from the Xbox 360 controller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & is a pointer to the U\-S\-B device handle. \\
+\hline
+{\em led} & holds the desired pattern for the L\-E\-D's. See \doxyref{Leds}{p.}{_controller_8h_a1e4b1d1d1b6272a280f18efef4db3f5e} for details\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if succefull.
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+A valid pointer (not N\-U\-L\-L) to handle. 
+\end{DoxyPrecond}
+\index{Controller.\-h@{Controller.\-h}!set\-Controller\-Rumble@{set\-Controller\-Rumble}}
+\index{set\-Controller\-Rumble@{set\-Controller\-Rumble}!Controller.h@{Controller.\-h}}
+\paragraph[{set\-Controller\-Rumble}]{\setlength{\rightskip}{0pt plus 5cm}int set\-Controller\-Rumble (
+\begin{DoxyParamCaption}
+\item[{libusb\-\_\-device\-\_\-handle $\ast$}]{handle, }
+\item[{uint16\-\_\-t}]{speed}
+\end{DoxyParamCaption}
+)}\label{_controller_8h_ae7cb117322f01a153aa80f498dd1a139}
+
+
+Controll the Xbox 360 controller rumble actuator with the desired speed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & is a pointer to the U\-S\-B device handle. \\
+\hline
+{\em speed} & for the rumble actuator.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if succefull.
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+A valid pointer to handle. 
+\end{DoxyPrecond}

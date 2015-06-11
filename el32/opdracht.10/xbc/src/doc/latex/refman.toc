@@ -1,0 +1,54 @@
+\contentsline {section}{\numberline {1}Course\discretionary {-}{}{}: D\discretionary {-}{}{}E\discretionary {-}{}{}S (E\discretionary {-}{}{}L32), Assignment 10}{1}
+\contentsline {section}{\numberline {2}Building the source files}{1}
+\contentsline {section}{\numberline {3}Makefile}{2}
+\contentsline {section}{\numberline {4}How it all works}{4}
+\contentsline {section}{\numberline {5}Bug List}{4}
+\contentsline {section}{\numberline {6}Data Structure Index}{4}
+\contentsline {subsection}{\numberline {6.1}Data Structures}{4}
+\contentsline {section}{\numberline {7}File Index}{4}
+\contentsline {subsection}{\numberline {7.1}File List}{4}
+\contentsline {section}{\numberline {8}Data Structure Documentation}{5}
+\contentsline {subsection}{\numberline {8.1}Buttons Struct Reference}{5}
+\contentsline {subsubsection}{\numberline {8.1.1}Detailed Description}{6}
+\contentsline {section}{\numberline {9}File Documentation}{6}
+\contentsline {subsection}{\numberline {9.1}Controller.\discretionary {-}{}{}c File Reference}{6}
+\contentsline {subsubsection}{\numberline {9.1.1}Detailed Description}{6}
+\contentsline {subsubsection}{\numberline {9.1.2}Function Documentation}{7}
+\contentsline {paragraph}{\numberline {9.1.2.1}get\discretionary {-}{}{}Controller\discretionary {-}{}{}Input}{7}
+\contentsline {paragraph}{\numberline {9.1.2.2}set\discretionary {-}{}{}Controller\discretionary {-}{}{}Leds}{7}
+\contentsline {paragraph}{\numberline {9.1.2.3}set\discretionary {-}{}{}Controller\discretionary {-}{}{}Rumble}{7}
+\contentsline {subsection}{\numberline {9.2}Controller.\discretionary {-}{}{}h File Reference}{8}
+\contentsline {subsubsection}{\numberline {9.2.1}Detailed Description}{8}
+\contentsline {subsubsection}{\numberline {9.2.2}Macro Definition Documentation}{9}
+\contentsline {paragraph}{\numberline {9.2.2.1}E\discretionary {-}{}{}P\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}I\discretionary {-}{}{}N}{9}
+\contentsline {paragraph}{\numberline {9.2.2.2}E\discretionary {-}{}{}P\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}O\discretionary {-}{}{}U\discretionary {-}{}{}T}{9}
+\contentsline {paragraph}{\numberline {9.2.2.3}V\discretionary {-}{}{}E\discretionary {-}{}{}N\discretionary {-}{}{}D\discretionary {-}{}{}O\discretionary {-}{}{}R\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}I\discretionary {-}{}{}D}{9}
+\contentsline {paragraph}{\numberline {9.2.2.4}V\discretionary {-}{}{}E\discretionary {-}{}{}N\discretionary {-}{}{}D\discretionary {-}{}{}O\discretionary {-}{}{}R\discretionary {-}{}{}\_\discretionary {-}{}{}\discretionary {-}{}{}P\discretionary {-}{}{}R\discretionary {-}{}{}O\discretionary {-}{}{}D}{9}
+\contentsline {subsubsection}{\numberline {9.2.3}Enumeration Type Documentation}{9}
+\contentsline {paragraph}{\numberline {9.2.3.1}Leds}{9}
+\contentsline {subsubsection}{\numberline {9.2.4}Function Documentation}{10}
+\contentsline {paragraph}{\numberline {9.2.4.1}get\discretionary {-}{}{}Controller\discretionary {-}{}{}Input}{10}
+\contentsline {paragraph}{\numberline {9.2.4.2}set\discretionary {-}{}{}Controller\discretionary {-}{}{}Leds}{10}
+\contentsline {paragraph}{\numberline {9.2.4.3}set\discretionary {-}{}{}Controller\discretionary {-}{}{}Rumble}{10}
+\contentsline {subsection}{\numberline {9.3}Demo\discretionary {-}{}{}Controller.\discretionary {-}{}{}c File Reference}{11}
+\contentsline {subsubsection}{\numberline {9.3.1}Detailed Description}{11}
+\contentsline {subsubsection}{\numberline {9.3.2}Function Documentation}{11}
+\contentsline {paragraph}{\numberline {9.3.2.1}demo\discretionary {-}{}{}Controller}{11}
+\contentsline {subsection}{\numberline {9.4}Demo\discretionary {-}{}{}Controller.\discretionary {-}{}{}h File Reference}{12}
+\contentsline {subsubsection}{\numberline {9.4.1}Detailed Description}{12}
+\contentsline {subsubsection}{\numberline {9.4.2}Function Documentation}{12}
+\contentsline {paragraph}{\numberline {9.4.2.1}demo\discretionary {-}{}{}Controller}{12}
+\contentsline {subsection}{\numberline {9.5}Devices.\discretionary {-}{}{}c File Reference}{12}
+\contentsline {subsubsection}{\numberline {9.5.1}Detailed Description}{13}
+\contentsline {subsubsection}{\numberline {9.5.2}Function Documentation}{13}
+\contentsline {paragraph}{\numberline {9.5.2.1}get\discretionary {-}{}{}Devices}{13}
+\contentsline {paragraph}{\numberline {9.5.2.2}print\discretionary {-}{}{}All\discretionary {-}{}{}Devices}{13}
+\contentsline {subsection}{\numberline {9.6}Devices.\discretionary {-}{}{}h File Reference}{13}
+\contentsline {subsubsection}{\numberline {9.6.1}Detailed Description}{13}
+\contentsline {subsubsection}{\numberline {9.6.2}Function Documentation}{14}
+\contentsline {paragraph}{\numberline {9.6.2.1}get\discretionary {-}{}{}Devices}{14}
+\contentsline {paragraph}{\numberline {9.6.2.2}print\discretionary {-}{}{}All\discretionary {-}{}{}Devices}{14}
+\contentsline {subsection}{\numberline {9.7}main.\discretionary {-}{}{}c File Reference}{14}
+\contentsline {subsubsection}{\numberline {9.7.1}Detailed Description}{14}
+\contentsline {subsubsection}{\numberline {9.7.2}Function Documentation}{15}
+\contentsline {paragraph}{\numberline {9.7.2.1}main}{15}

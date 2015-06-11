@@ -1,0 +1,56 @@
+\subsection{main.\-c File Reference}
+\label{main_8c}\index{main.\-c@{main.\-c}}
+
+
+Starting point of the application.  
+
+
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$unistd.\-h$>$}\\*
+{\ttfamily \#include $<$libusb-\/1.\-0/libusb.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}Devices.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Demo\-Controller.\-h\char`\"{}}\\*
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bf init\-U\-S\-B} ()\label{main_8c_a22cfb205dbc6c67c9be518874c96c4c3}
+
+\begin{DoxyCompactList}\small\item\em Stuff to initialize the U\-S\-B. \end{DoxyCompactList}\item 
+void {\bf close\-U\-S\-B} (libusb\-\_\-device\-\_\-handle $\ast$handle)\label{main_8c_a9f39e05e195c8b22bb99a9db8752fba5}
+
+\begin{DoxyCompactList}\small\item\em Stuff to close and cleanup the U\-S\-B. \end{DoxyCompactList}\item 
+int {\bf main} ()
+\begin{DoxyCompactList}\small\item\em Application main loop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+Starting point of the application. This file contains \doxyref{main}{p.}{main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4} routine which is the starting point of the apllication. From within this main several subroutines are called to demonstrate the capabilities of the Xbox controller.
+
+\begin{DoxyAuthor}{Author}
+A.\-W Janisse 
+\end{DoxyAuthor}
+\begin{DoxyRefDesc}{Bug}
+\item[{\bf Bug}]No known bugs.\end{DoxyRefDesc}
+
+
+\begin{DoxyVersion}{Version}
+1.\-0 First release. 
+\end{DoxyVersion}
+
+
+\subsubsection{Function Documentation}
+\index{main.\-c@{main.\-c}!main@{main}}
+\index{main@{main}!main.c@{main.\-c}}
+\paragraph[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}
+
+
+Application main loop. 
+
+\begin{DoxyReturn}{Returns}
+exit\-\_\-succes indicating a normal exit. 
+\end{DoxyReturn}

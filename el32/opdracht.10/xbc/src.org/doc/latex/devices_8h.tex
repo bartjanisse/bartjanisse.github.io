@@ -1,0 +1,65 @@
+\subsection{devices.\-h File Reference}
+\label{devices_8h}\index{devices.\-h@{devices.\-h}}
+
+
+Function prototypes for the console driver.  
+
+
+{\ttfamily \#include $<$libusb-\/1.\-0/libusb.\-h$>$}\\*
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bf get\-Devices} (libusb\-\_\-device $\ast$$\ast$devices)
+\begin{DoxyCompactList}\small\item\em Retreives a fresh list of connected U\-S\-B devives. \end{DoxyCompactList}\item 
+int {\bf print\-All\-Devices} (libusb\-\_\-device $\ast$$\ast$devices)
+\begin{DoxyCompactList}\small\item\em Prints a list of connected U\-S\-B devices. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+Function prototypes for the console driver. This contains the prototypes for xxxxxxxxxxxxxxxxxxxxxxx
+
+\begin{DoxyAuthor}{Author}
+A.\-W Janisse 
+\end{DoxyAuthor}
+\begin{DoxyRefDesc}{Bug}
+\item[{\bf Bug}]No known bugs. \end{DoxyRefDesc}
+
+
+\subsubsection{Function Documentation}
+\index{devices.\-h@{devices.\-h}!get\-Devices@{get\-Devices}}
+\index{get\-Devices@{get\-Devices}!devices.h@{devices.\-h}}
+\paragraph[{get\-Devices}]{\setlength{\rightskip}{0pt plus 5cm}void get\-Devices (
+\begin{DoxyParamCaption}
+\item[{libusb\-\_\-device $\ast$$\ast$}]{devices}
+\end{DoxyParamCaption}
+)}\label{devices_8h_a9d85258426e1fb8a6177467f4575bcfd}
+
+
+Retreives a fresh list of connected U\-S\-B devives. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em devices} & is a pointer to the list \\
+\hline
+\end{DoxyParams}
+\index{devices.\-h@{devices.\-h}!print\-All\-Devices@{print\-All\-Devices}}
+\index{print\-All\-Devices@{print\-All\-Devices}!devices.h@{devices.\-h}}
+\paragraph[{print\-All\-Devices}]{\setlength{\rightskip}{0pt plus 5cm}int print\-All\-Devices (
+\begin{DoxyParamCaption}
+\item[{libusb\-\_\-device $\ast$$\ast$}]{devices}
+\end{DoxyParamCaption}
+)}\label{devices_8h_aba84b8560d0c66badfc142ca40b702de}
+
+
+Prints a list of connected U\-S\-B devices. 
+
+This function prints information about all the current connected U\-S\-B devices to the standard console.
+
+
+\begin{DoxyParams}{Parameters}
+{\em devices} & is a pointer to the list with devices. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if succefull or error code if fails. 
+\end{DoxyReturn}

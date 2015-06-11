@@ -1,0 +1,48 @@
+<HTML>
+<HEAD>
+<TITLE>Processor Scheduling Algorithms</TITLE>
+</HEAD>
+<BODY>
+<table width=100%>
+<tr>
+<td><H1>Processor Scheduling Algorithms</H1> </td><td><a href="#Help">Help</a></td>
+</tr>
+</table>
+<p>
+<p>
+<APPLET CODE=scheduling.process.pscheduling.class WIDTH=1000 HEIGHT=400>
+</APPLET>
+<p>
+<b>Algorithm Descriptions </b>
+</p>
+<p>
+1.	First Come First Served (FCFS): The simplest scheduling algorithm is FCFS. As each process becomes ready, it joins the ready queue. When the currently running process ceases to execute, the oldest process in the ready queue is selected for running.
+</p>
+<p>
+2.	Round Robin (RR): A straightforward way to reduce the penalty that short jobs suffer with FCFS is to use preemption based on a clock. The simplest such algorithm is round robin. A clock interrupt is generated at periodic intervals. When the interrupt occurs, the currently running process is placed in the ready queue, and the next ready job is selected on an FCFS basis. In the current project RR is implemented with time intervals of 1 and 4.
+</p>
+<p>
+3.	Shortest Process Next (SPN): Another approach to reducing the bias in favor of long processed inherent in FCFS is the SPN. This is a non-preemptive algorithm in which the process with the shortest expected processing time is selected next. Thus a short process will jump to the head of the queue past longer jobs.
+</p>
+<p>
+4.	Shortest Remaining Time (SRT): SRT algorithm is a preemptive version of SPN. In this case, the scheduler always chooses the process that has the shortest expected remaining processing time. When a new process joins the ready queue, it may in fact have a shorter remaining time than the currently running process. SRT does not have the bias in favor of long processes found in FCFS.
+</p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<b>
+<a name="Help">Helpful Hints </a><br></b>
+<b>Process Name:</b>Name of the process is entered in this field<br>
+<b>Arrival Time:</b> Time when the process enters the ready queue<br>
+<b>Service time (Ts):</b> average service time, average time spent in running state<br>
+<b>Finish time:</b> Time for a process to finish<br>
+<b>Turnaround time (Tq):</b> turnaround time, total time in system, waiting plus execution.<br>
+<b>Tq/Ts :</b> is the normalized turnaround time. This value indicates the relative delay experienced by a process. Typically, the longer the process execution time, the greater the absolute amount of delay that can be tolerated. The minimum possible value of this ratio is 1.0; increasing values correspond to a decreasing level of service.<br>
+<b>Status:</b> All the steps of the selected algorithm are displayed in detail while the simulation is running<br>
+<b>Speed Bar:</b> Can be used to control the speed of the simulation<br>
+<b>Drop Dowm:</b> To select the algorithms described above<br>
+<b>Run:</b> Button to start the simulation<br>
+
+</BODY>
+</HTML>

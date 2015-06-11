@@ -1,0 +1,98 @@
+
+/** @mainpage Course: DES (EL32), Assignment 10
+ 
+	@author A.W. Janisse
+   	<br><br>
+   	<p>
+ 	<h3>Assignment description</h3>
+   	The main goal of this application is to explore how specific USB hardware can be controlled. For this goal a Datel Xbox 360 controller will be used. Although it is not an original Microsoft one it should be 100% compatible. Below an image of this controller is given.
+
+   	<img src="controller.jpeg" alt="Smiley face" height="171" width="294"> 
+ 
+   	The software developed for this assignment is using the libusb library. This library provides an abstraction for communication with USB devices. 
+  	
+   	<h3>Extra's</h3>
+   	During this assignment I got excited about Doxygen. Dogygen is a tool which can be used to produce documentation in broad sense. One of the possibilities is to generate documentation from comments in source file. The webpage you are reading right now is created with Doxygen.
+
+   	<h3>Building the source</h3>
+   	Please refer to the @ref page1 page for more information on this topic.
+ 	</p>
+*/
+
+/** @page page1 Building the source files
+ 	
+	<h3>Commandline parameters</h3>
+ 	
+ 	The software can be build with make which can be started with several commandline parameters. With these parameters several build options will be selectected. The table below gives an overview of the parameters and describes what will be build.
+ 	<br><br>
+ 	Running Make is done through the commandline and can be executed like this: <b>make \<paramater></b>. Make can also be run without any paramets which will be the same as make all. The complete Makefile can be found @ref page2 "here"
+ 
+    <table>
+	 	 <tr>
+	 	   <th>Parameter</th>
+	 	   <th>Builds</th>
+	 	 </tr>
+	 	 <tr>
+	 		<td>all</td>
+	 		<td>Build target the executable.</td>
+	 	 </tr>
+	 	 <tr>
+	  	 	<td>debug</td>
+	  	 	<td>Build with debugger information.</td>
+	 	 </tr>
+	 	 <tr>
+	 	 	<td>clean</td>
+	 	 	<td>Clean up. Removes the target executable and all object files (.o)</td>
+	 	 </tr>
+	 	 <tr>
+	 	 	<td>info</td>
+	 	 	<td>Print information regarding the files, used compiler and compiler flags.</td>
+	 	 </tr>
+	 	 <tr>
+	 	 	<td>pi</td>
+	 	 	<td>Builds the executable with the arm-linux-gcc toolchain. The produced executable can run on the Raspberry Pi</td>
+	 	 </tr>
+	 	 <tr>
+	 	 	<td>install</td>
+	 	 	<td>Copy the target executable to the Raspberry Pi. Please note that the ip-address for the Pi
+	       			must be 10.0.0.42 and the username must be 'root'. Also note the executable will be
+	       			copied on the target /bin directory. </td>
+	 	 </tr>
+	 	 <tr>
+	 	 	<td>backup</td>
+	 	 	<td>Calls clean and produces a tar archive file.</td>
+	 	 </tr>
+	 	 <tr>
+	 	 	<td>html</td>
+	 	 	<td>Produces (this) html documentation.</td>
+	 	 </tr>
+	 	 <tr>
+	 	 	<td>pdf</td><td>Produces PDF documentation.</td>
+	 	 </tr>
+ 	 </table> 
+
+	<h3>Used built-in functions</h3> 
+ 
+	Advantage is taken from several built-in functions. These functions are listed and described below.
+ 	
+ 	<ul> 
+ 		<li><b>$(wildcard pattern...)</b>
+ 		<br>
+ 	 	Find file names matching a shell file name pattern (not a `%' pattern). 
+ 		In the Makefile this command is used like: @code SOURCES = $(wildcard *.c) @endcode
+ 		This creates a list with all the .c into the variable SOURCES.
+ 		</li>
+  		<li><b>$(patsubst pattern,replacement,text)</b>
+ 		<br>
+ 		Replace words matching pattern with replacement in text.
+ 		In the Makefile this commands is used like: @code OBJECTS = $(patsubst %.c, %.o, $(SOURCES)) @endcode
+ 		The used pattern is '%.c' and the replacement is '%.o'. Since the wildcard '\%' is used effectively all 
+ 		items in the SOURCES variable will be renamed and stored in the OBJECTS variable.
+ 		</li>
+   </ul>
+*/
+
+
+/** @page page2 Makefile
+   @include Makefile
+*/

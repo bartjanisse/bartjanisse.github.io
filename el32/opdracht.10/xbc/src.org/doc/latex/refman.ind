@@ -1,0 +1,108 @@
+\begin{theindex}
+
+  \item {all\-\_\-off}
+    \subitem {xbcontroller.\-h}, 9
+  \item {alt}
+    \subitem {xbcontroller.\-h}, 9
+
+  \indexspace
+
+  \item {blink\-\_\-all}
+    \subitem {xbcontroller.\-h}, 9
+  \item {blink\-\_\-select}
+    \subitem {xbcontroller.\-h}, 9
+  \item {blink\-\_\-slow}
+    \subitem {xbcontroller.\-h}, 9
+  \item {Buttons}, 3
+
+  \indexspace
+
+  \item {flash\-\_\-1\-\_\-on}
+    \subitem {xbcontroller.\-h}, 9
+  \item {flash\-\_\-2\-\_\-on}
+    \subitem {xbcontroller.\-h}, 9
+  \item {flash\-\_\-3\-\_\-on}
+    \subitem {xbcontroller.\-h}, 9
+  \item {flash\-\_\-4\-\_\-on}
+    \subitem {xbcontroller.\-h}, 9
+
+  \indexspace
+
+  \item {get\-Devices}
+    \subitem {xbcontroller.\-c}, 6
+    \subitem {xbcontroller.\-h}, 9
+  \item {get\-Input}
+    \subitem {xbcontroller.\-c}, 7
+    \subitem {xbcontroller.\-h}, 9
+
+  \indexspace
+
+  \item {led\-\_\-1\-\_\-on}
+    \subitem {xbcontroller.\-h}, 9
+  \item {led\-\_\-2\-\_\-on}
+    \subitem {xbcontroller.\-h}, 9
+  \item {led\-\_\-3\-\_\-on}
+    \subitem {xbcontroller.\-h}, 9
+  \item {led\-\_\-4\-\_\-on}
+    \subitem {xbcontroller.\-h}, 9
+  \item {leds}
+    \subitem {xbcontroller.\-h}, 9
+
+  \indexspace
+
+  \item {main}
+    \subitem {xbc.\-c}, 5
+
+  \indexspace
+
+  \item {print\-All\-Devices}
+    \subitem {xbcontroller.\-c}, 7
+    \subitem {xbcontroller.\-h}, 9
+
+  \indexspace
+
+  \item {rotate}
+    \subitem {xbcontroller.\-h}, 9
+  \item {rumble}
+    \subitem {xbcontroller.\-c}, 7
+    \subitem {xbcontroller.\-h}, 10
+
+  \indexspace
+
+  \item {set\-Leds}
+    \subitem {xbcontroller.\-c}, 7
+    \subitem {xbcontroller.\-h}, 10
+
+  \indexspace
+
+  \item {xbc.\-c}, 4
+    \subitem {main}, 5
+  \item {xbcontroller.\-c}, 5
+    \subitem {get\-Devices}, 6
+    \subitem {get\-Input}, 7
+    \subitem {print\-All\-Devices}, 7
+    \subitem {rumble}, 7
+    \subitem {set\-Leds}, 7
+  \item {xbcontroller.\-h}, 8
+    \subitem {all\-\_\-off}, 9
+    \subitem {alt}, 9
+    \subitem {blink\-\_\-all}, 9
+    \subitem {blink\-\_\-select}, 9
+    \subitem {blink\-\_\-slow}, 9
+    \subitem {flash\-\_\-1\-\_\-on}, 9
+    \subitem {flash\-\_\-2\-\_\-on}, 9
+    \subitem {flash\-\_\-3\-\_\-on}, 9
+    \subitem {flash\-\_\-4\-\_\-on}, 9
+    \subitem {get\-Devices}, 9
+    \subitem {get\-Input}, 9
+    \subitem {led\-\_\-1\-\_\-on}, 9
+    \subitem {led\-\_\-2\-\_\-on}, 9
+    \subitem {led\-\_\-3\-\_\-on}, 9
+    \subitem {led\-\_\-4\-\_\-on}, 9
+    \subitem {leds}, 9
+    \subitem {print\-All\-Devices}, 9
+    \subitem {rotate}, 9
+    \subitem {rumble}, 10
+    \subitem {set\-Leds}, 10
+
+\end{theindex}

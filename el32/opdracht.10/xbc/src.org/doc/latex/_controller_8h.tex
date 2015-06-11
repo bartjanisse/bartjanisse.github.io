@@ -1,0 +1,194 @@
+\subsection{Controller.\-h File Reference}
+\label{_controller_8h}\index{Controller.\-h@{Controller.\-h}}
+
+
+Function prototypes for the console driver.  
+
+
+{\ttfamily \#include $<$libusb-\/1.\-0/libusb.\-h$>$}\\*
+{\ttfamily \#include $<$stdbool.\-h$>$}\\*
+\subsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct {\bf Buttons}
+\begin{DoxyCompactList}\small\item\em Structure representing the buttons and joysticks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bf V\-E\-N\-D\-O\-R\-\_\-\-I\-D}~0x045e
+\item 
+\#define {\bfseries V\-E\-N\-D\-O\-R\-\_\-\-P\-R\-O\-D}~0x028e\label{_controller_8h_a5e3488b5b71cdfe6df1cc517b54f9abd}
+
+\item 
+\#define {\bfseries E\-P\-\_\-\-I\-N}~0x81\label{_controller_8h_ab79ba3999449c3d32abd0462936ca52c}
+
+\item 
+\#define {\bfseries E\-P\-\_\-\-O\-U\-T}~0x02\label{_controller_8h_a3a942d7df9f25be538925b91fa1317c3}
+
+\end{DoxyCompactItemize}
+\subsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bf Leds} \{ \\*
+{\bf all\-\_\-off} = 0x00, 
+{\bf blink\-\_\-all} = 0x01, 
+{\bf flash\-\_\-1\-\_\-on} = 0x02, 
+{\bf flash\-\_\-2\-\_\-on} = 0x03, 
+\\*
+{\bf flash\-\_\-3\-\_\-on} = 0x04, 
+{\bf flash\-\_\-4\-\_\-on} = 0x05, 
+{\bf led\-\_\-1\-\_\-on} = 0x06, 
+{\bf led\-\_\-2\-\_\-on} = 0x07, 
+\\*
+{\bf led\-\_\-3\-\_\-on} = 0x08, 
+{\bf led\-\_\-4\-\_\-on} = 0x09, 
+{\bf rotate} = 0x0\-A, 
+{\bf blink\-\_\-select} = 0x0\-B, 
+\\*
+{\bf blink\-\_\-slow} = 0x0\-C, 
+{\bf alt} = 0x0\-D
+ \}
+\begin{DoxyCompactList}\small\item\em Availlable L\-E\-D patterns. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int {\bf rumble} (libusb\-\_\-device\-\_\-handle $\ast$handle, uint16\-\_\-t speed)
+\begin{DoxyCompactList}\small\item\em Controll the rumble actuator from the Xbox 360 controller. \end{DoxyCompactList}\item 
+int {\bf set\-Leds} (libusb\-\_\-device\-\_\-handle $\ast$handle, {\bf Leds} led)
+\begin{DoxyCompactList}\small\item\em Controll the L\-E\-D's from the Xbox 360 controller. \end{DoxyCompactList}\item 
+int {\bf get\-Input} (libusb\-\_\-device\-\_\-handle $\ast$handle, {\bf Buttons} $\ast$buttons)
+\begin{DoxyCompactList}\small\item\em Retreives the state of the buttons and joysticks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+Function prototypes for the console driver. This contains the prototypes for xxxxxxxxxxxxxxxxxxxxxxx
+
+\begin{DoxyAuthor}{Author}
+A.\-W Janisse 
+\end{DoxyAuthor}
+\begin{DoxyRefDesc}{Bug}
+\item[{\bf Bug}]No known bugs. \end{DoxyRefDesc}
+
+
+\subsubsection{Macro Definition Documentation}
+\index{Controller.\-h@{Controller.\-h}!V\-E\-N\-D\-O\-R\-\_\-\-I\-D@{V\-E\-N\-D\-O\-R\-\_\-\-I\-D}}
+\index{V\-E\-N\-D\-O\-R\-\_\-\-I\-D@{V\-E\-N\-D\-O\-R\-\_\-\-I\-D}!Controller.h@{Controller.\-h}}
+\paragraph[{V\-E\-N\-D\-O\-R\-\_\-\-I\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define V\-E\-N\-D\-O\-R\-\_\-\-I\-D~0x045e}\label{_controller_8h_a5e2fdecfea0fad3bdb8fa4eedf041a3d}
+\begin{DoxyRefDesc}{Todo}
+\item[{\bf Todo}]op een juiste manier documenteren \end{DoxyRefDesc}
+
+
+Microsoft corporation vendor id. 
+
+\subsubsection{Enumeration Type Documentation}
+\index{Controller.\-h@{Controller.\-h}!Leds@{Leds}}
+\index{Leds@{Leds}!Controller.h@{Controller.\-h}}
+\paragraph[{Leds}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Leds}}\label{_controller_8h_a1e4b1d1d1b6272a280f18efef4db3f5e}
+
+
+Availlable L\-E\-D patterns. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{all\-\_\-off@{all\-\_\-off}!Controller.\-h@{Controller.\-h}}\index{Controller.\-h@{Controller.\-h}!all\-\_\-off@{all\-\_\-off}}\item[{\em 
+all\-\_\-off\label{_controller_8h_a1e4b1d1d1b6272a280f18efef4db3f5ea5744956c2a75d7f08502bf9eb52db56f}
+}]All led's off. \index{blink\-\_\-all@{blink\-\_\-all}!Controller.\-h@{Controller.\-h}}\index{Controller.\-h@{Controller.\-h}!blink\-\_\-all@{blink\-\_\-all}}\item[{\em 
+blink\-\_\-all\label{_controller_8h_a1e4b1d1d1b6272a280f18efef4db3f5ea2040b2792c2d14984b958e00e6189b4b}
+}]All blinking. \index{flash\-\_\-1\-\_\-on@{flash\-\_\-1\-\_\-on}!Controller.\-h@{Controller.\-h}}\index{Controller.\-h@{Controller.\-h}!flash\-\_\-1\-\_\-on@{flash\-\_\-1\-\_\-on}}\item[{\em 
+flash\-\_\-1\-\_\-on\label{_controller_8h_a1e4b1d1d1b6272a280f18efef4db3f5eaa69975e19b7da2c0d7251d995891a668}
+}]1 flashes, then on \index{flash\-\_\-2\-\_\-on@{flash\-\_\-2\-\_\-on}!Controller.\-h@{Controller.\-h}}\index{Controller.\-h@{Controller.\-h}!flash\-\_\-2\-\_\-on@{flash\-\_\-2\-\_\-on}}\item[{\em 
+flash\-\_\-2\-\_\-on\label{_controller_8h_a1e4b1d1d1b6272a280f18efef4db3f5ea502a3fc79bff4af26fb485afb789af32}
+}]2 flashes, then on \index{flash\-\_\-3\-\_\-on@{flash\-\_\-3\-\_\-on}!Controller.\-h@{Controller.\-h}}\index{Controller.\-h@{Controller.\-h}!flash\-\_\-3\-\_\-on@{flash\-\_\-3\-\_\-on}}\item[{\em 
+flash\-\_\-3\-\_\-on\label{_controller_8h_a1e4b1d1d1b6272a280f18efef4db3f5eaa3bfcdd124be7e80d1e350b50aef738e}
+}]3 flashes, then on \index{flash\-\_\-4\-\_\-on@{flash\-\_\-4\-\_\-on}!Controller.\-h@{Controller.\-h}}\index{Controller.\-h@{Controller.\-h}!flash\-\_\-4\-\_\-on@{flash\-\_\-4\-\_\-on}}\item[{\em 
+flash\-\_\-4\-\_\-on\label{_controller_8h_a1e4b1d1d1b6272a280f18efef4db3f5ea01f47e256143fe5f4771e17d440359fe}
+}]4 flashes, then on \index{led\-\_\-1\-\_\-on@{led\-\_\-1\-\_\-on}!Controller.\-h@{Controller.\-h}}\index{Controller.\-h@{Controller.\-h}!led\-\_\-1\-\_\-on@{led\-\_\-1\-\_\-on}}\item[{\em 
+led\-\_\-1\-\_\-on\label{_controller_8h_a1e4b1d1d1b6272a280f18efef4db3f5ea857f4b52703a580a0844f38bb35fd783}
+}]1 on \index{led\-\_\-2\-\_\-on@{led\-\_\-2\-\_\-on}!Controller.\-h@{Controller.\-h}}\index{Controller.\-h@{Controller.\-h}!led\-\_\-2\-\_\-on@{led\-\_\-2\-\_\-on}}\item[{\em 
+led\-\_\-2\-\_\-on\label{_controller_8h_a1e4b1d1d1b6272a280f18efef4db3f5eaeb5cc16081a91436d24e8d9ebafc6238}
+}]2 on \index{led\-\_\-3\-\_\-on@{led\-\_\-3\-\_\-on}!Controller.\-h@{Controller.\-h}}\index{Controller.\-h@{Controller.\-h}!led\-\_\-3\-\_\-on@{led\-\_\-3\-\_\-on}}\item[{\em 
+led\-\_\-3\-\_\-on\label{_controller_8h_a1e4b1d1d1b6272a280f18efef4db3f5eac1dadd994482a729ef111458f3a69e2a}
+}]3 on \index{led\-\_\-4\-\_\-on@{led\-\_\-4\-\_\-on}!Controller.\-h@{Controller.\-h}}\index{Controller.\-h@{Controller.\-h}!led\-\_\-4\-\_\-on@{led\-\_\-4\-\_\-on}}\item[{\em 
+led\-\_\-4\-\_\-on\label{_controller_8h_a1e4b1d1d1b6272a280f18efef4db3f5ea656750bee9a9ac55cc579ce60c9b2f1d}
+}]4 on \index{rotate@{rotate}!Controller.\-h@{Controller.\-h}}\index{Controller.\-h@{Controller.\-h}!rotate@{rotate}}\item[{\em 
+rotate\label{_controller_8h_a1e4b1d1d1b6272a280f18efef4db3f5ea26d30288a9243336cb334fe193a7fd61}
+}]Rotating (e.\-g. 1-\/2-\/4-\/3) \index{blink\-\_\-select@{blink\-\_\-select}!Controller.\-h@{Controller.\-h}}\index{Controller.\-h@{Controller.\-h}!blink\-\_\-select@{blink\-\_\-select}}\item[{\em 
+blink\-\_\-select\label{_controller_8h_a1e4b1d1d1b6272a280f18efef4db3f5eab2d652b4cd2b87c2dc3004fdfdeb8eac}
+}]previous setting will be used (all blinking, or 1, 2, 3 or 4 on). \index{blink\-\_\-slow@{blink\-\_\-slow}!Controller.\-h@{Controller.\-h}}\index{Controller.\-h@{Controller.\-h}!blink\-\_\-slow@{blink\-\_\-slow}}\item[{\em 
+blink\-\_\-slow\label{_controller_8h_a1e4b1d1d1b6272a280f18efef4db3f5ea4185d37fdbe5aa1fb945dfc42364965d}
+}]Slow blinking. \index{alt@{alt}!Controller.\-h@{Controller.\-h}}\index{Controller.\-h@{Controller.\-h}!alt@{alt}}\item[{\em 
+alt\label{_controller_8h_a1e4b1d1d1b6272a280f18efef4db3f5ea7f564926136a18c80a8a14a53d0e98ce}
+}]Alternating (e.\-g. 1+4-\/2+3), then back to previous$\ast$. \end{description}
+\end{Desc}
+
+
+\subsubsection{Function Documentation}
+\index{Controller.\-h@{Controller.\-h}!get\-Input@{get\-Input}}
+\index{get\-Input@{get\-Input}!Controller.h@{Controller.\-h}}
+\paragraph[{get\-Input}]{\setlength{\rightskip}{0pt plus 5cm}int get\-Input (
+\begin{DoxyParamCaption}
+\item[{libusb\-\_\-device\-\_\-handle $\ast$}]{handle, }
+\item[{{\bf Buttons} $\ast$}]{buttons}
+\end{DoxyParamCaption}
+)}\label{_controller_8h_ac99caf44600d91c9e514d3e5e0f0cfa6}
+
+
+Retreives the state of the buttons and joysticks. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & is a pointer to the U\-S\-B device handle. \\
+\hline
+{\em buttons} & is a pointer to a \doxyref{Buttons}{p.}{struct_buttons} struct which will be filled with the button states and joystick values. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if succefull or error code if fails. 
+\end{DoxyReturn}
+\index{Controller.\-h@{Controller.\-h}!rumble@{rumble}}
+\index{rumble@{rumble}!Controller.h@{Controller.\-h}}
+\paragraph[{rumble}]{\setlength{\rightskip}{0pt plus 5cm}int rumble (
+\begin{DoxyParamCaption}
+\item[{libusb\-\_\-device\-\_\-handle $\ast$}]{handle, }
+\item[{uint16\-\_\-t}]{speed}
+\end{DoxyParamCaption}
+)}\label{_controller_8h_ab730d3235aaef82c840ce3687319c115}
+
+
+Controll the rumble actuator from the Xbox 360 controller. 
+
+Controll the rumble actuator with the desired speed. The speed can varry from 0 (no rumble) to 0x\-F\-F\-F\-F (max rumble).
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & is a pointer to the U\-S\-B device handle. \\
+\hline
+{\em speed} & is the value for the rumble actuator. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if succefull or error code if fails. 
+\end{DoxyReturn}
+\index{Controller.\-h@{Controller.\-h}!set\-Leds@{set\-Leds}}
+\index{set\-Leds@{set\-Leds}!Controller.h@{Controller.\-h}}
+\paragraph[{set\-Leds}]{\setlength{\rightskip}{0pt plus 5cm}int set\-Leds (
+\begin{DoxyParamCaption}
+\item[{libusb\-\_\-device\-\_\-handle $\ast$}]{handle, }
+\item[{{\bf Leds}}]{led}
+\end{DoxyParamCaption}
+)}\label{_controller_8h_adb132c1b27b902965b8f7aedc42e022c}
+
+
+Controll the L\-E\-D's from the Xbox 360 controller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & is a pointer to the U\-S\-B device handle. \\
+\hline
+{\em led} & holds the desired pattern for the L\-E\-D's. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if succefull or error code if fails. 
+\end{DoxyReturn}

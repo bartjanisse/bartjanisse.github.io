@@ -1,0 +1,70 @@
+\subsection{Demo\-Controller.\-c File Reference}
+\label{_demo_controller_8c}\index{Demo\-Controller.\-c@{Demo\-Controller.\-c}}
+
+
+Implementation for the Demo\-Controller.  
+
+
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$unistd.\-h$>$}\\*
+{\ttfamily \#include $<$assert.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}Controller.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Demo\-Controller.\-h\char`\"{}}\\*
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bf demo\-Controller} (libusb\-\_\-device\-\_\-handle $\ast$handle)
+\begin{DoxyCompactList}\small\item\em When calling this function all the capablities of the Xbox controller are demonstrated. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+libusb\-\_\-device\-\_\-handle $\ast$ {\bf h}\label{_demo_controller_8c_ab5a9828caa3c01799200f9094663bf99}
+
+\begin{DoxyCompactList}\small\item\em Reference to handle for local use. \end{DoxyCompactList}\item 
+{\bf Buttons} {\bf buttons}\label{_demo_controller_8c_afa40ef3a984d5e0e7dfa2daa67a4be66}
+
+\begin{DoxyCompactList}\small\item\em \doxyref{Buttons}{p.}{struct_buttons} structure for local use. \end{DoxyCompactList}\item 
+bool {\bf to\-\_\-quit} = false\label{_demo_controller_8c_af41eab6e340787076c0bda3999c9bcd9}
+
+\begin{DoxyCompactList}\small\item\em Flag signalling a step to quit. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+Implementation for the Demo\-Controller. This is the implementation of the Demo\-Controller.
+
+\begin{DoxyAuthor}{Author}
+A.\-W Janisse 
+\end{DoxyAuthor}
+\begin{DoxyRefDesc}{Bug}
+\item[{\bf Bug}]No known bugs.\end{DoxyRefDesc}
+
+
+\begin{DoxyVersion}{Version}
+1.\-0 First release. 
+\end{DoxyVersion}
+
+
+\subsubsection{Function Documentation}
+\index{Demo\-Controller.\-c@{Demo\-Controller.\-c}!demo\-Controller@{demo\-Controller}}
+\index{demo\-Controller@{demo\-Controller}!DemoController.c@{Demo\-Controller.\-c}}
+\paragraph[{demo\-Controller}]{\setlength{\rightskip}{0pt plus 5cm}demo\-Controller (
+\begin{DoxyParamCaption}
+\item[{libusb\-\_\-device\-\_\-handle $\ast$}]{handle}
+\end{DoxyParamCaption}
+)}\label{_demo_controller_8c_a49607f4d777de5ddf401059f5ad9e672}
+
+
+When calling this function all the capablities of the Xbox controller are demonstrated. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & is a pointer to the U\-S\-B device handle.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if succefull.
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+A valid pointer to handle. 
+\end{DoxyPrecond}
