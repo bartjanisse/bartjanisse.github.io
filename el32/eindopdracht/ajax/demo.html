@@ -1,0 +1,86 @@
+<html>
+<head>
+<title>Javascript animation: Car Demo 1</title>
+<style type="text/css">
+
+body {
+ font:76% normal verdana,arial,tahoma;
+}
+
+h1, h2 {
+ font-size:1em;
+}
+
+#fooObject {
+	/* simple box */
+	position:absolute;
+	left:0px;
+	top:40px;
+	width:4em;
+	line-height:3em;
+	background:#99ccff;
+	border:1px solid #003366;
+	white-space:nowrap;
+	padding:0.5em;
+}
+</style>
+<script type="text/javascript">
+	
+	var foo = null; // object
+	
+	function doMove()
+	{ 
+		var req = null; 
+		
+		if(window.XMLHttpRequest)
+			req = new XMLHttpRequest(); 
+		else if (window.ActiveXObject)
+			req  = new ActiveXObject(Microsoft.XMLHTTP); 
+		
+		req.onreadystatechange = function()
+		{ 
+			if(req.readyState == 4)
+			{
+				if(req.status == 200)
+				{
+				    // response format: xxx;yyy 
+					document.getElementById("weergave").childNodes[0].nodeValue=req.responseText; 
+					foo.style.left = req.responseText.substr(0,3)+'px';
+                    foo.style.top  = req.responseText.substr(4,3)+'px';
+					
+					doMove();
+				}	
+				else	
+				{
+					// report error;
+					document.getElementById("weergave").childNodes[0].nodeValue="error"; 
+				}	
+			} 
+		}; 
+		//document.getElementById("weergave").childNodes[0].nodeValue="re open";
+		req.open("POST", "/cgi-bin/cgi_test", true); 
+		//document.getElementById("weergave").childNodes[0].nodeValue="req send";
+		req.send(null); 
+		//document.getElementById("weergave").childNodes[0].nodeValue="req nulled";
+	} 
+	
+function init() {
+	foo = document.getElementById('fooObject'); // get the "foo" object
+	foo.style.left = '0px'; // set its initial position to 0px
+	document.getElementById("weergave").childNodes[0].nodeValue="started";
+	doMove(); // start animating
+}
+
+window.onload = init;
+
+</script>
+</head>
+	<body>
+		<div id="fooObject">
+			Ruud.
+		</div>
+		<p>
+			<button id="weergave" >Weergave van CGI</button>
+		</p>
+	</body>
+</html>

@@ -1,0 +1,48 @@
+#
+# http://stackoverflow.com/questions/231229/how-to-generate-a-makefile-with-source-in-sub-directories-using-just-one-makefil
+#
+
+CC        := gcc
+LD        := gcc
+
+INCLUDES  =  lib test
+
+SRC_DIR   := $(addprefix ./,$(INCLUDES))
+#BUILD_DIR := $(addprefix build/,$(SUBDIRS))
+
+SRC 	= $(wildcard *.c)
+SRC     += $(foreach sdir,$(SRC_DIR),$(wildcard $(sdir)/*.c))
+OBJ       := $(patsubst src/%.c,build/%.o,$(SRC))
+INCLUDES  := $(addprefix -I ,$(SRC_DIR))
+
+vpath %.c $(SRC_DIR)
+
+#define make-goal
+#$1/%.o: %.cpp
+#    $(CC) $(INCLUDES) -c $$< -o $$@
+#endef
+
+.PHONY: all checkdirs clean info
+
+info:
+	@echo $(SRC_DIR)
+	@echo $(SRC)
+
+
+#all: checkdirs build/test.exe
+
+#build/test.exe: $(OBJ)
+#	$(LD) $^ -o $@
+
+
+#checkdirs: $(BUILD_DIR)
+
+#$(BUILD_DIR):
+#	@mkdir -p $@
+
+
+
+#clean:
+#	@rm -rf $(BUILD_DIR)
+
+#	$(foreach bdir,$(BUILD_DIR),$(eval $(call make-goal,$(bdir))))
