@@ -12,18 +12,16 @@
 #		ZIPDIR  : Directory to put the backup archive files
 #
 
-OUTPUT 	= app1
+OUTPUT 	= xbcdaemon
 SUBDIRS = ../common
 PIDIR   = root@10.0.0.42:/var/www/cgi-bin
 CC 		= gcc
-LIBS 	= -lusb-1.0 -lrt
+LIBS 	= -lusb-1.0 -lrt -pthread
 CFLAGS 	= -O2 -Wall -Werror
 ZIPDIR  = ../backup
 
 ### -----[ Do not change anything below this line ]----- ###
 
-#SUB_DIR   := $(addprefix ./,$(SUBDIRS))
-#SUB_DIR := $(SUBDIRS)
 # Remove any unwanted leading and trailing spaces
 TARGET = $(strip $(OUTPUT))
 # Retreive a list of source files (ending with .c)
