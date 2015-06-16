@@ -1,0 +1,10 @@
+
+Github
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+You can add files using git add, example git add README, git add <folder>/*, or even git add *
+
+Then use git commit -m "<Message>" to commit files
+
+Finally git push -u origin master to push files.
+
+Running a git pull origin master to ensure you have absorbed any upstream changes
