@@ -8,3 +8,7 @@ Then use git commit -m "<Message>" to commit files
 Finally git push -u origin master to push files.
 
 Running a git pull origin master to ensure you have absorbed any upstream changes
+
+git add -A .  -> add all note the . for the current directory
+git commit -m "Rework devives"
+git push -u origin master
