@@ -14,7 +14,7 @@
 #include <sys/types.h>
 #include "Devices.h"
 
-#define REFR_TIME_MS	500	//! Refresh time in ms for udating USB devices
+#define REFR_TIME_MS	100	//! Refresh time in ms for udating USB devices
 
 void *pollingThread();
 
@@ -29,6 +29,24 @@ device tmp[MAX_DEVS] = {{-1,-1,NULL},{-1,-1,NULL},{-1,-1,NULL},{-1,-1,NULL}};
 
 pthread_mutex_t mutex1 = PTHREAD_MUTEX_INITIALIZER;
 pthread_t 		thread;
+
+uint8_t
+claimHandle(libusb_device_handle *handle)
+{
+	// Find out if kernel driver is attached and if so detach it
+	if(libusb_kernel_driver_active(handle, 0) == 1)  
+	{
+        libusb_detach_kernel_driver(handle, 0);
+    }
+
+	// Claim interface
+    if(libusb_claim_interface(handle, 0) < 0) 
+    {
+        syslog(LOG_ERR, "Cannot Claim Interface\n");
+        return (1);
+    }
+    return (0);
+}
 
 uint8_t
 compareDevices(device *d1, device *d2)
@@ -92,15 +110,16 @@ closeDevices()
 libusb_device_handle *
 getDeviceHandle(uint8_t id)
 {
-	if(id < MAX_DEVS -1)
+	libusb_device_handle *handle;
+	
+	if(id >= 0 && id < MAX_DEVS -1)
 	{
 		/* begin critical section */
 		pthread_mutex_lock(&mutex1);	
-
-		return devices[id].handle;
-		
+		handle = devices[id].handle;
 		/* end critical section */
 		pthread_mutex_unlock(&mutex1);
+		return handle;
 	}
 	else
 	{
@@ -124,72 +143,6 @@ printAllDevices()
 	}
 }
 
-uint8_t
-claimHandle(libusb_device_handle *handle)
-{
-	// Find out if kernel driver is attached and if so detach it
-	if(libusb_kernel_driver_active(handle, 0) == 1)  
-	{
-        libusb_detach_kernel_driver(handle, 0);
-    }
-
-	// Claim interface
-    if(libusb_claim_interface(handle, 0) < 0) 
-    {
-        syslog(LOG_ERR, "Cannot Claim Interface\n");
-        return (1);
-    }
-    return (0);
-}
-
-void
-getDevices()
-{
-	libusb_device 	**devs;
-	libusb_device 	*dev;
-	uint8_t			i, id;
-	int 			error;
-
-	for(i=0;i<MAX_DEVS;i++)
-	{
-		tmp[i].bus =-1;
-		tmp[i].address = -1;
-		tmp[i].handle = NULL;
-	}
-
-	if(libusb_get_device_list(NULL, &devs) < 0) 
-	{
-		syslog(LOG_ERR,"Failed to get device list");
-		libusb_free_device_list(devs, 1);
-		return;
-	}
-	
-	i=id=0;
-	while ((dev = devs[i++]) != NULL) 
-	{
-		struct libusb_device_descriptor desc;
-		if((error = libusb_get_device_descriptor(dev, &desc)) != 0)
-		{
-			syslog(LOG_ERR,"Failed to get device descriptor");
-			libusb_free_device_list(devs, 1);
-			return;
-		}
-		if(desc.idVendor == VENDOR_ID && desc.idProduct == PRODUCT_ID)
-		{
-			tmp[id].bus = libusb_get_bus_number(dev);
-			tmp[id].address = libusb_get_device_address(dev);
-			libusb_open(dev, &tmp[id].handle);
-
-			id++;
-			if (id == MAX_DEVS)
-			{
-				// Limit is reached, stop
-				break;
-			}		
-		}
-	}
-	libusb_free_device_list(devs, 1);
-}
 
 // Searches for the given device in the given list
 // if found return 1, else 0
@@ -233,7 +186,7 @@ listTryRemove(device devs[], device *dev)
 			// end critical section
 			
 			printf("Removed controller with id=%d, from bus=%03d and address=%03d\n", i, dev->bus, dev->address);
-			syslog(LOG_INFO,"Removed controller with id=%d, from bus=%03d and addres=%03d", i, dev->bus, dev->address);
+			syslog(LOG_INFO,"Removed controller with id=%d, from bus=%03d and address=%03d", i, dev->bus, dev->address);
 			break;
 		}
 	}
@@ -297,8 +250,6 @@ listTryAdd(device devs[], device *dev)
 	}
 }
 
-
-
 // Put new found devives in the devices list
 void
 listUpdateDevices(device devs[])
@@ -311,10 +262,72 @@ listUpdateDevices(device devs[])
 	}
 }
 
+void
+getDevices()
+{
+	libusb_device 	**devs;
+	libusb_device 	*dev;
+	uint8_t			i, id;
+	int 			error;
+
+	for(i=0;i<MAX_DEVS;i++)
+	{
+		tmp[i].bus =-1;
+		tmp[i].address = -1;
+		tmp[i].handle = NULL;
+	}
+
+	if(libusb_get_device_list(NULL, &devs) < 0) 
+	{
+		syslog(LOG_ERR,"Failed to get device list");
+		libusb_free_device_list(devs, 1);
+		return;
+	}
+	
+	i=id=0;
+	while ((dev = devs[i++]) != NULL) 
+	{
+		struct libusb_device_descriptor desc;
+		if((error = libusb_get_device_descriptor(dev, &desc)) != 0)
+		{
+			syslog(LOG_ERR,"Failed to get device descriptor");
+			libusb_free_device_list(devs, 1);
+			return;
+		}
+		if(desc.idVendor == VENDOR_ID && desc.idProduct == PRODUCT_ID)
+		{
+			tmp[id].bus = libusb_get_bus_number(dev);
+			tmp[id].address = libusb_get_device_address(dev);
+			
+			if(listContains(devices, &tmp[id]) == 0)
+			{
+				printf("Open USB device\n");
+				libusb_open(dev, &tmp[id].handle);
+			}
+
+			id++;
+
+			if (id == MAX_DEVS)
+			{
+				// Limit is reached, stop
+				break;
+			}		
+		}
+	}
+	libusb_free_device_list(devs, 1);
+}
+
+
 void *
 pollingThread()
 {
 	syslog(LOG_INFO, "Device polling thread is started");
+	
+	/* Guarantees that thread resources are deallocated upon return */
+	if (pthread_detach(pthread_self()) != 0) 
+	{
+		syslog(LOG_ERR, "Device polling thread error in detach");
+	}
 	
 	if(pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL) !=0)
 	{
@@ -323,13 +336,11 @@ pollingThread()
 	
 	while(1)
 	{
-		//pthread_mutex_lock( &mutex1 );
 		getDevices();
 		listClean();
 		listUpdateDevices(devices);
 		//printAllDevices();
 		//printf("\n\n");
-		//pthread_mutex_unlock( &mutex1 );
 		usleep(REFR_TIME_MS * 1000);
 	}	
 	return (NULL);

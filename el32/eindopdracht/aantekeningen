@@ -12,3 +12,7 @@ Running a git pull origin master to ensure you have absorbed any upstream change
 git add -A .  -> add all note the . for the current directory
 git commit -m "Rework devives"
 git push -u origin master
+
+git add -A .
+git commit
+git push -u origin master
