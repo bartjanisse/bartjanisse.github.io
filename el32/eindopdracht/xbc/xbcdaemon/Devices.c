@@ -14,23 +14,24 @@
 #include <sys/types.h>
 #include "Devices.h"
 
-#define REFR_TIME_MS	100	//! Refresh time in ms for udating USB devices
+
+static uint8_t running = 1;
 
 void *pollingThread();
 
-typedef struct device {
+typedef struct{
 	int8_t bus;
 	int8_t address;
 	libusb_device_handle *handle;
 } device;
 
-device devices[MAX_DEVS] = {{-1,-1,NULL},{-1,-1,NULL},{-1,-1,NULL},{-1,-1,NULL}};
-device tmp[MAX_DEVS] = {{-1,-1,NULL},{-1,-1,NULL},{-1,-1,NULL},{-1,-1,NULL}};
+device devices[MAX_DEVS];
+device tmp[MAX_DEVS];
 
 pthread_mutex_t mutex1 = PTHREAD_MUTEX_INITIALIZER;
 pthread_t 		thread;
 
-uint8_t
+static uint8_t
 claimHandle(libusb_device_handle *handle)
 {
 	// Find out if kernel driver is attached and if so detach it
@@ -42,13 +43,13 @@ claimHandle(libusb_device_handle *handle)
 	// Claim interface
     if(libusb_claim_interface(handle, 0) < 0) 
     {
-        syslog(LOG_ERR, "Cannot Claim Interface\n");
+        LOGERR("Cannot Claim Interface");
         return (1);
     }
     return (0);
 }
 
-uint8_t
+static uint8_t
 compareDevices(device *d1, device *d2)
 {
 	return (d1->bus == d2->bus) && (d1->address == d2->address);
@@ -56,17 +57,28 @@ compareDevices(device *d1, device *d2)
 
 void 
 initDevices(uint16_t vendor_id, uint16_t product_id)
-{	
+{	  
+	int8_t i;
+	for(i=0; i<MAX_DEVS;i++)
+	{
+		devices[i].bus     = -1;
+		devices[i].address = -1;
+		devices[i].handle  = NULL;
+		
+		tmp[i].bus     = -1;
+		tmp[i].address = -1;
+		tmp[i].handle  = NULL;
+	}
+	
     if(libusb_init(NULL) < 0) 
     {
-		syslog(LOG_ERR, "Failed to iniitialize USB lib.");
-        exit(EXIT_FAILURE);
+		LOGERR("Failed to iniitialize USB lib.");
     }
     libusb_set_debug(NULL, 1);
 
 	if(pthread_create( &thread, NULL, &pollingThread, NULL) != 0)
 	{
-		syslog(LOG_ERR, "Failed to create thread.");
+		LOGERR("Failed to create thread.");
 	}
 }
 
@@ -74,26 +86,12 @@ void
 closeDevices()
 {
 	int 	i;
-	void *res;
-	
-	printf("Start closing\n");
-	
-	// Stop polling thread and wait for it
-	if(pthread_cancel(thread) != 0)
-	{
-		syslog(LOG_ERR, "Failed to cancel device polling thread.");
-	}
-	if(pthread_join(thread, &res) != 0)
-	{
-		syslog(LOG_ERR, "Failed to join device polling thread.");
-	}
-	if (res == PTHREAD_CANCELED)
-	{
-		syslog(LOG_INFO, "Device polling thread has stopped");
-    }          
+
+	running = 0;
+	printf("Waiting for polling thread to stop...\n");
+	pthread_join(thread, NULL);          
 
 	// Close all USB devices
-	printf("Closing devices\n");
 	for(i=0; i<MAX_DEVS; i++)
 	{
 		if (devices[i].handle != NULL)
@@ -103,7 +101,7 @@ closeDevices()
 		}
 	}
     libusb_exit(NULL);  
-    printf("Closing done\n");
+    printf("Polling thread has stoppend...\n");
 }
 
 
@@ -111,14 +109,15 @@ libusb_device_handle *
 getDeviceHandle(uint8_t id)
 {
 	libusb_device_handle *handle;
-	
-	if(id >= 0 && id < MAX_DEVS -1)
+		
+	if(id >= 0 && id < MAX_DEVS)
 	{
 		/* begin critical section */
 		pthread_mutex_lock(&mutex1);	
 		handle = devices[id].handle;
 		/* end critical section */
 		pthread_mutex_unlock(&mutex1);
+		
 		return handle;
 	}
 	else
@@ -126,23 +125,6 @@ getDeviceHandle(uint8_t id)
 		return NULL;
 	}
 }
-
-void
-printAllDevices()
-{
-	int i;
-	
-	for(i=0; i<MAX_DEVS;i++)
-	{
-		if(devices[i].handle != NULL)
-		{
-			printf("Bus number %03d Device address %03d",
-				devices[i].bus, 
-				devices[i].address);
-		}
-	}
-}
-
 
 // Searches for the given device in the given list
 // if found return 1, else 0
@@ -185,7 +167,6 @@ listTryRemove(device devs[], device *dev)
 			pthread_mutex_unlock(&mutex1);
 			// end critical section
 			
-			printf("Removed controller with id=%d, from bus=%03d and address=%03d\n", i, dev->bus, dev->address);
 			syslog(LOG_INFO,"Removed controller with id=%d, from bus=%03d and address=%03d", i, dev->bus, dev->address);
 			break;
 		}
@@ -226,7 +207,7 @@ listTryAdd(device devs[], device *dev)
 	}
 	
 	if(dev->handle != NULL)
-	{
+	{	
 		for(i=0;i<MAX_DEVS;i++)
 		{
 			if(devs[i].handle == NULL)
@@ -241,7 +222,6 @@ listTryAdd(device devs[], device *dev)
 				
 				pthread_mutex_unlock(&mutex1);
 				/* end critical section */
-				printf("Added controller with id=%d, from bus=%03d and address=%03d\n", i, devs[i].bus, devs[i].address);
 				syslog(LOG_INFO,"Added controller with id=%d, from bus=%03d and address=%03d", i, devs[i].bus, devs[i].address);
 				
 				break;
@@ -255,7 +235,7 @@ void
 listUpdateDevices(device devs[])
 {
 	uint8_t 	i; 
-	
+		
 	for(i=0; i<MAX_DEVS; i++)
 	{
 		listTryAdd(devs, &tmp[i]);
@@ -279,7 +259,7 @@ getDevices()
 
 	if(libusb_get_device_list(NULL, &devs) < 0) 
 	{
-		syslog(LOG_ERR,"Failed to get device list");
+		LOGERR("Failed to get device list");
 		libusb_free_device_list(devs, 1);
 		return;
 	}
@@ -290,7 +270,7 @@ getDevices()
 		struct libusb_device_descriptor desc;
 		if((error = libusb_get_device_descriptor(dev, &desc)) != 0)
 		{
-			syslog(LOG_ERR,"Failed to get device descriptor");
+			LOGERR("Failed to get device descriptor");
 			libusb_free_device_list(devs, 1);
 			return;
 		}
@@ -301,7 +281,6 @@ getDevices()
 			
 			if(listContains(devices, &tmp[id]) == 0)
 			{
-				printf("Open USB device\n");
 				libusb_open(dev, &tmp[id].handle);
 			}
 
@@ -322,19 +301,8 @@ void *
 pollingThread()
 {
 	syslog(LOG_INFO, "Device polling thread is started");
-	
-	/* Guarantees that thread resources are deallocated upon return */
-	if (pthread_detach(pthread_self()) != 0) 
-	{
-		syslog(LOG_ERR, "Device polling thread error in detach");
-	}
-	
-	if(pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL) !=0)
-	{
-		syslog(LOG_ERR, "Device polling thread error in setcancelstate");;
-	}	
-	
-	while(1)
+
+	while(running)
 	{
 		getDevices();
 		listClean();
@@ -343,5 +311,7 @@ pollingThread()
 		//printf("\n\n");
 		usleep(REFR_TIME_MS * 1000);
 	}	
+
+	syslog(LOG_INFO, "Device polling thread is stopped");
 	return (NULL);
 }

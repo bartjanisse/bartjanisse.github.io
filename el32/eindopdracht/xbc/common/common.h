@@ -13,9 +13,12 @@
 			fprintf(stderr, "CHECK() in function: %s, line: %d, evaluation of:  ", __func__, __LINE__); \
 			perror(#x); \
 			exit(-1); \
-			syslog (LOG_ERR, "Ouch an ERROR!"); \
 		} \
 	} while (0) \
+
+
+#define LOGERR(msg) syslog(LOG_ERR, "ERROR: %s in function %s at line %d)", msg, __func__, __LINE__); 
+
 	
 #define SHM_NAME			"shm_xbc"		//! Name of the shared memory
 #define SEM_DAEMON			"sem_daemon"	//! Name of the daemon semaphore 
@@ -27,14 +30,15 @@
 #define MAX_MESSAGE_SIZE 	50
 #define MESSAGE_PRIORITY	0
 #define MAX_MESSAGE			10
+#define MAX_CMD_SIZE		50
 
 #define CMD_RUMBLE			"rumble"
-
+#define CMD_LED				"led"			
 
 typedef struct
 {
 	uint8_t id;
-	char cmd[50];
+	char cmd[MAX_CMD_SIZE];
 	int16_t val;
 }command;
 

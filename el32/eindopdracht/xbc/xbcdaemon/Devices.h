@@ -24,16 +24,18 @@
 /*! Constant for product id. This constant is used to derive the handle.*/
 #define 	PRODUCT_ID	0x028e
 
-/*! \fn printAllDevices();
-    \brief Prints a list of <b>all</b> the USB devices to the console.
+#define REFR_TIME_MS	100	//! Refresh time in ms for udating USB devices
 
-    \details This function prints a list of all the usb devives to the standard console.
+
+/*! \fn xxxxxxxxxxxxxxxxxxxxxxxxxx();
+    \brief xxxxxxxxxxxx <b>all</b> x.
+
+    \details xxxxxxxxxxxxxxxxxx.
 */
-void printAllDevices();
-
 libusb_device_handle *getDeviceHandle(uint8_t id);
 
 void initDevices(uint16_t vendor_id, uint16_t product_id);
+
 void closeDevices();
 
 #endif

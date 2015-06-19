@@ -21,12 +21,20 @@
 
 
 #include "Devices.h"
+#include "controller.h"
+#include "../common/shm.h"
 #include "../common/common.h"
+
 
 int 	shm_fd = -1;
 sem_t 	*semDaemon;
 sem_t 	*semWeb;
 mqd_t 	mq_cmds;
+
+static uint8_t running = 1;
+
+pthread_t cmd_thread;
+pthread_t btn_thread;
 
 void open_mq() 
 {
@@ -42,7 +50,7 @@ void open_mq()
 
 	if (mq_cmds == (mqd_t)-1) 
 	{
-	  syslog(LOG_ERR, "Error creating messagequeue. Not listening to commands.");
+		LOGERR("Error creating messagequeue. Not listening to commands.");
 	}
 	
 	printf("Messagequeue %s is created\n", MQ_CMDS);
@@ -86,14 +94,8 @@ commandListenerThread()
 		
 	syslog(LOG_INFO, "Listening for commands\n");
 	
-	/* Guarantees that thread resources are deallocated upon return */
-	if (pthread_detach(pthread_self()) != 0) 
-	{
-	  syslog(LOG_ERR, "Device polling thread error in detach");
-	}
-	
-	/* Start reading the message que */
-	while(1)
+	/* Start reading the message queue */
+	while(running)
 	{
 		length = mq_receive(mq_cmds, message, MAX_MESSAGE_SIZE, MESSAGE_PRIORITY);
 		
@@ -103,20 +105,59 @@ commandListenerThread()
 			
 			if (strstr(cmd.cmd, CMD_RUMBLE))
 			{
-				printf("id=%d, cmd=%s, value=%d\n", cmd.id, cmd.cmd, cmd.val);
+				setControllerRumble(getDeviceHandle(cmd.id), cmd.val);
+			}
+			else if (strstr(cmd.cmd, CMD_LED))
+			{
+				setControllerLeds(getDeviceHandle(cmd.id), cmd.val);
 			}
 		}		
 	}
-	
+	syslog(LOG_INFO, "Stop listening for commands\n");
+	return (NULL);
+}
+
+void *
+buttonListenerThread() 
+{
+	buttons btns;	
+	uint8_t i;
+	button *buttonSHM;
+			
+	syslog(LOG_INFO, "Listening for buttons\n");
+		
+	buttonSHM = createButtonSHM(SHM_NAME);	
+		
+	/* Start reading the buttons of each controller */
+	while(running)
+	{
+		for(i=0; i<MAX_DEVS; i++)
+		{	
+			getControllerInput(getDeviceHandle(i), &btns[i]);
+			
+			/* Start critical section */
+			
+			buttonSHM[i] = btns[i];
+			
+			/* End critical section */
+		}
+	}
+	syslog(LOG_INFO, "Stop listening for buttons\n");	
 	return (NULL);
 }
 
 void 
 closeAndExit(int sig) 
 {	
-	/*
-	shm_unlink(SHM_NAME);
+	// Stop running
+	running = 0;
+	// Wait for other trheads to stop.
+	pthread_join(cmd_thread, NULL);
+	pthread_join(btn_thread, NULL);
 	
+	closeButtonSHM(SHM_NAME);
+	
+	/*
 	sem_close(semDaemon);
 	sem_unlink(SEM_DAEMON);
 	
@@ -124,23 +165,30 @@ closeAndExit(int sig)
 	sem_unlink(SEM_WEB);
 	*/
 	
-	mq_unlink(MQ_CMDS);
 	closeDevices();
+
+	mq_unlink(MQ_CMDS);
 	
 	syslog (LOG_INFO, "Program stopped by User %d", getuid());
 	closelog();
 	exit(0);
 }
 
+
 int
 main()
 {
+	//int 	fd = -1;
 	int16_t err = 0;
-	libusb_device_handle *handle;
 	uint8_t i;
-	//err = daemon(0,0);
+	libusb_device_handle *handle;
 	
 	signal(SIGINT, closeAndExit);
+	
+	//fd = createSHM(SHM_NAME, sizeof(buttons));
+	//mapSHM(fd, sizeof(buttons));
+	
+	
 	
 	// Create a log entry in /var/log/syslog
 	openlog ("xbcdaemon", LOG_CONS | LOG_PID | LOG_NDELAY, LOG_LOCAL0);
@@ -154,10 +202,14 @@ main()
 
 	open_mq();
 
-	pthread_t cmd_thread;
 	if (pthread_create(&cmd_thread, NULL, commandListenerThread, NULL) != 0) 
 	{
-		syslog(LOG_ERR, "Error creating commandlistener");
+		LOGERR("Error creating commandlistener");
+	}
+
+	if (pthread_create(&btn_thread, NULL, buttonListenerThread, NULL) != 0) 
+	{
+		LOGERR("Error creating buttonlistener");
 	}
 
 	
