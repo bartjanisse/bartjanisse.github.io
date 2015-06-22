@@ -24,7 +24,7 @@
 /*! Constant for product id. This constant is used to derive the handle.*/
 #define 	PRODUCT_ID	0x028e
 
-#define REFR_TIME_MS	100	//! Refresh time in ms for udating USB devices
+#define REFR_TIME_MS	100		//! Refresh time in ms for udating USB devices
 
 
 /*! \fn xxxxxxxxxxxxxxxxxxxxxxxxxx();

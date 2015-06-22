@@ -5,11 +5,11 @@
 #include <stdlib.h>
 #include "common.h"
 
-
+/* DEZE HELE FILE MAG WEG 
 char *
 makeCommand(char *id, char *cmd, char *val)
 {
-	char *result = malloc(strlen(id)+strlen(cmd)+strlen(val)+3);//+1 for the zero-terminator
+	char *result = malloc(strlen(id)+strlen(cmd)+strlen(val)+3);
 	
 	strcpy(result, id);
 	strcat(result, ",");
@@ -18,3 +18,4 @@ makeCommand(char *id, char *cmd, char *val)
     strcat(result, val);
     return result;
 }
+*/

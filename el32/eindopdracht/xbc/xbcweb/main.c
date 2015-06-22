@@ -1,63 +1,105 @@
 
 #include <stdlib.h>
-#include <mqueue.h>
 #include <unistd.h>
 #include <stdio.h>
 #include <string.h>
 
+#include "../common/commands.h"
 #include "../common/common.h"
+#include "../common/buttons.h"
+#include "../common/shm.h"
 
+#define WEB_LOG_NAME	"xbc-web"	//! name used in th elog file
 
-mqd_t 	mq_cmds;
-
-void 
-open_mq() 
+void
+printButton(button *b)
 {
-	mq_cmds = mq_open(MQ_CMDS, O_WRONLY);
-
-	if (mq_cmds == (mqd_t)-1) {
-		perror("createMQ: mq_open()");
-	}
+	printf("%d %d \n",b->D_UP, b->A);	
 }
 
 void
-sendCommand(char *id, char *cmd, char *val)
+readButtons()
 {
-	char *c = makeCommand(id, cmd, val);
+	int i;
+	button btn;
 	
-	if(mq_send(mq_cmds, c, MAX_MESSAGE_SIZE, 0) == 0)
+	for(i=0; i<MAX_DEVS; i++)
 	{
-		printf("Message %s is sent\n", cmd);
-	}
-	else
-	{
-		printf("Message error...");
+		readButtonFromSHM(&btn, i);
+		printButton(&btn);
 	}
 }
 
 int
 main()
-{	
-	while(1)
+{
+	const char *strCmd;
+
+	// Create a log entry in /var/log/syslog
+	openlog (WEB_LOG_NAME, LOG_CONS | LOG_PID | LOG_NDELAY, LOG_LOCAL0);
+	syslog(LOG_INFO, "Program started by User %d", getuid());
+	
+	/* Start HTTP output */
+	printf("Content-Type: text/plain\n\n");
+
+	if ((strCmd = getenv("QUERY_STRING")) != NULL && *strCmd != '\0')
+    {
+		if (strstr(strCmd, CMD_BTNS))
+		{
+			startButtonSHM(SHM_NAME);
+			//create string here
+			
+		}
+		else if (strstr(strCmd, CMD_LED))
+		{
+			
+		}
+		else if (strstr(strCmd, CMD_RUMBLE))
+		{
+			
+		}
+	}
+
+	return (0);
+
+/*
+
+	int i = 0;
+	
+	// Create a log entry in /var/log/syslog
+	openlog (WEB_LOG_NAME, LOG_CONS | LOG_PID | LOG_NDELAY, LOG_LOCAL0);
+	syslog(LOG_INFO, "Program started by User %d", getuid());
+	
+	startButtonSHM(SHM_NAME);
+	
+	while(i<10)
 	{
-		open_mq();
+		readButtons();
+
+		startQueue(MQ_CMDS_NAME);
 			
 		//sendCommand("0", CMD_RUMBLE, "1000");		
 		//sleep(1);
-		sendCommand("0", CMD_RUMBLE, "0");
-		sleep(1);
-		sendCommand("0", CMD_LED, "0");
-		sleep(1);
+		//sendCommand("0", CMD_RUMBLE, "0");
+		//usleep(100000);
+		//sendCommand("0", CMD_LED, "0");
+		//usleep(100000);
 		sendCommand("0", CMD_LED, "6");
-		sleep(1);
+		usleep(100000);
 		sendCommand("0", CMD_LED, "7");
-		sleep(1);
-		sendCommand("0", CMD_LED, "8");
-		sleep(1);
+		usleep(100000);
 		sendCommand("0", CMD_LED, "9");
-		sleep(1);
+		usleep(100000);
+		sendCommand("0", CMD_LED, "8");
+		usleep(100000);
 		
-		mq_close(mq_cmds);
+		stopQueue();
+	
+		i++;
 	}
+	
+//	stopButtonSHM(SHM_NAME);
+	
 	return (0); // not reached
+*/
 }

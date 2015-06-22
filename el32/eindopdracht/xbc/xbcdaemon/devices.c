@@ -12,8 +12,10 @@
 #include <stdio.h>
 #include <stdlib.h>  // for exit()
 #include <sys/types.h>
-#include "Devices.h"
+#include "devices.h"
 
+static uint16_t vendor_id;
+static uint16_t product_id;
 
 static uint8_t running = 1;
 
@@ -28,7 +30,7 @@ typedef struct{
 device devices[MAX_DEVS];
 device tmp[MAX_DEVS];
 
-pthread_mutex_t mutex1 = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_t 		thread;
 
 static uint8_t
@@ -56,9 +58,13 @@ compareDevices(device *d1, device *d2)
 }
 
 void 
-initDevices(uint16_t vendor_id, uint16_t product_id)
+initDevices(uint16_t vendorID, uint16_t productID)
 {	  
 	int8_t i;
+	
+	vendor_id  = vendorID;
+	product_id = productID;
+		
 	for(i=0; i<MAX_DEVS;i++)
 	{
 		devices[i].bus     = -1;
@@ -86,11 +92,14 @@ void
 closeDevices()
 {
 	int 	i;
-
+	
+	syslog(LOG_INFO, "Start closing devices");
 	running = 0;
-	printf("Waiting for polling thread to stop...\n");
+	
+	/* Wait for the polling thread to stop */
 	pthread_join(thread, NULL);          
-
+	syslog(LOG_INFO, "Polling thread has stopped");
+	
 	// Close all USB devices
 	for(i=0; i<MAX_DEVS; i++)
 	{
@@ -101,7 +110,8 @@ closeDevices()
 		}
 	}
     libusb_exit(NULL);  
-    printf("Polling thread has stoppend...\n");
+    
+    syslog(LOG_INFO, "Devices are closed");
 }
 
 
@@ -113,10 +123,10 @@ getDeviceHandle(uint8_t id)
 	if(id >= 0 && id < MAX_DEVS)
 	{
 		/* begin critical section */
-		pthread_mutex_lock(&mutex1);	
+		pthread_mutex_lock(&mutex);	
 		handle = devices[id].handle;
 		/* end critical section */
-		pthread_mutex_unlock(&mutex1);
+		pthread_mutex_unlock(&mutex);
 		
 		return handle;
 	}
@@ -158,13 +168,13 @@ listTryRemove(device devs[], device *dev)
 		if(compareDevices(&devs[i], dev))
 		{
 			// begin critical section
-			pthread_mutex_lock(&mutex1);
+			pthread_mutex_lock(&mutex);
 	
 			devices[i].bus     = -1;
 			devices[i].address = -1;
 			devices[i].handle  = NULL;
 	
-			pthread_mutex_unlock(&mutex1);
+			pthread_mutex_unlock(&mutex);
 			// end critical section
 			
 			syslog(LOG_INFO,"Removed controller with id=%d, from bus=%03d and address=%03d", i, dev->bus, dev->address);
@@ -213,16 +223,19 @@ listTryAdd(device devs[], device *dev)
 			if(devs[i].handle == NULL)
 			{					
 				/* begin critical section */
-				pthread_mutex_lock(&mutex1);	
+				pthread_mutex_lock(&mutex);	
 				
 				devs[i].bus = dev->bus;
 				devs[i].address = dev->address;
-				devs[i].handle = dev->handle;	
+				devs[i].handle = dev->handle;
+				
+				/* Make sure the handle is claimend before other threads use this device */	
 				claimHandle(devs[i].handle);
 				
-				pthread_mutex_unlock(&mutex1);
+				pthread_mutex_unlock(&mutex);
 				/* end critical section */
-				syslog(LOG_INFO,"Added controller with id=%d, from bus=%03d and address=%03d", i, devs[i].bus, devs[i].address);
+
+				syslog(LOG_INFO,"Added controller with id=%d, bus=%03d, address=%03d", i, devs[i].bus, devs[i].address);
 				
 				break;
 			}
@@ -274,7 +287,7 @@ getDevices()
 			libusb_free_device_list(devs, 1);
 			return;
 		}
-		if(desc.idVendor == VENDOR_ID && desc.idProduct == PRODUCT_ID)
+		if(desc.idVendor == vendor_id && desc.idProduct == product_id)
 		{
 			tmp[id].bus = libusb_get_bus_number(dev);
 			tmp[id].address = libusb_get_device_address(dev);
@@ -296,7 +309,6 @@ getDevices()
 	libusb_free_device_list(devs, 1);
 }
 
-
 void *
 pollingThread()
 {
@@ -307,8 +319,6 @@ pollingThread()
 		getDevices();
 		listClean();
 		listUpdateDevices(devices);
-		//printAllDevices();
-		//printf("\n\n");
 		usleep(REFR_TIME_MS * 1000);
 	}	
 
