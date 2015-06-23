@@ -1,5 +1,6 @@
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <mqueue.h>
 #include "common.h"
@@ -8,45 +9,20 @@
 static mqd_t 	mq_cmds;
 
 static void
-retreiveCommand(command *cmd, char *msg)
+makeCommand(char *strCmd, uint8_t id, char *cmd, int16_t val)
 {
-	char *e, substr[50] = {0};
-	int index1, index2;
-
-	// Copy id
-	e = strchr(msg, ',');
-	index1 = (int)(e - msg);
+	char idbuffer[20];
+	char valbuffer[20];
 	
-	strncpy (substr, msg, index1);
-	substr[index1+1] = '\0';
+	sprintf(idbuffer, "%d", id);
+	sprintf(valbuffer,"%d", val);
 	
-	cmd->id = atoi(substr);
-	
-	// copy value
-	e = strrchr(msg, ',');
-	index2 = (int)(e - msg);
-	
-	strncpy(substr, msg + index2 + 1, strlen(msg) - index2 - 1);
-	substr[strlen(msg) - index2] = '\0';
-	
-	cmd->val = atoi(substr);
-	
-	// Copy command
-	strncpy(cmd->cmd, msg + index1 + 1, index2 - index1- 1);
-	cmd->cmd[index2 - index1 - 1] = '\0';
-}
-
-static char *
-makeCommand(char *id, char *cmd, char *val)
-{
-	char *result = malloc(strlen(id)+strlen(cmd)+strlen(val)+3);
-	
-	strcpy(result, id);
-	strcat(result, ",");
-    strcat(result, cmd);
-    strcat(result, ",");
-    strcat(result, val);
-    return result;
+	strcpy(strCmd, idbuffer);
+	strcat(strCmd, ",");
+    strcat(strCmd, cmd);
+    strcat(strCmd, ",");
+    strcat(strCmd, valbuffer);
+    strcat(strCmd, "\0");
 }
 
 void 
@@ -55,8 +31,8 @@ initQueue(char *name)
 	struct mq_attr attr;
 
 	attr.mq_flags   	= 0;
-	attr.mq_maxmsg  	= MAX_MESSAGE;
-	attr.mq_msgsize 	= MAX_CMD_SIZE;
+	attr.mq_maxmsg  	= MAX_MESSAGES;
+	attr.mq_msgsize 	= MAX_CMD_LEN;
 	attr.mq_curmsgs 	= 0;
 
 	mq_unlink(name);
@@ -85,16 +61,15 @@ void closeQueue()
 }
 
 void 
-startQueue(char *name) 
+startQueue() 
 {
-	mq_cmds = mq_open(name, O_WRONLY);
+	mq_cmds = mq_open(MQ_CMDS_NAME, O_WRONLY);
 
 	if (mq_cmds == (mqd_t)-1) 
 	{
 		LOGERR("Error opening messagequeue. Not listening to commands.");
 		return;
 	}
-	syslog(LOG_INFO, "Succesfully opened messagequeue\n");
 }	
 
 void
@@ -106,27 +81,53 @@ stopQueue()
 	}
 }
 
-void 
-sendCommand(char *id, char *cmd, char *val)
+void sendCommand(command *cmd)
 {
-	char *c = makeCommand(id, cmd, val);
+	char strCmd[MAX_CMD_LEN];
+	makeCommand(strCmd, cmd->id, cmd->cmd, cmd->val);
 		
-	if(mq_send(mq_cmds, c, MAX_CMD_SIZE, 0) != 0)
+	if(mq_send(mq_cmds, strCmd, MAX_CMD_LEN, 0) != 0)
 	{
 		LOGERR("mq_send() failed");
 	}
-	
-	free(c);
 }
 
 void
 getCommand(command *cmd)
 {
-	char message[MAX_CMD_SIZE];
+	char message[MAX_CMD_LEN];
 	
-	if(mq_receive(mq_cmds, message, MAX_CMD_SIZE, MESSAGE_PRIORITY) > 0)
+	if(mq_receive(mq_cmds, message, MAX_CMD_LEN, MESSAGE_PRIORITY) > 0)
 	{
 		retreiveCommand(cmd, message);
 	}
 }
 
+void
+retreiveCommand(command *cmd, char *msg)
+{
+	char *e, substr[50] = {0};
+	int index1, index2;
+
+	// Copy id
+	e = strchr(msg, ',');
+	index1 = (int)(e - msg);
+	
+	strncpy (substr, msg, index1);
+	substr[index1+1] = '\0';
+	
+	cmd->id = atoi(substr);
+	
+	// copy value
+	e = strrchr(msg, ',');
+	index2 = (int)(e - msg);
+	
+	strncpy(substr, msg + index2 + 1, strlen(msg) - index2 - 1);
+	substr[strlen(msg) - index2] = '\0';
+	
+	cmd->val = atoi(substr);
+	
+	// Copy command
+	strncpy(cmd->cmd, msg + index1 + 1, index2 - index1- 1);
+	cmd->cmd[index2 - index1 - 1] = '\0';
+}

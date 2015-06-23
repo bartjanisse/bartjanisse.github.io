@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Xbox controller demo</title>
+
+	<!-- Basic styling, centering the canvas -->
+	<style>
+		.center {
+			background		: red;
+			text-align		: center;
+		}
+		.controller1 {
+            width           : 400px;
+            margin-left     : 2%;
+            margin-right    : 2%;
+            margin-bottom   : 5%;
+            padding         : 0px;
+            float           : left;
+            background-color: #ccc
+        }
+        .clear {
+            clear: both;
+        }
+	</style>
+
+	<script>
+
+		var idx   = 0;
+		var ctrlr = null; // object
+
+
+		function getButtons()
+		{ 
+			var req = null; 
+			
+			
+			if(window.XMLHttpRequest)
+				req = new XMLHttpRequest(); 
+			else if (window.ActiveXObject)
+				req  = new ActiveXObject(Microsoft.XMLHTTP); 
+			
+			req.onreadystatechange = function()
+			{ 
+				if(req.readyState == 4)
+				{
+					if(req.status == 200)
+					{
+						// response format: xxx;yyy 
+						// document.getElementById("weergave").childNodes[0].nodeValue=req.responseText; 
+						// foo.style.left = req.responseText.substr(0,3)+'px';
+						// foo.style.top  = req.responseText.substr(4,3)+'px';
+						updateController(idx, req.responseText);
+						next();
+						getButtons();
+					}	
+					else	
+					{
+						// report error;
+						// document.getElementById("weergave").childNodes[0].nodeValue="error"; 
+					}	
+				} 
+			}; 
+			
+			req.open("GET", "/cgi-bin/xbcweb?" + idx + ",btns,0", true); 
+			req.send(null); 
+		} 
+
+		function next()
+		{
+			idx++;
+			if(idx >= 4)
+			{
+				idx = 0;
+			}
+		}
+
+		function updateController(id, data)
+		{
+			var b = data.split(",");
+			
+			switch(id) {
+				case 0: var header = document.getElementById('header0'); 
+						if(b[0] == 1)
+						{
+							header.style.background = 'lime';
+						}
+						else
+						{
+							header.style.background = 'red';
+						}
+						break;
+				case 1: //console.log("Controller 1 = " + data);
+						break;
+				case 2: //console.log("Controller 2 = " + data);
+						break;
+				case 3: //console.log("Controller 3 = " + data);
+						break;		
+			}
+		}
+		
+		function init()
+		{
+			getButtons();
+		}
+
+		window.onload = init();
+
+	</script>
+</head>
+
+<body>
+	<h1>Xbox 360 controller demo</h1>
+
+<div class="controller1">
+	<table>
+		<tr>
+			<th class="center" colspan="4"><h2 id="header0">Controller 1</h2></th>
+		</tr>
+		<tr>
+			<td>zzz</td>
+			<td>zzz</td>
+			<td>zzz</td>
+			<td>zzz</td>
+		</tr>
+	</table>
+</div>
+<!--
+	<div class="controller1">
+		<h2 class="center" id="header0">Controller 1</h2>
+		        
+        <ul>
+            <li id="c1Button">Button A</li>
+            <li>
+                <button onClick="vibrate(0)">Vibreer</button>
+            </li>
+            <li>
+                <button onClick="blink(0)">Knipper LED</button>
+            </li>
+        </ul>
+    </div>
+   --> 
+</body>
+</html>

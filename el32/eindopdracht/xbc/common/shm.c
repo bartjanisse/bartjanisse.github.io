@@ -147,6 +147,11 @@ stopButtonSHM(char *name)
 void
 witeButtonToSHM(button *b, uint8_t index)
 {
+	if(index < 0 || index > MAX_DEVS)
+	{
+		return;
+	}
+
 	/* Begin critical section */
 	sem_wait(sem);
 
@@ -159,6 +164,10 @@ witeButtonToSHM(button *b, uint8_t index)
 void
 readButtonFromSHM(button *b, uint8_t index)
 {
+	if(index < 0 || index > MAX_DEVS)
+	{
+		return;
+	}
 	/* Begin critical section */	
 	sem_wait(sem);
 

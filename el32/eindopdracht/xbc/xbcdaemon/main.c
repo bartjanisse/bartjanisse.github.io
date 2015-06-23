@@ -98,12 +98,16 @@ closeAndExit(int sig)
 
 int
 main()
-{
-	signal(SIGINT, closeAndExit); // VERVANGEN door sigaction. uitzoeken hoe!!
+{	
+	signal(SIGINT, closeAndExit);
 		
-	// Create a log entry in /var/log/syslog
+	// Create a log entry in /var/log/
 	openlog (DEAMON_LOG_NAME, LOG_CONS | LOG_PID | LOG_NDELAY, LOG_LOCAL0);
-	syslog(LOG_INFO, "Program started by User %d", getuid());
+	
+	if (daemon(0,0) != 0)
+	{
+		LOGERR("daemon() failed");
+	}
 	
 	initDevices(VENDOR_ID, PRODUCT_ID);
 	initButtonSHM(SHM_NAME);	

@@ -5,9 +5,9 @@
 #include <stdint.h>
 
 #define MQ_CMDS_NAME        "/mq_cmds"	//! Use a slash conform man page (7) mq_overview
-#define MAX_CMD_SIZE		50			//! Max. length of a command message
+#define MAX_CMD_LEN			50			//! Max. length of a command message
 #define MESSAGE_PRIORITY	0
-#define MAX_MESSAGE			50			
+#define MAX_MESSAGES		50			
 
 #define CMD_RUMBLE			"rumble"
 #define CMD_LED				"led"		
@@ -16,7 +16,7 @@
 typedef struct
 {
 	uint8_t id;
-	char cmd[MAX_CMD_SIZE];
+	char cmd[MAX_CMD_LEN];
 	int16_t val;
 }command;
 
@@ -24,10 +24,13 @@ typedef struct
 void initQueue(char *name);
 void closeQueue();
 
-void startQueue(char *name); 
+void startQueue(); 
 void stopQueue();
 
-void sendCommand(char *id, char *cmd, char *val);
+//void sendCommand(char *id, char *cmd, char *val);
+void sendCommand(command *cmd);
 void getCommand(command *cmd);
+
+void retreiveCommand(command *cmd, char *msg);
 
 #endif

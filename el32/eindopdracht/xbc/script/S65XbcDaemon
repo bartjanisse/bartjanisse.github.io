@@ -1,0 +1,29 @@
+#!/bin/sh
+#
+# Start xbcdamon application.
+# 
+# (C) 2015, A.W. Janisse
+#
+# place this file in: /etc/init.d/ 
+# 
+# pleasse note to make it executable (for example: chmod u+x S65XbcDaemon)
+# 
+case "$1" in
+  start)
+ 	echo "Starting the xbc daemon application."
+	/bin/xbcdaemon &
+	;;
+  stop)
+	echo -n "Stopping the xbc daemon application."
+	/usr/bin/killall xbcdaemon
+	;;
+  restart|reload)
+	"$0" stop
+	"$0" start
+	;;
+  *)
+	echo "Usage: $0 {start|stop|restart}"
+	exit 1
+esac
+
+exit $?

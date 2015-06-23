@@ -14,7 +14,7 @@
 
 OUTPUT 	= xbcdaemon
 SUBDIRS = ../common
-PIDIR   = root@10.0.0.42:/var/www/cgi-bin
+PIDIR   = root@10.0.0.42:/bin
 CC 		= gcc
 LIBS 	= -lusb-1.0 -lrt -pthread
 CFLAGS 	= -O2 -Wall -Werror
