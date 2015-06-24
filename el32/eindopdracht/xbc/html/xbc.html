@@ -15,10 +15,14 @@
 			border-collapse: collapse;
 		}
 		
-		.button {
+		.btnStatus {
 			background		: red;
 			text-align		: center;
 		}
+		.button {
+			width : 100%;
+		}
+		
 		.value {
 			background		: yellow;
 			text-align		: center;
@@ -200,6 +204,13 @@
 			}
 		}
 		
+		function sendCommand(id,command,value)
+		{
+			var xmlHttp = new XMLHttpRequest();
+			xmlHttp.open("GET", "/cgi-bin/xbcweb?" + id + "," + command + "," + value, true); 
+			xmlHttp.send( null );
+		}
+		
 		function init()
 		{
 			getButtons();
@@ -222,31 +233,31 @@
 				<th style="height:50px;text-align:center;background:#00ccff" class="center" colspan="4" id="header">Controller 1</th>
 			</tr>
 			<tr>
-				<td class="button" id="avail_0" colspan="4">Available</td>
+				<td class="btnStatus" id="avail_0" colspan="4">Available</td>
 			</tr>
 			<tr>
-				<td class="button" id="D_UP_0">D-up</td>
-				<td class="button" id="D_DN_0">D-dn</td>
-				<td class="button" id="D_LEFT_0">D-left</td>
-				<td class="button" id="D_RIGHT_0">D-right</td>
+				<td class="btnStatus" id="D_UP_0">D-up</td>
+				<td class="btnStatus" id="D_DN_0">D-dn</td>
+				<td class="btnStatus" id="D_LEFT_0">D-left</td>
+				<td class="btnStatus" id="D_RIGHT_0">D-right</td>
 			</tr>
 			<tr>
-				<td class="button" id="A_0">A</td>
-				<td class="button" id="B_0">B</td>
-				<td class="button" id="X_0">X</td>
-				<td class="button" id="Y_0">Y</td>
+				<td class="btnStatus" id="A_0">A</td>
+				<td class="btnStatus" id="B_0">B</td>
+				<td class="btnStatus" id="X_0">X</td>
+				<td class="btnStatus" id="Y_0">Y</td>
 			</tr>
 			<tr>
-				<td class="button" id="START_0">START</td>
-				<td class="button" id="BACK_0">BACK</td>
-				<td class="button" id="LB_0">LB</td>
-				<td class="button" id="RB_0">RB</td>
+				<td class="btnStatus" id="START_0">START</td>
+				<td class="btnStatus" id="BACK_0">BACK</td>
+				<td class="btnStatus" id="LB_0">LB</td>
+				<td class="btnStatus" id="RB_0">RB</td>
 			</tr>
 			<tr>
-				<td class="button" id="LS_PRESS_0">LS</td>
-				<td class="button" id="RS_PRESS_0">RS</td>
-				<td class="button" id="LOGO_0">Logo</td>
-				<td class="button" id="SPARE_0"></td>
+				<td class="btnStatus" id="LS_PRESS_0">LS</td>
+				<td class="btnStatus" id="RS_PRESS_0">RS</td>
+				<td class="btnStatus" id="LOGO_0">Logo</td>
+				<td class="btnStatus" id="SPARE_0"></td>
 			</tr>
 			<tr>
 				<td colspan="2" class="value" id="LEFT_TRIGGER_0">nan</td>
@@ -258,6 +269,19 @@
 				<td class="value" id="RIGHT_STICK_X_0">nan</td>
 				<td class="value" id="RIGHT_STICK_Y_0">nan</td>
 			</tr>
+			<tr>
+				<td colspan="2"><button class="button" onClick="sendCommand(0,'rumble',1000)">Rumble on</button></td>
+				<td colspan="2"><button class="button" onClick="sendCommand(0,'rumble',0)">Rumble off</button></td>
+			</tr>
+			<tr>
+				<td><button class="button" onClick="sendCommand(0,'led',6)">Led 1</button></td>
+				<td><button class="button" onClick="sendCommand(0,'led',7)">Led 2</button></td>
+				<td><button class="button" onClick="sendCommand(0,'led',8)">Led 3</button></td>
+				<td><button class="button" onClick="sendCommand(0,'led',9)">Led 4</button></td>
+			</tr>
+			<tr>
+				<td colspan="4"><button class="button" onClick="sendCommand(0,'led',0)">All led's off</button></td>
+			</tr>
 		</table>
 	</div>
 	
@@ -267,31 +291,31 @@
 				<th style="height:50px;text-align:center;background:#00ccff" class="center" colspan="4" id="header">Controller 2</th>
 			</tr>
 			<tr>
-				<td class="button" id="avail_1" colspan="4">Available</td>
+				<td class="btnStatus" id="avail_1" colspan="4">Available</td>
 			</tr>
 			<tr>
-				<td class="button" id="D_UP_1">D-up</td>
-				<td class="button" id="D_DN_1">D-dn</td>
-				<td class="button" id="D_LEFT_1">D-left</td>
-				<td class="button" id="D_RIGHT_1">D-right</td>
+				<td class="btnStatus" id="D_UP_1">D-up</td>
+				<td class="btnStatus" id="D_DN_1">D-dn</td>
+				<td class="btnStatus" id="D_LEFT_1">D-left</td>
+				<td class="btnStatus" id="D_RIGHT_1">D-right</td>
 			</tr>
 			<tr>
-				<td class="button" id="A_1">A</td>
-				<td class="button" id="B_1">B</td>
-				<td class="button" id="X_1">X</td>
-				<td class="button" id="Y_1">Y</td>
+				<td class="btnStatus" id="A_1">A</td>
+				<td class="btnStatus" id="B_1">B</td>
+				<td class="btnStatus" id="X_1">X</td>
+				<td class="btnStatus" id="Y_1">Y</td>
 			</tr>
 			<tr>
-				<td class="button" id="START_1">START</td>
-				<td class="button" id="BACK_1">BACK</td>
-				<td class="button" id="LB_1">LB</td>
-				<td class="button" id="RB_1">RB</td>
+				<td class="btnStatus" id="START_1">START</td>
+				<td class="btnStatus" id="BACK_1">BACK</td>
+				<td class="btnStatus" id="LB_1">LB</td>
+				<td class="btnStatus" id="RB_1">RB</td>
 			</tr>
 			<tr>
-				<td class="button" id="LS_PRESS_1">LS</td>
-				<td class="button" id="RS_PRESS_1">RS</td>
-				<td class="button" id="LOGO_1">Logo</td>
-				<td class="button" id="SPARE_1"></td>
+				<td class="btnStatus" id="LS_PRESS_1">LS</td>
+				<td class="btnStatus" id="RS_PRESS_1">RS</td>
+				<td class="btnStatus" id="LOGO_1">Logo</td>
+				<td class="btnStatus" id="SPARE_1"></td>
 			</tr>
 			<tr>
 				<td colspan="2" class="value" id="LEFT_TRIGGER_1">nan</td>
@@ -303,6 +327,19 @@
 				<td class="value" id="RIGHT_STICK_X_1">nan</td>
 				<td class="value" id="RIGHT_STICK_Y_1">nan</td>
 			</tr>
+			<tr>
+				<td colspan="2"><button class="button" onClick="sendCommand(1,'rumble',1000)">Rumble on</button></td>
+				<td colspan="2"><button class="button" onClick="sendCommand(1,'rumble',0)">Rumble off</button></td>
+			</tr>
+			<tr>
+				<td><button class="button" onClick="sendCommand(1,'led',6)">Led 1</button></td>
+				<td><button class="button" onClick="sendCommand(1,'led',7)">Led 2</button></td>
+				<td><button class="button" onClick="sendCommand(1,'led',8)">Led 3</button></td>
+				<td><button class="button" onClick="sendCommand(1,'led',9)">Led 4</button></td>
+			</tr>
+			<tr>
+				<td colspan="4"><button class="button" onClick="sendCommand(1,'led',0)">All led's off</button></td>
+			</tr>
 		</table>
 	</div>
 
@@ -312,31 +349,31 @@
 				<th style="height:50px;text-align:center;background:#00ccff" class="center" colspan="4" id="header">Controller 3</th>
 			</tr>
 			<tr>
-				<td class="button" id="avail_2" colspan="4">Available</td>
+				<td class="btnStatus" id="avail_2" colspan="4">Available</td>
 			</tr>
 			<tr>
-				<td class="button" id="D_UP_2">D-up</td>
-				<td class="button" id="D_DN_2">D-dn</td>
-				<td class="button" id="D_LEFT_2">D-left</td>
-				<td class="button" id="D_RIGHT_2">D-right</td>
+				<td class="btnStatus" id="D_UP_2">D-up</td>
+				<td class="btnStatus" id="D_DN_2">D-dn</td>
+				<td class="btnStatus" id="D_LEFT_2">D-left</td>
+				<td class="btnStatus" id="D_RIGHT_2">D-right</td>
 			</tr>
 			<tr> 
-				<td class="button" id="A_2">A</td>
-				<td class="button" id="B_2">B</td>
-				<td class="button" id="X_2">X</td>
-				<td class="button" id="Y_2">Y</td>
+				<td class="btnStatus" id="A_2">A</td>
+				<td class="btnStatus" id="B_2">B</td>
+				<td class="btnStatus" id="X_2">X</td>
+				<td class="btnStatus" id="Y_2">Y</td>
 			</tr>
 			<tr>
-				<td class="button" id="START_2">START</td>
-				<td class="button" id="BACK_2">BACK</td>
-				<td class="button" id="LB_2">LB</td>
-				<td class="button" id="RB_2">RB</td>
+				<td class="btnStatus" id="START_2">START</td>
+				<td class="btnStatus" id="BACK_2">BACK</td>
+				<td class="btnStatus" id="LB_2">LB</td>
+				<td class="btnStatus" id="RB_2">RB</td>
 			</tr>
 			<tr>
-				<td class="button" id="LS_PRESS_2">LS</td>
-				<td class="button" id="RS_PRESS_2">RS</td>
-				<td class="button" id="LOGO_2">Logo</td>
-				<td class="button" id="SPARE_2"></td>
+				<td class="btnStatus" id="LS_PRESS_2">LS</td>
+				<td class="btnStatus" id="RS_PRESS_2">RS</td>
+				<td class="btnStatus" id="LOGO_2">Logo</td>
+				<td class="btnStatus" id="SPARE_2"></td>
 			</tr>
 			<tr>
 				<td colspan="2" class="value" id="LEFT_TRIGGER_2">nan</td>
@@ -348,6 +385,19 @@
 				<td class="value" id="RIGHT_STICK_X_2">nan</td>
 				<td class="value" id="RIGHT_STICK_Y_2">nan</td>
 			</tr>
+			<tr>
+				<td colspan="2"><button class="button" onClick="sendCommand(2,'rumble',1000)">Rumble on</button></td>
+				<td colspan="2"><button class="button" onClick="sendCommand(2,'rumble',0)">Rumble off</button></td>
+			</tr>
+			<tr>
+				<td><button class="button" onClick="sendCommand(2,'led',6)">Led 1</button></td>
+				<td><button class="button" onClick="sendCommand(2,'led',7)">Led 2</button></td>
+				<td><button class="button" onClick="sendCommand(2,'led',8)">Led 3</button></td>
+				<td><button class="button" onClick="sendCommand(2,'led',9)">Led 4</button></td>
+			</tr>
+			<tr>
+				<td colspan="4"><button class="button" onClick="sendCommand(2,'led',0)">All led's off</button></td>
+			</tr>			
 		</table>
 	</div>
 
@@ -357,31 +407,31 @@
 				<th style="height:50px;text-align:center;background:#00ccff" class="center" colspan="4" id="header">Controller 4</th>
 			</tr>
 			<tr>
-				<td class="button" id="avail_3" colspan="4">Available</td>
+				<td class="btnStatus" id="avail_3" colspan="4">Available</td>
 			</tr>
 			<tr>
-				<td class="button" id="D_UP_3">D-up</td>
-				<td class="button" id="D_DN_3">D-dn</td>
-				<td class="button" id="D_LEFT_3">D-left</td>
-				<td class="button" id="D_RIGHT_3">D-right</td>
+				<td class="btnStatus" id="D_UP_3">D-up</td>
+				<td class="btnStatus" id="D_DN_3">D-dn</td>
+				<td class="btnStatus" id="D_LEFT_3">D-left</td>
+				<td class="btnStatus" id="D_RIGHT_3">D-right</td>
 			</tr>
 			<tr>
-				<td class="button" id="A_3">A</td>
-				<td class="button" id="B_3">B</td>
-				<td class="button" id="X_3">X</td>
-				<td class="button" id="Y_3">Y</td>
+				<td class="btnStatus" id="A_3">A</td>
+				<td class="btnStatus" id="B_3">B</td>
+				<td class="btnStatus" id="X_3">X</td>
+				<td class="btnStatus" id="Y_3">Y</td>
 			</tr>
 			<tr>
-				<td class="button" id="START_3">START</td>
-				<td class="button" id="BACK_3">BACK</td>
-				<td class="button" id="LB_3">LB</td>
-				<td class="button" id="RB_3">RB</td>
+				<td class="btnStatus" id="START_3">START</td>
+				<td class="btnStatus" id="BACK_3">BACK</td>
+				<td class="btnStatus" id="LB_3">LB</td>
+				<td class="btnStatus" id="RB_3">RB</td>
 			</tr>
 			<tr>
-				<td class="button" id="LS_PRESS_3">LS</td>
-				<td class="button" id="RS_PRESS_3">RS</td>
-				<td class="button" id="LOGO_3">Logo</td>
-				<td class="button" id="SPARE_3"></td>
+				<td class="btnStatus" id="LS_PRESS_3">LS</td>
+				<td class="btnStatus" id="RS_PRESS_3">RS</td>
+				<td class="btnStatus" id="LOGO_3">Logo</td>
+				<td class="btnStatus" id="SPARE_3"></td>
 			</tr>
 			<tr>
 				<td colspan="2" class="value" id="LEFT_TRIGGER_3">nan</td>
@@ -393,6 +443,20 @@
 				<td class="value" id="RIGHT_STICK_X_3">nan</td>
 				<td class="value" id="RIGHT_STICK_Y_3">nan</td>
 			</tr>
+			<tr>
+				<td colspan="2"><button class="button" onClick="sendCommand(3,'rumble',1000)">Rumble on</button></td>
+				<td colspan="2"><button class="button" onClick="sendCommand(3,'rumble',0)">Rumble off</button></td>
+			</tr>
+			<tr>
+				<td><button class="button" onClick="sendCommand(3,'led',6)">Led 1</button></td>
+				<td><button class="button" onClick="sendCommand(3,'led',7)">Led 2</button></td>
+				<td><button class="button" onClick="sendCommand(3,'led',8)">Led 3</button></td>
+				<td><button class="button" onClick="sendCommand(3,'led',9)">Led 4</button></td>
+			</tr>
+			<tr>
+				<td colspan="4"><button class="button" onClick="sendCommand(3,'led',0)">All led's off</button></td>
+			</tr>
+			
 		</table>
 	</div>
 </body>
