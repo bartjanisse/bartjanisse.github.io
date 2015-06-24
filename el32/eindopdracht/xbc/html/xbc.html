@@ -6,6 +6,10 @@
 
 	<!-- Basic styling, centering the canvas -->
 	<style>
+		body {
+			margin : 0px;
+		}
+		
 		table, th, td {
 			border : 1px solid black;
 			border-collapse: collapse;
@@ -19,14 +23,14 @@
 			background		: yellow;
 			text-align		: center;
 		}
-		.controller {
-            width           : 400px;
+		.box {
+            width           : 20%;
             margin-left     : 2%;
             margin-right    : 2%;
             margin-bottom   : 5%;
-            padding         : 0px;
-            float           : left;
-            background-color: #ccc
+            padding         : 3px;
+            background-color: #ccc;
+            float			: left;
         }
         .clear {
             clear: both;
@@ -112,66 +116,71 @@
 			var b = data.split(",");
 					
 			switch(id) {
-				case 0: elem = document.getElementById('avail_'+id); 
-						updateBoolElem(elem, b[avail]);
-						elem = document.getElementById('D_UP_'+id); 
-						updateBoolElem(elem, b[D_UP]);
-						elem = document.getElementById('D_DN_'+id); 
-						updateBoolElem(elem, b[D_DN]);
-						elem = document.getElementById('D_LEFT_'+id); 
-						updateBoolElem(elem, b[D_LEFT]);
-						elem = document.getElementById('D_RIGHT_'+id); 
-						updateBoolElem(elem, b[D_RIGHT]);
-
-						elem = document.getElementById('A_'+id); 
-						updateBoolElem(elem, b[A]);
-						elem = document.getElementById('B_'+id); 
-						updateBoolElem(elem, b[B]);
-						elem = document.getElementById('X_'+id); 
-						updateBoolElem(elem, b[X]);
-						elem = document.getElementById('Y_'+id); 
-						updateBoolElem(elem, b[Y]);
-
-						elem = document.getElementById('START_'+id); 
-						updateBoolElem(elem, b[START]);
-						elem = document.getElementById('BACK_'+id); 
-						updateBoolElem(elem, b[BACK]);
-						elem = document.getElementById('LB_'+id); 
-						updateBoolElem(elem, b[LB]);
-						elem = document.getElementById('RB_'+id); 
-						updateBoolElem(elem, b[RB]);
-
-						elem = document.getElementById('LS_PRESS_'+id); 
-						updateBoolElem(elem, b[LS_PRESS]);
-						elem = document.getElementById('RS_PRESS_'+id); 
-						updateBoolElem(elem, b[RS_PRESS]);
-						elem = document.getElementById('LOGO_'+id); 
-						updateBoolElem(elem, b[LOGO]);
-						elem = document.getElementById('SPARE_'+id); 
-						updateBoolElem(elem, b[SPARE]);
-
-						elem = document.getElementById('LEFT_TRIGGER_'+id); 
-						updateValue(elem, b[LEFT_TRIGGER]);
-						elem = document.getElementById('RIGHT_TRIGGER_'+id); 
-						updateValue(elem, b[RIGHT_TRIGGER]);
-
-						elem = document.getElementById('LEFT_STICK_X_'+id); 
-						updateValue(elem, b[LEFT_STICK_X]);
-						elem = document.getElementById('LEFT_STICK_Y_'+id); 
-						updateValue(elem, b[LEFT_STICK_Y]);
-						
-						elem = document.getElementById('RIGHT_STICK_X_'+id); 
-						updateValue(elem, b[RIGHT_STICK_X]);
-						elem = document.getElementById('RIGHT_STICK_Y_'+id); 
-						updateValue(elem, b[RIGHT_STICK_Y]);						
+				case 0: updateControllerElements(id, b);
 						break;
-				case 1: //console.log("Controller 1 = " + data);
+				case 1: updateControllerElements(id, b);
 						break;
-				case 2: //console.log("Controller 2 = " + data);
+				case 2: updateControllerElements(id, b);
 						break;
-				case 3: //console.log("Controller 3 = " + data);
+				case 3: updateControllerElements(id, b);
 						break;		
 			}
+		}
+		
+		function updateControllerElements(id, b)
+		{
+			elem = document.getElementById('avail_'+id); 
+			updateBoolElem(elem, b[avail]);
+			elem = document.getElementById('D_UP_'+id); 
+			updateBoolElem(elem, b[D_UP]);
+			elem = document.getElementById('D_DN_'+id); 
+			updateBoolElem(elem, b[D_DN]);
+			elem = document.getElementById('D_LEFT_'+id); 
+			updateBoolElem(elem, b[D_LEFT]);
+			elem = document.getElementById('D_RIGHT_'+id); 
+			updateBoolElem(elem, b[D_RIGHT]);
+
+			elem = document.getElementById('A_'+id); 
+			updateBoolElem(elem, b[A]);
+			elem = document.getElementById('B_'+id); 
+			updateBoolElem(elem, b[B]);
+			elem = document.getElementById('X_'+id); 
+			updateBoolElem(elem, b[X]);
+			elem = document.getElementById('Y_'+id); 
+			updateBoolElem(elem, b[Y]);
+
+			elem = document.getElementById('START_'+id); 
+			updateBoolElem(elem, b[START]);
+			elem = document.getElementById('BACK_'+id); 
+			updateBoolElem(elem, b[BACK]);
+			elem = document.getElementById('LB_'+id); 
+			updateBoolElem(elem, b[LB]);
+			elem = document.getElementById('RB_'+id); 
+			updateBoolElem(elem, b[RB]);
+
+			elem = document.getElementById('LS_PRESS_'+id); 
+			updateBoolElem(elem, b[LS_PRESS]);
+			elem = document.getElementById('RS_PRESS_'+id); 
+			updateBoolElem(elem, b[RS_PRESS]);
+			elem = document.getElementById('LOGO_'+id); 
+			updateBoolElem(elem, b[LOGO]);
+			elem = document.getElementById('SPARE_'+id); 
+			updateBoolElem(elem, b[SPARE]);
+
+			elem = document.getElementById('LEFT_TRIGGER_'+id); 
+			updateValue(elem, b[LEFT_TRIGGER]);
+			elem = document.getElementById('RIGHT_TRIGGER_'+id); 
+			updateValue(elem, b[RIGHT_TRIGGER]);
+
+			elem = document.getElementById('LEFT_STICK_X_'+id); 
+			updateValue(elem, b[LEFT_STICK_X]);
+			elem = document.getElementById('LEFT_STICK_Y_'+id); 
+			updateValue(elem, b[LEFT_STICK_Y]);
+			
+			elem = document.getElementById('RIGHT_STICK_X_'+id); 
+			updateValue(elem, b[RIGHT_STICK_X]);
+			elem = document.getElementById('RIGHT_STICK_Y_'+id); 
+			updateValue(elem, b[RIGHT_STICK_Y]);
 		}
 		
 		function updateValue(elem, val)
@@ -205,10 +214,10 @@
 </head>
 
 <body>
-	<h1>Xbox 360 controller demo</h1>
+	<h1 style="text-align:center">Xbox 360 controller demo</h1>
 
-	<div class="controller">
-		<table style="width:100%" id="controller0">
+	<div class="box">
+		<table style="width:100%" id="controller_0">
 			<tr>
 				<th style="height:50px;text-align:center;background:#00ccff" class="center" colspan="4" id="header">Controller 1</th>
 			</tr>
@@ -248,6 +257,141 @@
 				<td class="value" id="LEFT_STICK_Y_0">nan</td>
 				<td class="value" id="RIGHT_STICK_X_0">nan</td>
 				<td class="value" id="RIGHT_STICK_Y_0">nan</td>
+			</tr>
+		</table>
+	</div>
+	
+	<div class="box">
+		<table style="width:100%" id="controller_1">
+			<tr>
+				<th style="height:50px;text-align:center;background:#00ccff" class="center" colspan="4" id="header">Controller 2</th>
+			</tr>
+			<tr>
+				<td class="button" id="avail_1" colspan="4">Available</td>
+			</tr>
+			<tr>
+				<td class="button" id="D_UP_1">D-up</td>
+				<td class="button" id="D_DN_1">D-dn</td>
+				<td class="button" id="D_LEFT_1">D-left</td>
+				<td class="button" id="D_RIGHT_1">D-right</td>
+			</tr>
+			<tr>
+				<td class="button" id="A_1">A</td>
+				<td class="button" id="B_1">B</td>
+				<td class="button" id="X_1">X</td>
+				<td class="button" id="Y_1">Y</td>
+			</tr>
+			<tr>
+				<td class="button" id="START_1">START</td>
+				<td class="button" id="BACK_1">BACK</td>
+				<td class="button" id="LB_1">LB</td>
+				<td class="button" id="RB_1">RB</td>
+			</tr>
+			<tr>
+				<td class="button" id="LS_PRESS_1">LS</td>
+				<td class="button" id="RS_PRESS_1">RS</td>
+				<td class="button" id="LOGO_1">Logo</td>
+				<td class="button" id="SPARE_1"></td>
+			</tr>
+			<tr>
+				<td colspan="2" class="value" id="LEFT_TRIGGER_1">nan</td>
+				<td colspan="2" class="value" id="RIGHT_TRIGGER_1">nan</td>
+			</tr>
+			<tr>
+				<td class="value" id="LEFT_STICK_X_1">nan</td>
+				<td class="value" id="LEFT_STICK_Y_1">nan</td>
+				<td class="value" id="RIGHT_STICK_X_1">nan</td>
+				<td class="value" id="RIGHT_STICK_Y_1">nan</td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="box">
+		<table style="width:100%" id="controller_2">
+			<tr>
+				<th style="height:50px;text-align:center;background:#00ccff" class="center" colspan="4" id="header">Controller 3</th>
+			</tr>
+			<tr>
+				<td class="button" id="avail_2" colspan="4">Available</td>
+			</tr>
+			<tr>
+				<td class="button" id="D_UP_2">D-up</td>
+				<td class="button" id="D_DN_2">D-dn</td>
+				<td class="button" id="D_LEFT_2">D-left</td>
+				<td class="button" id="D_RIGHT_2">D-right</td>
+			</tr>
+			<tr> 
+				<td class="button" id="A_2">A</td>
+				<td class="button" id="B_2">B</td>
+				<td class="button" id="X_2">X</td>
+				<td class="button" id="Y_2">Y</td>
+			</tr>
+			<tr>
+				<td class="button" id="START_2">START</td>
+				<td class="button" id="BACK_2">BACK</td>
+				<td class="button" id="LB_2">LB</td>
+				<td class="button" id="RB_2">RB</td>
+			</tr>
+			<tr>
+				<td class="button" id="LS_PRESS_2">LS</td>
+				<td class="button" id="RS_PRESS_2">RS</td>
+				<td class="button" id="LOGO_2">Logo</td>
+				<td class="button" id="SPARE_2"></td>
+			</tr>
+			<tr>
+				<td colspan="2" class="value" id="LEFT_TRIGGER_2">nan</td>
+				<td colspan="2" class="value" id="RIGHT_TRIGGER_2">nan</td>
+			</tr>
+			<tr>
+				<td class="value" id="LEFT_STICK_X_2">nan</td>
+				<td class="value" id="LEFT_STICK_Y_2">nan</td>
+				<td class="value" id="RIGHT_STICK_X_2">nan</td>
+				<td class="value" id="RIGHT_STICK_Y_2">nan</td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="box">
+		<table style="width:100%" id="controller_3">
+			<tr>
+				<th style="height:50px;text-align:center;background:#00ccff" class="center" colspan="4" id="header">Controller 4</th>
+			</tr>
+			<tr>
+				<td class="button" id="avail_3" colspan="4">Available</td>
+			</tr>
+			<tr>
+				<td class="button" id="D_UP_3">D-up</td>
+				<td class="button" id="D_DN_3">D-dn</td>
+				<td class="button" id="D_LEFT_3">D-left</td>
+				<td class="button" id="D_RIGHT_3">D-right</td>
+			</tr>
+			<tr>
+				<td class="button" id="A_3">A</td>
+				<td class="button" id="B_3">B</td>
+				<td class="button" id="X_3">X</td>
+				<td class="button" id="Y_3">Y</td>
+			</tr>
+			<tr>
+				<td class="button" id="START_3">START</td>
+				<td class="button" id="BACK_3">BACK</td>
+				<td class="button" id="LB_3">LB</td>
+				<td class="button" id="RB_3">RB</td>
+			</tr>
+			<tr>
+				<td class="button" id="LS_PRESS_3">LS</td>
+				<td class="button" id="RS_PRESS_3">RS</td>
+				<td class="button" id="LOGO_3">Logo</td>
+				<td class="button" id="SPARE_3"></td>
+			</tr>
+			<tr>
+				<td colspan="2" class="value" id="LEFT_TRIGGER_3">nan</td>
+				<td colspan="2" class="value" id="RIGHT_TRIGGER_3">nan</td>
+			</tr>
+			<tr>
+				<td class="value" id="LEFT_STICK_X_3">nan</td>
+				<td class="value" id="LEFT_STICK_Y_3">nan</td>
+				<td class="value" id="RIGHT_STICK_X_3">nan</td>
+				<td class="value" id="RIGHT_STICK_Y_3">nan</td>
 			</tr>
 		</table>
 	</div>
