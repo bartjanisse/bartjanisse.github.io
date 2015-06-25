@@ -113,7 +113,6 @@ startButtonSHM(char *name)
 		LOGERR("sem_open() failed");
 		return;
 	}
-	syslog(LOG_INFO, "Succesfully opened shared memory and semaphore");
 }
 
 void

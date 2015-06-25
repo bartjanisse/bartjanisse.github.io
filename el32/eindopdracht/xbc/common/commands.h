@@ -27,7 +27,6 @@ void closeQueue();
 void startQueue(); 
 void stopQueue();
 
-//void sendCommand(char *id, char *cmd, char *val);
 void sendCommand(command *cmd);
 void getCommand(command *cmd);
 

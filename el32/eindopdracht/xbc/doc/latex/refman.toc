@@ -1,0 +1,26 @@
+\contentsline {chapter}{\numberline {1}Course\discretionary {-}{}{}: D\discretionary {-}{}{}E\discretionary {-}{}{}S (E\discretionary {-}{}{}L32), Assignment 10}{1}
+\contentsline {chapter}{\numberline {2}Bug List}{3}
+\contentsline {chapter}{\numberline {3}Module Index}{5}
+\contentsline {section}{\numberline {3.1}Modules}{5}
+\contentsline {chapter}{\numberline {4}Data Structure Index}{7}
+\contentsline {section}{\numberline {4.1}Data Structures}{7}
+\contentsline {chapter}{\numberline {5}File Index}{9}
+\contentsline {section}{\numberline {5.1}File List}{9}
+\contentsline {chapter}{\numberline {6}Module Documentation}{11}
+\contentsline {section}{\numberline {6.1}Functional description of the xbcdeamon module}{11}
+\contentsline {section}{\numberline {6.2}Functional description of the xbcweb module}{12}
+\contentsline {subsubsection}{\numberline {6.2.0.1}Functional description of the xbcweb module}{12}
+\contentsline {section}{\numberline {6.3}Functions common for xbcdeamon and xbcweb}{13}
+\contentsline {subsection}{\numberline {6.3.1}Detailed Description}{13}
+\contentsline {subsection}{\numberline {6.3.2}Typedef Documentation}{13}
+\contentsline {subsubsection}{\numberline {6.3.2.1}buttons}{13}
+\contentsline {section}{\numberline {6.4}Functions used by the xbcdeamon module}{14}
+\contentsline {section}{\numberline {6.5}Functions used by the xbcweb module}{15}
+\contentsline {chapter}{\numberline {7}Data Structure Documentation}{17}
+\contentsline {section}{\numberline {7.1}button Struct Reference}{17}
+\contentsline {subsection}{\numberline {7.1.1}Detailed Description}{18}
+\contentsline {section}{\numberline {7.2}command Struct Reference}{18}
+\contentsline {section}{\numberline {7.3}device Struct Reference}{18}
+\contentsline {chapter}{\numberline {8}File Documentation}{19}
+\contentsline {section}{\numberline {8.1}common/buttons.h File Reference}{19}
+\contentsline {subsection}{\numberline {8.1.1}Detailed Description}{19}

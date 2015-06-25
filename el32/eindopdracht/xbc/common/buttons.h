@@ -1,14 +1,22 @@
-
+/*! \file buttons.h
+ *  \ingroup coomon
+ * 	\brief Implementation for the Devices.
+ *
+ *
+ * 	\author A.W Janisse
+ * 	\bug No known bugs.
+ *
+ * 	\version 1.0 	First release.
+*/
 #ifndef _BUTTONS_H_
 #define _BUTTONS_H_
 
 #include <stdbool.h>				// for boolean
 #include "common.h"
 
-//! struct Buttons
-/*! This structure contains the states of all the buttons and analog joysticks of the Xbox controller. This
-	structure is filled with the function #getControllerInput. 
-*/
+/** \ingroup common
+ * A structure representing the .....................
+ */
 typedef struct
 {
 	bool avail;				//!< Bit to track if controller is availlable
@@ -36,6 +44,10 @@ typedef struct
 	int16_t Right_stick_Y;	//!< Right joystick y-value. Produces a value from -32768 to 32767
 } button;
 
+
+/** \ingroup common
+ * An array representing the .....................
+ */
 typedef button buttons[MAX_DEVS];
 
 #endif

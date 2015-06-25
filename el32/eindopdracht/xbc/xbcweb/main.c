@@ -12,36 +12,32 @@
 #define WEB_LOG_NAME	"xbc-web"	//! name used in the log file
 
 void
-printButton(uint8_t i)
-{
-	button btn;
-	
-	readButtonFromSHM(&btn, i);
-	
+printButton(button *btn)
+{	
 	printf("%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d",
-		btn.avail,
-		btn.D_UP,
-		btn.D_DN,
-		btn.D_LEFT,
-		btn.D_RIGHT,
-		btn.START,
-		btn.BACK,
-		btn.LS_PRESS,
-		btn.RS_PRESS,
-		btn.LB,
-		btn.RB,
-		btn.LOGO,
-		btn.SPARE,
-		btn.A,
-		btn.B,
-		btn.X,
-		btn.Y,
-		btn.Left_trigger,
-		btn.Right_trigger,
-		btn.Left_stick_X,
-		btn.Left_stick_Y,
-		btn.Right_stick_X,
-		btn.Right_stick_Y);
+		btn->avail,
+		btn->D_UP,
+		btn->D_DN,
+		btn->D_LEFT,
+		btn->D_RIGHT,
+		btn->START,
+		btn->BACK,
+		btn->LS_PRESS,
+		btn->RS_PRESS,
+		btn->LB,
+		btn->RB,
+		btn->LOGO,
+		btn->SPARE,
+		btn->A,
+		btn->B,
+		btn->X,
+		btn->Y,
+		btn->Left_trigger,
+		btn->Right_trigger,
+		btn->Left_stick_X,
+		btn->Left_stick_Y,
+		btn->Right_stick_X,
+		btn->Right_stick_Y);
 }
 
 void
@@ -74,6 +70,7 @@ main()
 {
 	char 		*strCmd;
 	command 	cmd;
+	button 		btn;
 	
 	// Create a log entry in /var/log/
 	// cat messages | grep xbc
@@ -87,21 +84,22 @@ main()
 		removeSpaces(strCmd);
 		retreiveCommand(&cmd, strCmd);
 			
-		if (strstr(strCmd, CMD_BTNS))
+		if (cmd.cmd == CMD_BTNS))
 		{
-			startButtonSHM(SHM_NAME);
 			if(cmd.id >= 0 && cmd.id < MAX_DEVS)
 			{
-				printButton(cmd.id);
+				startButtonSHM(SHM_NAME);
+				readButtonFromSHM(&btn, cmd.id);
+				printButton(&btn);
 			}
 		}
-		else if (strstr(strCmd, CMD_LED))
+		else if (cmd.cmd == CMD_LED))
 		{
 			startQueue();
 			sendCommand(&cmd);
 			stopQueue();
 		}
-		else if (strstr(strCmd, CMD_RUMBLE))
+		else if (cmd.cmd == CMD_RUMBLE))
 		{
 			startQueue();
 			sendCommand(&cmd);
