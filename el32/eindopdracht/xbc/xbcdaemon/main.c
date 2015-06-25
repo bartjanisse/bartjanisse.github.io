@@ -34,7 +34,7 @@ static pthread_t 	btn_thread;
 void *
 commandListenerThread() 
 {
-	command 	cmd;// = malloc(sizeof(command));
+	command 	cmd;
 		
 	syslog(LOG_INFO, "Start listening for commands\n");
 	

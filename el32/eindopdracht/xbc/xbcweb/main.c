@@ -84,7 +84,7 @@ main()
 		removeSpaces(strCmd);
 		retreiveCommand(&cmd, strCmd);
 			
-		if (cmd.cmd == CMD_BTNS))
+		if (strstr(strCmd, CMD_BTNS))
 		{
 			if(cmd.id >= 0 && cmd.id < MAX_DEVS)
 			{
@@ -93,13 +93,13 @@ main()
 				printButton(&btn);
 			}
 		}
-		else if (cmd.cmd == CMD_LED))
+		else if (strstr(strCmd, CMD_LED))
 		{
 			startQueue();
 			sendCommand(&cmd);
 			stopQueue();
 		}
-		else if (cmd.cmd == CMD_RUMBLE))
+		else if (strstr(strCmd, CMD_RUMBLE))
 		{
 			startQueue();
 			sendCommand(&cmd);
