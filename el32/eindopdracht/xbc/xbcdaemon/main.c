@@ -1,13 +1,11 @@
-/*! \file main.c
-    \brief Starting point of the application.
- 
-    \details This file contains #main routine which is the starting point of the apllication. From within this main
-    ????????????????????????????????????????????????????????.
- 
-    \author A.W Janisse
-    \bug No known bugs.
-
-    \version 1.0    First release.
+/** \file /xbcdaemon/main.c
+ *  \ingroup xbcdeamon
+ * 	\brief Main function and threads for the xbcdeamon application
+ *
+ * 	\author A.W Janisse
+ * 	\bug No known bugs.
+ *
+ * 	\version 1.0 	First release.
 */
 #include <semaphore.h>
 #include <sys/types.h>
@@ -25,13 +23,14 @@
 #include "../common/shm.h"
 #include "../common/common.h"
 
-#define DEAMON_LOG_NAME	"xbc-deamon" //! name used in the log file
+#define DEAMON_LOG_NAME	"xbc-deamon" //!< name used in the log file
 
 static uint8_t 		running = 1;
 static pthread_t 	cmd_thread;
 static pthread_t 	btn_thread;
 
-void *
+
+static void *
 commandListenerThread() 
 {
 	command 	cmd;
@@ -57,7 +56,7 @@ commandListenerThread()
 	return (NULL);
 }
 
-void *
+static void *
 buttonReaderThread() 
 {
 	buttons btns;
@@ -78,7 +77,7 @@ buttonReaderThread()
 	return (NULL);
 }
 
-void 
+static void 
 closeAndExit(int sig) 
 {	
 	// Stop running threads
@@ -96,6 +95,9 @@ closeAndExit(int sig)
 	exit(0);
 }
 
+/** \ingroup xbcdeamon
+ *  \brief main function for the apllication
+ */
 int
 main()
 {	

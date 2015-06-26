@@ -5,30 +5,27 @@ A.\-W. Janisse \par
 \end{DoxyAuthor}
 \subsubsection*{Assignment description}
 
-The main goal of this application is to explore how specific U\-S\-B hardware can be controlled. For this goal a Datel Xbox 360 controller will be used. Although it is not an original Microsoft one it should be 100\% compatible. Below an image of this controller is given.
+Rebuild the gamepad driver which was realized at an earlier task to a daemon -\/ a service -\/ which runs in the background. In addition, a separate C\-G\-I application needs to be written, which can be invoked from a remote browser through the network, and which by means of I\-P\-C mechanisms, in particular P\-O\-S\-I\-X Message Queue and Shared Memory, communicates with this daemon gamepad. The overall system should have the following structure\-:
 
 
 
-The software developed for this assignment is using the {\tt {\bfseries libusb}} library. This library provides an abstraction for communication with U\-S\-B devices. The assignment has the following requirements\-:
-
-
+The application must meet the following requirements\-: 
 \begin{DoxyItemize}
-\item The program can show the states of all the buttons; 
-\item The program can controll the L\-E\-D's; 
-\item The program can controll the rumble actuator; 
-\item The program can be build with a Makefile; 
-\item The program can run on the Raspberry Pi; 
-\item The software is documentated. 
+\item overall\-: 
+\begin{DoxyItemize}
+\item Self-\/configured with Build Root and built Embedded Linux image. 
+\item Application automatically starts. 
 \end{DoxyItemize}
+\item Read buttons\-: 
+\begin{DoxyItemize}
+\item Daemon publishes the state of the gamepad buttons P\-O\-S\-I\-X Shared Memory. 
+\item C\-G\-I application reads shared memory at the request of the browser. 
+\end{DoxyItemize}
+\item L\-E\-Ds and control Rumble\-: 
+\begin{DoxyItemize}
+\item C\-G\-I application converts any application from the browser to a command in a P\-O\-S\-I\-X Message Queue. 
+\item Daemon takes commands from the Message Queue and sends gamepad 
+\end{DoxyItemize}
+\end{DoxyItemize}\subsubsection*{Extra's}
 
-\subsubsection*{Building the source}
-
-Please refer to the page1 page for more information on this topic. 
-
-\subsubsection*{How it all works}
-
-On the page3 page a detailed description is given on this topic. 
-
-\subsubsection*{Extra's}
-
-During this assignment I got excited about {\tt {\bfseries Doxygen}}. Dogygen is a tool which can be used to produce documentation in broad sense. One of the possibilities is to generate documentation from comments in source file. The webpage you are reading right now is created with Doxygen. 
+During this assignment I got excited about \href{http://www.stack.nl/~dimitri/doxygen/index.html}{\tt {\bfseries Doxygen}}. Dogygen is a tool which can be used to produce documentation in broad sense. One of the possibilities is to generate documentation from comments in source file. The webpage you are reading right now is created with Doxygen. 

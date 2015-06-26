@@ -1,12 +1,11 @@
-/*! \file Controller.c
-  	\brief Implementation for the controller.
- 
-   	\details This is the implementation of the controller.
- 
-   	\author A.W Janisse
-   	\bug No known bugs.
-
-   	\version 1.0 	First release.
+/*! \file controller.c
+ *  \ingroup xbcdeamon
+ * 	\brief Implementation for the controller
+ *
+ * 	\author A.W Janisse
+ * 	\bug No known bugs.
+ *
+ * 	\version 1.0 	First release.
 */
 
 #include <libusb-1.0/libusb.h>

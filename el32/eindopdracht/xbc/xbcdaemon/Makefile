@@ -92,6 +92,6 @@ backup:
 
 # Produce the HTML documentation based on the settings in Doxyfile.
 html:
-	@doxygen
+	@doxygen ../Doxyfile
 	@echo HTML documentation is generated in doc/html
 

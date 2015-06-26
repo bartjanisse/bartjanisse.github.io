@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>Xbox 360 controller demo: Course: DES (EL32), Assignment 10</title>
+<title>Xbox  controller demo: Course: DES (EL32), Final assignment</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,10 +21,11 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="controller.jpeg"/></td>
+  <td id="projectlogo"><img alt="Logo" src="controllersmall.jpeg"/></td>
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Xbox 360 controller demo
+   <div id="projectname">Xbox  controller demo
    </div>
+   <div id="projectbrief">DES (EL32), Final assignment</div>
   </td>
  </tr>
  </tbody>
@@ -66,7 +67,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Groups</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -77,42 +78,50 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div class="header">
   <div class="headertitle">
-<div class="title">Course: DES (EL32), Assignment 10 </div>  </div>
+<div class="title">Course: DES (EL32), Final assignment </div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>A.W. Janisse <br/>
 <br/>
  </dd></dl>
 <h3>Assignment description</h3>
-<p>The main goal of this application is to explore how specific USB hardware can be controlled. For this goal a Datel Xbox 360 controller will be used. Although it is not an original Microsoft one it should be 100% compatible. Below an image of this controller is given.</p>
+<p>Rebuild the gamepad driver which was realized at an earlier task to a daemon - a service - which runs in the background. In addition, a separate CGI application needs to be written, which can be invoked from a remote browser through the network, and which by means of IPC mechanisms, in particular POSIX Message Queue and Shared Memory, communicates with this daemon gamepad. The overall system should have the following structure:</p>
 <div class="image">
-<img src="controller.jpeg"  alt="Smiley face" height="171" width="294"/>
+<img src="../overview.png"  alt="Smiley face" width="652" height="326"/>
 </div>
-<p>The software developed for this assignment is using the <a href="http://libusb.info/"><b>libusb</b></a> library. This library provides an abstraction for communication with USB devices. The assignment has the following requirements:</p>
+<p>The application must meet the following requirements: </p>
 <ul>
 <li>
-The program can show the states of all the buttons; </li>
+overall: <ul>
 <li>
-The program can controll the LED's; </li>
+Self-configured with Build Root and built Embedded Linux image. </li>
 <li>
-The program can controll the rumble actuator; </li>
-<li>
-The program can be build with a Makefile; </li>
-<li>
-The program can run on the Raspberry Pi; </li>
-<li>
-The software is documentated. </li>
+Application automatically starts. </li>
 </ul>
-<h3>Building the source</h3>
-<p>Please refer to the page1 page for more information on this topic. </p>
-<h3>How it all works</h3>
-<p>On the page3 page a detailed description is given on this topic. </p>
+</li>
+<li>
+Read buttons: <ul>
+<li>
+Daemon publishes the state of the gamepad buttons POSIX Shared Memory. </li>
+<li>
+CGI application reads shared memory at the request of the browser. </li>
+</ul>
+</li>
+<li>
+LEDs and control Rumble: <ul>
+<li>
+CGI application converts any application from the browser to a command in a POSIX Message Queue. </li>
+<li>
+Daemon takes commands from the Message Queue and sends gamepad </li>
+</ul>
+</li>
+</ul>
 <h3>Extra's</h3>
 <p>During this assignment I got excited about <a href="http://www.stack.nl/~dimitri/doxygen/index.html"><b>Doxygen</b></a>. Dogygen is a tool which can be used to produce documentation in broad sense. One of the possibilities is to generate documentation from comments in source file. The webpage you are reading right now is created with Doxygen. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 25 2015 11:35:37 for Xbox 360 controller demo by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 26 2015 19:36:26 for Xbox  controller demo by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

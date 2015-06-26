@@ -1,0 +1,40 @@
+\hypertarget{devices_8c}{\section{xbcdaemon/devices.c File Reference}
+\label{devices_8c}\index{xbcdaemon/devices.\-c@{xbcdaemon/devices.\-c}}
+}
+
+
+Implementation for the devices.  
+
+
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$sys/types.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}devices.\-h\char`\"{}}\\*
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structdevice}{device}
+\begin{DoxyCompactList}\small\item\em structure which defines a U\-S\-B device \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__xbcdeamon_gad84b9ecb621527e815351576cad72439}{init\-Devices} (uint16\-\_\-t vendor\-I\-D, uint16\-\_\-t product\-I\-D)
+\begin{DoxyCompactList}\small\item\em function to initialize the libusb library an start the polling thread \end{DoxyCompactList}\item 
+\hypertarget{group__xbcdeamon_ga2fe23e62171552ba2c4bc5704159a906}{void \hyperlink{group__xbcdeamon_ga2fe23e62171552ba2c4bc5704159a906}{close\-Devices} ()}\label{group__xbcdeamon_ga2fe23e62171552ba2c4bc5704159a906}
+
+\begin{DoxyCompactList}\small\item\em function to close the libusb library and to stop the polling thread \end{DoxyCompactList}\item 
+libusb\-\_\-device\-\_\-handle $\ast$ \hyperlink{group__xbcdeamon_gaafd41f70aa2d9dcc024b5cfb13c51276}{get\-Device\-Handle} (uint8\-\_\-t id)
+\begin{DoxyCompactList}\small\item\em function to get the device handle based on the index \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation for the devices. \begin{DoxyAuthor}{Author}
+A.\-W Janisse 
+\end{DoxyAuthor}
+\begin{DoxyRefDesc}{Bug}
+\item[\hyperlink{bug__bug000009}{Bug}]No known bugs.\end{DoxyRefDesc}
+
+
+\begin{DoxyVersion}{Version}
+1.\-0 First release. 
+\end{DoxyVersion}

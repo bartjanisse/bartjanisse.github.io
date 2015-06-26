@@ -1,44 +1,46 @@
 /**
- *  @defgroup mandeam Functional description of the xbcdeamon module
- *  @defgroup manweb Functional description of the xbcweb module
- *	@defgroup common Functions common for xbcdeamon and xbcweb
- *  @defgroup xbcdeamon Functions used by the xbcdeamon module
- *  @defgroup xbcweb Functions used by the xbcweb module
+ *	@defgroup common Common modules for xbcdeamon and xbcweb
+ *  @defgroup xbcdeamon Modules specific for the xbcdeamon
+ *  @defgroup xbcweb Modules specific for the xbcweb
  *  
  */
 
-/** @mainpage Course: DES (EL32), Assignment 10
- 
-	@author A.W. Janisse
-   	<br><br>
-   	<p>
- 	<h3>Assignment description</h3>
-   	The main goal of this application is to explore how specific USB hardware can be controlled. For this goal a Datel Xbox 360 controller will be used. Although it is not an original Microsoft one it should be 100% compatible. Below an image of this controller is given.
-
-   	<img src="controller.jpeg" alt="Smiley face" height="171" width="294"> 
- 
-   	The software developed for this assignment is using the <a href="http://libusb.info/"><b>libusb</b></a> library. This library provides an abstraction for communication with USB devices. The assignment has the following requirements:
-
-   	<ul>
-   		<li>The program can show the states of all the buttons;</li>
-   		<li>The program can controll the LED's;</li>
-   		<li>The program can controll the rumble actuator;</li>
-   		<li>The program can be build with a Makefile;</li>
-   		<li>The program can run on the Raspberry Pi;</li>
-   		<li>The software is documentated.</li>
-   	</ul>
-  	
-  	<h3>Building the source</h3>
-   	Please refer to the @ref page1 page for more information on this topic.
- 	</p>
-
-  	<h3>How it all works</h3>
-   	On the @ref page3 page a detailed description is given on this topic.
- 	</p>
-
-   	<h3>Extra's</h3>
-   	During this assignment I got excited about <a href="http://www.stack.nl/~dimitri/doxygen/index.html"><b>Doxygen</b></a>. Dogygen is a tool which can be used to produce documentation in broad sense. One of the possibilities is to generate documentation from comments in source file. The webpage you are reading right now is created with Doxygen.
-*/
+/** @mainpage Course: DES (EL32), Final assignment
+ *
+ *	@author A.W. Janisse
+ * 	<br><br>
+ * 	<p>
+ *	<h3>Assignment description</h3>
+ *  Rebuild the gamepad driver which was realized at an earlier task to
+ *	a daemon - a service - which runs in the background. In addition, a separate CGI application
+ *	needs to be written, which can be invoked from a remote browser through the network, and
+ *	which by means of IPC mechanisms, in particular POSIX Message Queue and Shared Memory,
+ *	communicates with this daemon gamepad.
+ *	The overall system should have the following structure:
+ *
+ * 	<img src="../overview.png" alt="Smiley face" width="652" height="326"> 
+ *
+ *	The application must meet the following requirements:
+ *  <ul>
+ *  	<li>overall:</li>
+ *  		<ul> 
+ *				<li>Self-configured with Build Root and built Embedded Linux image.</li>
+ *				<li>Application automatically starts.</li>
+ *  		</ul>
+ * 		<li>Read buttons:</li>
+ *  		<ul>
+ *				<li>Daemon publishes the state of the gamepad buttons POSIX Shared Memory.</li>
+ *				<li>CGI application reads shared memory at the request of the browser.</li>
+ *  		</ul>
+ *  	<li>LEDs and control Rumble:</li>
+ *  		<ul>
+ *				<li>CGI application converts any application from the browser to a command in a POSIX Message Queue.</li>
+ *				<li>Daemon takes commands from the Message Queue and sends gamepad</li>
+ *   		</ul>
+ *   </ul>
+ *  <h3>Extra's</h3>
+ *  During this assignment I got excited about <a href="http://www.stack.nl/~dimitri/doxygen/index.html"><b>Doxygen</b></a>. Dogygen is a tool which can be used to produce documentation in broad sense. One of the possibilities is to generate documentation from comments in source file. The webpage you are reading right now is created with Doxygen.
+ */
 
 /** \ingroup manweb
  * Functional description of the xbcweb module 

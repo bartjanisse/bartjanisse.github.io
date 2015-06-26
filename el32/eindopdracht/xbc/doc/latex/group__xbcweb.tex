@@ -1,2 +1,89 @@
-\section{Functions used by the xbcweb module}
-\label{group__xbcweb}\index{Functions used by the xbcweb module@{Functions used by the xbcweb module}}
+\hypertarget{group__xbcweb}{\section{Modules specific for the xbcweb}
+\label{group__xbcweb}\index{Modules specific for the xbcweb@{Modules specific for the xbcweb}}
+}
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \hyperlink{xbcweb_2main_8c}{main.\-c}
+\begin{DoxyCompactList}\small\item\em Main and helper functions for the xbcweb application. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__xbcweb_ga7930145a568d381d1990fadbfcdf04b2}{print\-Button} (\hyperlink{structbutton}{button} $\ast$btn)
+\begin{DoxyCompactList}\small\item\em This function print a button as a comma sepperated string. \end{DoxyCompactList}\item 
+void \hyperlink{group__xbcweb_gae64bf1ff67dc282bbfa3a47590792c3f}{remove\-Spaces} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em This function removes any spaces. \end{DoxyCompactList}\item 
+int \hyperlink{group__xbcweb_gae66f6b31b5ad750f1fe042a706a4e3d4}{main} ()
+\begin{DoxyCompactList}\small\item\em This is the main function of the application. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Function Documentation}
+\hypertarget{group__xbcweb_gae66f6b31b5ad750f1fe042a706a4e3d4}{\index{Modules specific for the xbcweb@{Modules specific for the xbcweb}!main@{main}}
+\index{main@{main}!Modules specific for the xbcweb@{Modules specific for the xbcweb}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{group__xbcweb_gae66f6b31b5ad750f1fe042a706a4e3d4}
+
+
+This is the main function of the application. 
+
+When this applicattion is called from a website this is the first function which will run. 
+
+The website can call this application to get information about the connected Xbox 360 controllers or to controll the rumble actuator or leds. 
+
+The call made from the website should have this format\-: {\bfseries wbcweb?$<$id$>$,$<$cmd$>$,$<$val$>$} 
+
+The fields in here have the following meaning\-: \begin{TabularC}{2}
+\hline
+\rowcolor{lightgray}{\bf Field }&{\bf Meaning  }\\\cline{1-2}
+xbcweb &this application  \\\cline{1-2}
+id &controller id  \\\cline{1-2}
+cmd &command  \\\cline{1-2}
+val &value for the given command  \\\cline{1-2}
+\end{TabularC}
+
+
+The command can be one of the following\-: \begin{TabularC}{2}
+\hline
+\rowcolor{lightgray}{\bf Command }&{\bf Meaning  }\\\cline{1-2}
+btns &Will return the button states of the controller. The id field is the controller id  \\\cline{1-2}
+rumble &Controll the rumble actuator of the controller. The id field is the controller id, The val field is the speed  \\\cline{1-2}
+led &ontroll the leds of the controller. The id field is the controller id, The val field is the \hyperlink{group__xbcdeamon_ga1e4b1d1d1b6272a280f18efef4db3f5e}{Leds} led pattern  \\\cline{1-2}
+\end{TabularC}
+\hypertarget{group__xbcweb_ga7930145a568d381d1990fadbfcdf04b2}{\index{Modules specific for the xbcweb@{Modules specific for the xbcweb}!print\-Button@{print\-Button}}
+\index{print\-Button@{print\-Button}!Modules specific for the xbcweb@{Modules specific for the xbcweb}}
+\subsubsection[{print\-Button}]{\setlength{\rightskip}{0pt plus 5cm}void print\-Button (
+\begin{DoxyParamCaption}
+\item[{{\bf button} $\ast$}]{btn}
+\end{DoxyParamCaption}
+)}}\label{group__xbcweb_ga7930145a568d381d1990fadbfcdf04b2}
+
+
+This function print a button as a comma sepperated string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em btn} & is a pointer to the button to print \\
+\hline
+\end{DoxyParams}
+\hypertarget{group__xbcweb_gae64bf1ff67dc282bbfa3a47590792c3f}{\index{Modules specific for the xbcweb@{Modules specific for the xbcweb}!remove\-Spaces@{remove\-Spaces}}
+\index{remove\-Spaces@{remove\-Spaces}!Modules specific for the xbcweb@{Modules specific for the xbcweb}}
+\subsubsection[{remove\-Spaces}]{\setlength{\rightskip}{0pt plus 5cm}void remove\-Spaces (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}}\label{group__xbcweb_gae64bf1ff67dc282bbfa3a47590792c3f}
+
+
+This function removes any spaces. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & is the string which should be cleaned. \\
+\hline
+\end{DoxyParams}

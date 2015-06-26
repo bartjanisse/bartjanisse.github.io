@@ -1,0 +1,85 @@
+\hypertarget{commands_8h}{\section{common/commands.h File Reference}
+\label{commands_8h}\index{common/commands.\-h@{common/commands.\-h}}
+}
+
+
+Functions and definitions for commands.  
+
+
+{\ttfamily \#include $<$stdint.\-h$>$}\\*
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structcommand}{command}
+\begin{DoxyCompactList}\small\item\em Command structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{commands_8h_aa8e42f0f2120acb690a20bf63257da7e}{\#define \hyperlink{commands_8h_aa8e42f0f2120acb690a20bf63257da7e}{M\-Q\-\_\-\-C\-M\-D\-S\-\_\-\-N\-A\-M\-E}~\char`\"{}/mq\-\_\-cmds\char`\"{}}\label{commands_8h_aa8e42f0f2120acb690a20bf63257da7e}
+
+\begin{DoxyCompactList}\small\item\em Constant for naming the message queue. \end{DoxyCompactList}\item 
+\hypertarget{commands_8h_a1eb73c104b484cf18752169509cebfe2}{\#define \hyperlink{commands_8h_a1eb73c104b484cf18752169509cebfe2}{M\-A\-X\-\_\-\-C\-M\-D\-\_\-\-L\-E\-N}~50}\label{commands_8h_a1eb73c104b484cf18752169509cebfe2}
+
+\begin{DoxyCompactList}\small\item\em Max. length of a command message. \end{DoxyCompactList}\item 
+\hypertarget{commands_8h_ac96b97d0f42380c1ea95ccdd09af276d}{\#define \hyperlink{commands_8h_ac96b97d0f42380c1ea95ccdd09af276d}{M\-E\-S\-S\-A\-G\-E\-\_\-\-P\-R\-I\-O\-R\-I\-T\-Y}~0}\label{commands_8h_ac96b97d0f42380c1ea95ccdd09af276d}
+
+\begin{DoxyCompactList}\small\item\em Priorty for the messages. \end{DoxyCompactList}\item 
+\hypertarget{commands_8h_a1f02f60afb419aa25921dcd8ae49f807}{\#define \hyperlink{commands_8h_a1f02f60afb419aa25921dcd8ae49f807}{M\-A\-X\-\_\-\-M\-E\-S\-S\-A\-G\-E\-S}~50}\label{commands_8h_a1f02f60afb419aa25921dcd8ae49f807}
+
+\begin{DoxyCompactList}\small\item\em M\-Ax. number for the message queue. \end{DoxyCompactList}\item 
+\hypertarget{commands_8h_a9e7d052cf99b4b8113ed5e68d8ab3490}{\#define \hyperlink{commands_8h_a9e7d052cf99b4b8113ed5e68d8ab3490}{C\-M\-D\-\_\-\-R\-U\-M\-B\-L\-E}~\char`\"{}rumble\char`\"{}}\label{commands_8h_a9e7d052cf99b4b8113ed5e68d8ab3490}
+
+\begin{DoxyCompactList}\small\item\em Constant for the rumble command. \end{DoxyCompactList}\item 
+\#define \hyperlink{commands_8h_a449f63dd94f20ce83204072b61da94ac}{C\-M\-D\-\_\-\-L\-E\-D}~\char`\"{}led\char`\"{}
+\item 
+\#define \hyperlink{commands_8h_a8a88341548072ae39f617b1c78247c93}{C\-M\-D\-\_\-\-B\-T\-N\-S}~\char`\"{}btns\char`\"{}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__common_ga9790410c0c04ff25b6528a05bc7cead2}{init\-Queue} (char $\ast$name)
+\begin{DoxyCompactList}\small\item\em function to create and open a message queue. \end{DoxyCompactList}\item 
+\hypertarget{group__common_gaaed2ab22dc8d47e3ba08a790a08ee077}{void \hyperlink{group__common_gaaed2ab22dc8d47e3ba08a790a08ee077}{close\-Queue} ()}\label{group__common_gaaed2ab22dc8d47e3ba08a790a08ee077}
+
+\begin{DoxyCompactList}\small\item\em function for closing a opened message queue. \end{DoxyCompactList}\item 
+\hypertarget{group__common_ga81523db8833f6aec2a50db80ded427f0}{void \hyperlink{group__common_ga81523db8833f6aec2a50db80ded427f0}{start\-Queue} ()}\label{group__common_ga81523db8833f6aec2a50db80ded427f0}
+
+\begin{DoxyCompactList}\small\item\em function to open the existing message queue \end{DoxyCompactList}\item 
+\hypertarget{group__common_ga385d5e24598c06c159f03b1003d020cc}{void \hyperlink{group__common_ga385d5e24598c06c159f03b1003d020cc}{stop\-Queue} ()}\label{group__common_ga385d5e24598c06c159f03b1003d020cc}
+
+\begin{DoxyCompactList}\small\item\em Function to close the existing message queue. \end{DoxyCompactList}\item 
+void \hyperlink{group__common_ga1653c969d3ac19ddeb05fdf8d7df90d4}{send\-Command} (\hyperlink{structcommand}{command} $\ast$cmd)
+\begin{DoxyCompactList}\small\item\em function to send a command over the message queue \end{DoxyCompactList}\item 
+void \hyperlink{group__common_gae7b8b16d315569f975f0ee85d4341d21}{get\-Command} (\hyperlink{structcommand}{command} $\ast$cmd)
+\begin{DoxyCompactList}\small\item\em function to receive a command over the message queue \end{DoxyCompactList}\item 
+void \hyperlink{group__common_ga592805897a9614b316d77587465d7ec3}{retreive\-Command} (\hyperlink{structcommand}{command} $\ast$cmd, char $\ast$msg)
+\begin{DoxyCompactList}\small\item\em function to create a command out of a string \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Functions and definitions for commands. \begin{DoxyAuthor}{Author}
+A.\-W Janisse 
+\end{DoxyAuthor}
+\begin{DoxyRefDesc}{Bug}
+\item[\hyperlink{bug__bug000003}{Bug}]No known bugs.\end{DoxyRefDesc}
+
+
+\begin{DoxyVersion}{Version}
+1.\-0 First release. 
+\end{DoxyVersion}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{commands_8h_a8a88341548072ae39f617b1c78247c93}{\index{commands.\-h@{commands.\-h}!C\-M\-D\-\_\-\-B\-T\-N\-S@{C\-M\-D\-\_\-\-B\-T\-N\-S}}
+\index{C\-M\-D\-\_\-\-B\-T\-N\-S@{C\-M\-D\-\_\-\-B\-T\-N\-S}!commands.h@{commands.\-h}}
+\subsubsection[{C\-M\-D\-\_\-\-B\-T\-N\-S}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-M\-D\-\_\-\-B\-T\-N\-S~\char`\"{}btns\char`\"{}}}\label{commands_8h_a8a88341548072ae39f617b1c78247c93}
+
+\begin{DoxyItemize}
+\item Constant for the buttons command 
+\end{DoxyItemize}\hypertarget{commands_8h_a449f63dd94f20ce83204072b61da94ac}{\index{commands.\-h@{commands.\-h}!C\-M\-D\-\_\-\-L\-E\-D@{C\-M\-D\-\_\-\-L\-E\-D}}
+\index{C\-M\-D\-\_\-\-L\-E\-D@{C\-M\-D\-\_\-\-L\-E\-D}!commands.h@{commands.\-h}}
+\subsubsection[{C\-M\-D\-\_\-\-L\-E\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-M\-D\-\_\-\-L\-E\-D~\char`\"{}led\char`\"{}}}\label{commands_8h_a449f63dd94f20ce83204072b61da94ac}
+
+\begin{DoxyItemize}
+\item Constant for the led command 
+\end{DoxyItemize}

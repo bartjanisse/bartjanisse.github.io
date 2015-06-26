@@ -1,22 +1,240 @@
-\section{Functions common for xbcdeamon and xbcweb}
-\label{group__common}\index{Functions common for xbcdeamon and xbcweb@{Functions common for xbcdeamon and xbcweb}}
+\hypertarget{group__common}{\section{Common modules for xbcdeamon and xbcweb}
+\label{group__common}\index{Common modules for xbcdeamon and xbcweb@{Common modules for xbcdeamon and xbcweb}}
+}
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \hyperlink{buttons_8h}{buttons.\-h}
+\begin{DoxyCompactList}\small\item\em Definition for controller buttons. \end{DoxyCompactList}\item 
+file \hyperlink{commands_8c}{commands.\-c}
+\begin{DoxyCompactList}\small\item\em Implementation for commands. \end{DoxyCompactList}\item 
+file \hyperlink{commands_8h}{commands.\-h}
+\begin{DoxyCompactList}\small\item\em Functions and definitions for commands. \end{DoxyCompactList}\item 
+file \hyperlink{common_8h}{common.\-h}
+\begin{DoxyCompactList}\small\item\em Common macro definitions and the constant for the max. number of controllers. \end{DoxyCompactList}\item 
+file \hyperlink{shm_8c}{shm.\-c}
+\begin{DoxyCompactList}\small\item\em Implementation for the shared memory. \end{DoxyCompactList}\item 
+file \hyperlink{shm_8h}{shm.\-h}
+\begin{DoxyCompactList}\small\item\em Shared memory definitions. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Data Structures}
 \begin{DoxyCompactItemize}
 \item 
-struct {\bf button}
-\end{DoxyCompactItemize}
+struct \hyperlink{structbutton}{button}
+\begin{DoxyCompactList}\small\item\em A structure representing the the button and joystick states. \end{DoxyCompactList}\item 
+struct \hyperlink{structcommand}{command}
+\begin{DoxyCompactList}\small\item\em Command structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__common_ga00cb63c6de93dec9cb1ea7136e5d8f0a}{\#define \hyperlink{group__common_ga00cb63c6de93dec9cb1ea7136e5d8f0a}{M\-A\-X\-\_\-\-D\-E\-V\-S}~4}\label{group__common_ga00cb63c6de93dec9cb1ea7136e5d8f0a}
+
+\begin{DoxyCompactList}\small\item\em Constant for the maximum number of controllers. \end{DoxyCompactList}\item 
+\hypertarget{group__common_ga068dec34b0de6d2862c26702e018a1d4}{\#define \hyperlink{group__common_ga068dec34b0de6d2862c26702e018a1d4}{L\-O\-G\-E\-R\-R}(msg)~syslog(L\-O\-G\-\_\-\-E\-R\-R, \char`\"{}E\-R\-R\-O\-R\-: \%s. Function \%s line \%d in file \%s\char`\"{}, msg, \-\_\-\-\_\-func\-\_\-\-\_\-, \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\-, \-\_\-\-\_\-\-F\-I\-L\-E\-\_\-\-\_\-);}\label{group__common_ga068dec34b0de6d2862c26702e018a1d4}
+
+\begin{DoxyCompactList}\small\item\em Macro to put a error message in the logfile. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
-typedef {\bf button} {\bf buttons} [M\-A\-X\-\_\-\-D\-E\-V\-S]
-\end{DoxyCompactItemize}
+\hypertarget{group__common_ga0e4bedda1c8dd76f7771ff7a66ab7faf}{typedef \hyperlink{structbutton}{button} \hyperlink{group__common_ga0e4bedda1c8dd76f7771ff7a66ab7faf}{buttons} \mbox{[}\hyperlink{group__common_ga00cb63c6de93dec9cb1ea7136e5d8f0a}{M\-A\-X\-\_\-\-D\-E\-V\-S}\mbox{]}}\label{group__common_ga0e4bedda1c8dd76f7771ff7a66ab7faf}
+
+\begin{DoxyCompactList}\small\item\em An array representing the collection of controller buttons. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__common_ga9790410c0c04ff25b6528a05bc7cead2}{init\-Queue} (char $\ast$name)
+\begin{DoxyCompactList}\small\item\em function to create and open a message queue. \end{DoxyCompactList}\item 
+\hypertarget{group__common_gaaed2ab22dc8d47e3ba08a790a08ee077}{void \hyperlink{group__common_gaaed2ab22dc8d47e3ba08a790a08ee077}{close\-Queue} ()}\label{group__common_gaaed2ab22dc8d47e3ba08a790a08ee077}
+
+\begin{DoxyCompactList}\small\item\em function for closing a opened message queue. \end{DoxyCompactList}\item 
+\hypertarget{group__common_ga81523db8833f6aec2a50db80ded427f0}{void \hyperlink{group__common_ga81523db8833f6aec2a50db80ded427f0}{start\-Queue} ()}\label{group__common_ga81523db8833f6aec2a50db80ded427f0}
+
+\begin{DoxyCompactList}\small\item\em function to open the existing message queue \end{DoxyCompactList}\item 
+\hypertarget{group__common_ga385d5e24598c06c159f03b1003d020cc}{void \hyperlink{group__common_ga385d5e24598c06c159f03b1003d020cc}{stop\-Queue} ()}\label{group__common_ga385d5e24598c06c159f03b1003d020cc}
+
+\begin{DoxyCompactList}\small\item\em Function to close the existing message queue. \end{DoxyCompactList}\item 
+void \hyperlink{group__common_ga1653c969d3ac19ddeb05fdf8d7df90d4}{send\-Command} (\hyperlink{structcommand}{command} $\ast$cmd)
+\begin{DoxyCompactList}\small\item\em function to send a command over the message queue \end{DoxyCompactList}\item 
+void \hyperlink{group__common_gae7b8b16d315569f975f0ee85d4341d21}{get\-Command} (\hyperlink{structcommand}{command} $\ast$cmd)
+\begin{DoxyCompactList}\small\item\em function to receive a command over the message queue \end{DoxyCompactList}\item 
+void \hyperlink{group__common_ga592805897a9614b316d77587465d7ec3}{retreive\-Command} (\hyperlink{structcommand}{command} $\ast$cmd, char $\ast$msg)
+\begin{DoxyCompactList}\small\item\em function to create a command out of a string \end{DoxyCompactList}\item 
+void \hyperlink{group__common_ga8f88b2b1883d6146fbd5daa273f14794}{init\-Button\-S\-H\-M} (char $\ast$name)
+\begin{DoxyCompactList}\small\item\em function to create and open a shared memory \end{DoxyCompactList}\item 
+void \hyperlink{group__common_ga06537012ed628ca860f4412382d24674}{close\-Button\-S\-H\-M} (char $\ast$name)
+\begin{DoxyCompactList}\small\item\em function to close and unlink a shared memory \end{DoxyCompactList}\item 
+void \hyperlink{group__common_gaa077f3417f78edd62689d435b9b753d3}{start\-Button\-S\-H\-M} (char $\ast$name)
+\begin{DoxyCompactList}\small\item\em function to open an existing shared memory \end{DoxyCompactList}\item 
+void \hyperlink{group__common_ga51651248b530e72c0c78c975eaa32f7b}{stop\-Button\-S\-H\-M} (char $\ast$name)
+\begin{DoxyCompactList}\small\item\em function to close an existing shared memory \end{DoxyCompactList}\item 
+void \hyperlink{group__common_ga170ae02f733015bd63af57a885e028dd}{wite\-Button\-To\-S\-H\-M} (\hyperlink{structbutton}{button} $\ast$b, uint8\-\_\-t id)
+\begin{DoxyCompactList}\small\item\em threadsafe function to write a button struct to the shared memory \end{DoxyCompactList}\item 
+void \hyperlink{group__common_gaed760f35a5ad0f8f2a00102cb951c825}{read\-Button\-From\-S\-H\-M} (\hyperlink{structbutton}{button} $\ast$b, uint8\-\_\-t id)
+\begin{DoxyCompactList}\small\item\em threadsafe function to read a button struct from the shared memory \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 
 
-\subsection{Typedef Documentation}
-\index{Functions common for xbcdeamon and xbcweb@{Functions common for xbcdeamon and xbcweb}!buttons@{buttons}}
-\index{buttons@{buttons}!Functions common for xbcdeamon and xbcweb@{Functions common for xbcdeamon and xbcweb}}
-\subsubsection[{buttons}]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf button} buttons[M\-A\-X\-\_\-\-D\-E\-V\-S]}\label{group__common_ga0e4bedda1c8dd76f7771ff7a66ab7faf}
-An array representing the ..................... 
+\subsection{Function Documentation}
+\hypertarget{group__common_ga06537012ed628ca860f4412382d24674}{\index{Common modules for xbcdeamon and xbcweb@{Common modules for xbcdeamon and xbcweb}!close\-Button\-S\-H\-M@{close\-Button\-S\-H\-M}}
+\index{close\-Button\-S\-H\-M@{close\-Button\-S\-H\-M}!Common modules for xbcdeamon and xbcweb@{Common modules for xbcdeamon and xbcweb}}
+\subsubsection[{close\-Button\-S\-H\-M}]{\setlength{\rightskip}{0pt plus 5cm}void close\-Button\-S\-H\-M (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name}
+\end{DoxyParamCaption}
+)}}\label{group__common_ga06537012ed628ca860f4412382d24674}
+
+
+function to close and unlink a shared memory 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & for the shared memory \\
+\hline
+\end{DoxyParams}
+\hypertarget{group__common_gae7b8b16d315569f975f0ee85d4341d21}{\index{Common modules for xbcdeamon and xbcweb@{Common modules for xbcdeamon and xbcweb}!get\-Command@{get\-Command}}
+\index{get\-Command@{get\-Command}!Common modules for xbcdeamon and xbcweb@{Common modules for xbcdeamon and xbcweb}}
+\subsubsection[{get\-Command}]{\setlength{\rightskip}{0pt plus 5cm}void get\-Command (
+\begin{DoxyParamCaption}
+\item[{{\bf command} $\ast$}]{cmd}
+\end{DoxyParamCaption}
+)}}\label{group__common_gae7b8b16d315569f975f0ee85d4341d21}
+
+
+function to receive a command over the message queue 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cmd} & is filled with the received command \\
+\hline
+\end{DoxyParams}
+\hypertarget{group__common_ga8f88b2b1883d6146fbd5daa273f14794}{\index{Common modules for xbcdeamon and xbcweb@{Common modules for xbcdeamon and xbcweb}!init\-Button\-S\-H\-M@{init\-Button\-S\-H\-M}}
+\index{init\-Button\-S\-H\-M@{init\-Button\-S\-H\-M}!Common modules for xbcdeamon and xbcweb@{Common modules for xbcdeamon and xbcweb}}
+\subsubsection[{init\-Button\-S\-H\-M}]{\setlength{\rightskip}{0pt plus 5cm}void init\-Button\-S\-H\-M (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name}
+\end{DoxyParamCaption}
+)}}\label{group__common_ga8f88b2b1883d6146fbd5daa273f14794}
+
+
+function to create and open a shared memory 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & for the shared memory \\
+\hline
+\end{DoxyParams}
+\hypertarget{group__common_ga9790410c0c04ff25b6528a05bc7cead2}{\index{Common modules for xbcdeamon and xbcweb@{Common modules for xbcdeamon and xbcweb}!init\-Queue@{init\-Queue}}
+\index{init\-Queue@{init\-Queue}!Common modules for xbcdeamon and xbcweb@{Common modules for xbcdeamon and xbcweb}}
+\subsubsection[{init\-Queue}]{\setlength{\rightskip}{0pt plus 5cm}void init\-Queue (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name}
+\end{DoxyParamCaption}
+)}}\label{group__common_ga9790410c0c04ff25b6528a05bc7cead2}
+
+
+function to create and open a message queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & for the message queue \\
+\hline
+\end{DoxyParams}
+\hypertarget{group__common_gaed760f35a5ad0f8f2a00102cb951c825}{\index{Common modules for xbcdeamon and xbcweb@{Common modules for xbcdeamon and xbcweb}!read\-Button\-From\-S\-H\-M@{read\-Button\-From\-S\-H\-M}}
+\index{read\-Button\-From\-S\-H\-M@{read\-Button\-From\-S\-H\-M}!Common modules for xbcdeamon and xbcweb@{Common modules for xbcdeamon and xbcweb}}
+\subsubsection[{read\-Button\-From\-S\-H\-M}]{\setlength{\rightskip}{0pt plus 5cm}void read\-Button\-From\-S\-H\-M (
+\begin{DoxyParamCaption}
+\item[{{\bf button} $\ast$}]{b, }
+\item[{uint8\-\_\-t}]{id}
+\end{DoxyParamCaption}
+)}}\label{group__common_gaed760f35a5ad0f8f2a00102cb951c825}
+
+
+threadsafe function to read a button struct from the shared memory 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & is the button struct to store the read data \\
+\hline
+{\em id} & is the controller id \\
+\hline
+\end{DoxyParams}
+\hypertarget{group__common_ga592805897a9614b316d77587465d7ec3}{\index{Common modules for xbcdeamon and xbcweb@{Common modules for xbcdeamon and xbcweb}!retreive\-Command@{retreive\-Command}}
+\index{retreive\-Command@{retreive\-Command}!Common modules for xbcdeamon and xbcweb@{Common modules for xbcdeamon and xbcweb}}
+\subsubsection[{retreive\-Command}]{\setlength{\rightskip}{0pt plus 5cm}void retreive\-Command (
+\begin{DoxyParamCaption}
+\item[{{\bf command} $\ast$}]{cmd, }
+\item[{char $\ast$}]{msg}
+\end{DoxyParamCaption}
+)}}\label{group__common_ga592805897a9614b316d77587465d7ec3}
+
+
+function to create a command out of a string 
+
+/param cmd pointer te return the created command /param msg is a pointer to the command string \hypertarget{group__common_ga1653c969d3ac19ddeb05fdf8d7df90d4}{\index{Common modules for xbcdeamon and xbcweb@{Common modules for xbcdeamon and xbcweb}!send\-Command@{send\-Command}}
+\index{send\-Command@{send\-Command}!Common modules for xbcdeamon and xbcweb@{Common modules for xbcdeamon and xbcweb}}
+\subsubsection[{send\-Command}]{\setlength{\rightskip}{0pt plus 5cm}void send\-Command (
+\begin{DoxyParamCaption}
+\item[{{\bf command} $\ast$}]{cmd}
+\end{DoxyParamCaption}
+)}}\label{group__common_ga1653c969d3ac19ddeb05fdf8d7df90d4}
+
+
+function to send a command over the message queue 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cmd} & is the command to send \\
+\hline
+\end{DoxyParams}
+\hypertarget{group__common_gaa077f3417f78edd62689d435b9b753d3}{\index{Common modules for xbcdeamon and xbcweb@{Common modules for xbcdeamon and xbcweb}!start\-Button\-S\-H\-M@{start\-Button\-S\-H\-M}}
+\index{start\-Button\-S\-H\-M@{start\-Button\-S\-H\-M}!Common modules for xbcdeamon and xbcweb@{Common modules for xbcdeamon and xbcweb}}
+\subsubsection[{start\-Button\-S\-H\-M}]{\setlength{\rightskip}{0pt plus 5cm}void start\-Button\-S\-H\-M (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name}
+\end{DoxyParamCaption}
+)}}\label{group__common_gaa077f3417f78edd62689d435b9b753d3}
+
+
+function to open an existing shared memory 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & for the shared memory \\
+\hline
+\end{DoxyParams}
+\hypertarget{group__common_ga51651248b530e72c0c78c975eaa32f7b}{\index{Common modules for xbcdeamon and xbcweb@{Common modules for xbcdeamon and xbcweb}!stop\-Button\-S\-H\-M@{stop\-Button\-S\-H\-M}}
+\index{stop\-Button\-S\-H\-M@{stop\-Button\-S\-H\-M}!Common modules for xbcdeamon and xbcweb@{Common modules for xbcdeamon and xbcweb}}
+\subsubsection[{stop\-Button\-S\-H\-M}]{\setlength{\rightskip}{0pt plus 5cm}void stop\-Button\-S\-H\-M (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{name}
+\end{DoxyParamCaption}
+)}}\label{group__common_ga51651248b530e72c0c78c975eaa32f7b}
+
+
+function to close an existing shared memory 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & for the shared memory \\
+\hline
+\end{DoxyParams}
+\hypertarget{group__common_ga170ae02f733015bd63af57a885e028dd}{\index{Common modules for xbcdeamon and xbcweb@{Common modules for xbcdeamon and xbcweb}!wite\-Button\-To\-S\-H\-M@{wite\-Button\-To\-S\-H\-M}}
+\index{wite\-Button\-To\-S\-H\-M@{wite\-Button\-To\-S\-H\-M}!Common modules for xbcdeamon and xbcweb@{Common modules for xbcdeamon and xbcweb}}
+\subsubsection[{wite\-Button\-To\-S\-H\-M}]{\setlength{\rightskip}{0pt plus 5cm}void wite\-Button\-To\-S\-H\-M (
+\begin{DoxyParamCaption}
+\item[{{\bf button} $\ast$}]{b, }
+\item[{uint8\-\_\-t}]{id}
+\end{DoxyParamCaption}
+)}}\label{group__common_ga170ae02f733015bd63af57a885e028dd}
+
+
+threadsafe function to write a button struct to the shared memory 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & is the button struct to write \\
+\hline
+{\em id} & is the controller id \\
+\hline
+\end{DoxyParams}

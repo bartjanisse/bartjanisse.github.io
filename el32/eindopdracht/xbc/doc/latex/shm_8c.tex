@@ -1,0 +1,46 @@
+\hypertarget{shm_8c}{\section{common/shm.c File Reference}
+\label{shm_8c}\index{common/shm.\-c@{common/shm.\-c}}
+}
+
+
+Implementation for the shared memory.  
+
+
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include $<$unistd.\-h$>$}\\*
+{\ttfamily \#include $<$errno.\-h$>$}\\*
+{\ttfamily \#include $<$semaphore.\-h$>$}\\*
+{\ttfamily \#include $<$sys/types.\-h$>$}\\*
+{\ttfamily \#include $<$sys/mman.\-h$>$}\\*
+{\ttfamily \#include $<$sys/stat.\-h$>$}\\*
+{\ttfamily \#include $<$sys/fcntl.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}shm.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__common_ga8f88b2b1883d6146fbd5daa273f14794}{init\-Button\-S\-H\-M} (char $\ast$name)
+\begin{DoxyCompactList}\small\item\em function to create and open a shared memory \end{DoxyCompactList}\item 
+void \hyperlink{group__common_ga06537012ed628ca860f4412382d24674}{close\-Button\-S\-H\-M} (char $\ast$name)
+\begin{DoxyCompactList}\small\item\em function to close and unlink a shared memory \end{DoxyCompactList}\item 
+void \hyperlink{group__common_gaa077f3417f78edd62689d435b9b753d3}{start\-Button\-S\-H\-M} (char $\ast$name)
+\begin{DoxyCompactList}\small\item\em function to open an existing shared memory \end{DoxyCompactList}\item 
+void \hyperlink{group__common_ga51651248b530e72c0c78c975eaa32f7b}{stop\-Button\-S\-H\-M} (char $\ast$name)
+\begin{DoxyCompactList}\small\item\em function to close an existing shared memory \end{DoxyCompactList}\item 
+void \hyperlink{group__common_ga170ae02f733015bd63af57a885e028dd}{wite\-Button\-To\-S\-H\-M} (\hyperlink{structbutton}{button} $\ast$b, uint8\-\_\-t id)
+\begin{DoxyCompactList}\small\item\em threadsafe function to write a button struct to the shared memory \end{DoxyCompactList}\item 
+void \hyperlink{group__common_gaed760f35a5ad0f8f2a00102cb951c825}{read\-Button\-From\-S\-H\-M} (\hyperlink{structbutton}{button} $\ast$b, uint8\-\_\-t id)
+\begin{DoxyCompactList}\small\item\em threadsafe function to read a button struct from the shared memory \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation for the shared memory. \begin{DoxyAuthor}{Author}
+A.\-W Janisse 
+\end{DoxyAuthor}
+\begin{DoxyRefDesc}{Bug}
+\item[\hyperlink{bug__bug000005}{Bug}]No known bugs.\end{DoxyRefDesc}
+
+
+\begin{DoxyVersion}{Version}
+1.\-0 First release. 
+\end{DoxyVersion}

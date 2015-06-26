@@ -1,4 +1,12 @@
-
+/*! \file shm.c
+ *  \ingroup common
+ * 	\brief Implementation for the shared memory
+ *
+ * 	\author A.W Janisse
+ * 	\bug No known bugs.
+ *
+ * 	\version 1.0 	First release.
+*/
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
@@ -137,16 +145,10 @@ stopButtonSHM(char *name)
    	syslog(LOG_INFO, "Done cleaning up shared memory and semaphore");
 }
 
-
-/**
- * This functions is used by the deamon application (producer) and
- * is used to write the last controller buttons states into the 
- * shared memory. 
- */
 void
-witeButtonToSHM(button *b, uint8_t index)
+witeButtonToSHM(button *b, uint8_t id)
 {
-	if(index < 0 || index > MAX_DEVS)
+	if(id < 0 || id > MAX_DEVS)
 	{
 		return;
 	}
@@ -154,23 +156,23 @@ witeButtonToSHM(button *b, uint8_t index)
 	/* Begin critical section */
 	sem_wait(sem);
 
-	map[index] = *b;
+	map[id] = *b;
 
 	sem_post(sem);
 	/* End critical section */
 }
 
 void
-readButtonFromSHM(button *b, uint8_t index)
+readButtonFromSHM(button *b, uint8_t id)
 {
-	if(index < 0 || index > MAX_DEVS)
+	if(id < 0 || id > MAX_DEVS)
 	{
 		return;
 	}
 	/* Begin critical section */	
 	sem_wait(sem);
 
-	memcpy(b, &map[index], sizeof(button));
+	memcpy(b, &map[id], sizeof(button));
 		
 	sem_post(sem);
 	/* End critical section */	

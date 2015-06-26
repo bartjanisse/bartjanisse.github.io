@@ -1,0 +1,47 @@
+\hypertarget{devices_8h}{\section{xbcdaemon/devices.h File Reference}
+\label{devices_8h}\index{xbcdaemon/devices.\-h@{xbcdaemon/devices.\-h}}
+}
+
+
+Function prototypes for the devices.  
+
+
+{\ttfamily \#include $<$libusb-\/1.\-0/libusb.\-h$>$}\\*
+{\ttfamily \#include $<$pthread.\-h$>$}\\*
+{\ttfamily \#include $<$unistd.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}../common/common.\-h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__xbcdeamon_ga5e2fdecfea0fad3bdb8fa4eedf041a3d}{\#define \hyperlink{group__xbcdeamon_ga5e2fdecfea0fad3bdb8fa4eedf041a3d}{V\-E\-N\-D\-O\-R\-\_\-\-I\-D}~0x045e}\label{group__xbcdeamon_ga5e2fdecfea0fad3bdb8fa4eedf041a3d}
+
+\begin{DoxyCompactList}\small\item\em Constant for vendor id which is used to derive the handle. \end{DoxyCompactList}\item 
+\hypertarget{group__xbcdeamon_ga6b41096e44c646df97fba9581acb4b4a}{\#define \hyperlink{group__xbcdeamon_ga6b41096e44c646df97fba9581acb4b4a}{P\-R\-O\-D\-U\-C\-T\-\_\-\-I\-D}~0x028e}\label{group__xbcdeamon_ga6b41096e44c646df97fba9581acb4b4a}
+
+\begin{DoxyCompactList}\small\item\em Constant for product id which is used to derive the handle. \end{DoxyCompactList}\item 
+\hypertarget{group__xbcdeamon_gad1232c2aba214d204c53376b7488c8fb}{\#define \hyperlink{group__xbcdeamon_gad1232c2aba214d204c53376b7488c8fb}{R\-E\-F\-R\-\_\-\-T\-I\-M\-E\-\_\-\-M\-S}~100}\label{group__xbcdeamon_gad1232c2aba214d204c53376b7488c8fb}
+
+\begin{DoxyCompactList}\small\item\em Refresh time in ms for udating U\-S\-B devices. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+libusb\-\_\-device\-\_\-handle $\ast$ \hyperlink{group__xbcdeamon_gaafd41f70aa2d9dcc024b5cfb13c51276}{get\-Device\-Handle} (uint8\-\_\-t id)
+\begin{DoxyCompactList}\small\item\em function to get the device handle based on the index \end{DoxyCompactList}\item 
+void \hyperlink{group__xbcdeamon_gad84b9ecb621527e815351576cad72439}{init\-Devices} (uint16\-\_\-t vendor\-\_\-id, uint16\-\_\-t product\-\_\-id)
+\begin{DoxyCompactList}\small\item\em function to initialize the libusb library an start the polling thread \end{DoxyCompactList}\item 
+\hypertarget{group__xbcdeamon_ga2fe23e62171552ba2c4bc5704159a906}{void \hyperlink{group__xbcdeamon_ga2fe23e62171552ba2c4bc5704159a906}{close\-Devices} ()}\label{group__xbcdeamon_ga2fe23e62171552ba2c4bc5704159a906}
+
+\begin{DoxyCompactList}\small\item\em function to close the libusb library and to stop the polling thread \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Function prototypes for the devices. \begin{DoxyAuthor}{Author}
+A.\-W Janisse 
+\end{DoxyAuthor}
+\begin{DoxyRefDesc}{Bug}
+\item[\hyperlink{bug__bug000010}{Bug}]No known bugs.\end{DoxyRefDesc}
+
+
+\begin{DoxyVersion}{Version}
+1.\-0 First release. 
+\end{DoxyVersion}

@@ -1,4 +1,12 @@
-
+/** \file /xbcweb/main.c
+ *  \ingroup xbcweb
+ * 	\brief Main and helper functions for the xbcweb application
+ *
+ * 	\author A.W Janisse
+ * 	\bug No known bugs.
+ *
+ * 	\version 1.0 	First release.
+*/
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -9,8 +17,13 @@
 #include "../common/buttons.h"
 #include "../common/shm.h"
 
-#define WEB_LOG_NAME	"xbc-web"	//! name used in the log file
+#define WEB_LOG_NAME	"xbc-web"	//!< name used in the log file
 
+/** \ingroup xbcweb 
+ *  \brief This function print a button as a comma sepperated string.
+ * 
+ *  \param btn is a pointer to the button to print
+ */
 void
 printButton(button *btn)
 {	
@@ -40,6 +53,11 @@ printButton(button *btn)
 		btn->Right_stick_Y);
 }
 
+/** \ingroup xbcweb 
+ *  \brief This function removes any spaces
+ * 
+ *  \param str is the string which should be cleaned.
+ */
 void
 removeSpaces(char *str)
 {
@@ -64,7 +82,61 @@ removeSpaces(char *str)
 	free(tmpStr);
 }
 
-
+/** \ingroup xbcweb 
+ *  \brief This is the main function of the application.
+ * 
+ *  When this applicattion is called from a website this is the first function which will run.
+ *  <p>
+ *  The website can call this application to get information about the connected Xbox 360 controllers or to
+ *  controll the rumble actuator or leds.
+ *  <p>
+ *  The call made from the website should have this format:
+ *  <b>wbcweb?<id>,<cmd>,<val></b> 
+ *  <p>
+ *  The fields in here have the following meaning:
+ *  <table>
+ * 		<tr>
+ * 			<th>Field</th>
+ * 			<th>Meaning</th>
+ * 		</tr>
+ *		<tr>
+ *        	<td>xbcweb</td> 
+ * 			<td>this application</td>
+ *		</tr>
+ * 		<tr>
+ *        	<td>id</td> 
+ * 			<td>controller id</td>
+ *		</tr>
+ * 		<tr>
+ *        	<td>cmd</td> 
+ * 			<td>command</td>
+ *		</tr>
+ * 		<tr>
+ *        	<td>val</td> 
+ * 			<td>value for the given command</td>
+ *		</tr>
+ *  </table>
+ *  <p>
+ *  The command can be one of the following:
+ *  <table>
+ *     	<tr>
+ * 			<th>Command</th>
+ * 			<th>Meaning</th>
+ * 		</tr>
+ *		<tr>
+ *        	<td>btns</td> 
+ * 			<td>Will return the button states of the controller. The id field is the controller id</td>
+ *		</tr>
+ * 		<tr>
+ *        	<td>rumble</td> 
+ * 			<td>Controll the rumble actuator of the controller. The id field is the controller id, The val field is the speed</td>
+ *		</tr>
+ * 		<tr>
+ *        	<td>led</td> 
+ * 			<td>ontroll the leds of the controller. The id field is the controller id, The val field is the @ref Leds led pattern</td>
+ *		</tr>
+ *  </table>
+ */
 int
 main()
 {
@@ -73,7 +145,6 @@ main()
 	button 		btn;
 	
 	// Create a log entry in /var/log/
-	// cat messages | grep xbc
 	openlog (WEB_LOG_NAME, LOG_CONS | LOG_PID | LOG_NDELAY, LOG_LOCAL0);
 	
 	/* Start HTTP output */

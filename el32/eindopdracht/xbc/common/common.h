@@ -1,4 +1,12 @@
-
+/*! \file common.h
+ *  \ingroup common
+ * 	\brief Common macro definitions and the constant for the max. number of controllers
+ *
+ * 	\author A.W Janisse
+ * 	\bug No known bugs.
+ *
+ * 	\version 1.0 	First release.
+*/
 #ifndef _COMMON_H_
 #define _COMMON_H_
 
@@ -7,19 +15,14 @@
 #include <stdint.h>
 #include <syslog.h>		// for syslog()
 
-#define CHECK(x) \
-	do { \
-		if(x) { \
-			fprintf(stderr, "CHECK() in function: %s, line: %d, evaluation of:  ", __func__, __LINE__); \
-			perror(#x); \
-			exit(-1); \
-		} \
-	} while (0) \
+/** \ingroup common
+ *  \brief Constant for the maximum number of controllers
+ */
+#define MAX_DEVS		4
 
-
+/** \ingroup common
+ *  \brief Macro to put a error message in the logfile
+ */
 #define LOGERR(msg) syslog(LOG_ERR, "ERROR: %s. Function %s line %d in file %s", msg, __func__, __LINE__, __FILE__); 
-#define LOGERR_D(msg, d) syslog(LOG_ERR, "ERROR: %s %d. Function %s line %d in file %s", msg, d, __func__, __LINE__, __FILE__); 
-	
-#define MAX_DEVS		4		//! Maximum number of controllers
-	
+
 #endif

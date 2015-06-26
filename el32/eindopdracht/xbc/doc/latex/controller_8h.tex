@@ -1,0 +1,82 @@
+\hypertarget{controller_8h}{\section{xbcdaemon/controller.h File Reference}
+\label{controller_8h}\index{xbcdaemon/controller.\-h@{xbcdaemon/controller.\-h}}
+}
+
+
+Function prototypes and definitions for the controller.  
+
+
+{\ttfamily \#include $<$libusb-\/1.\-0/libusb.\-h$>$}\\*
+{\ttfamily \#include $<$stdbool.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}../common/buttons.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}../common/common.\-h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{controller_8h_ab79ba3999449c3d32abd0462936ca52c}{E\-P\-\_\-\-I\-N}~0x81
+\begin{DoxyCompactList}\small\item\em E\-P\-\_\-\-I\-N. \end{DoxyCompactList}\item 
+\#define \hyperlink{controller_8h_a3a942d7df9f25be538925b91fa1317c3}{E\-P\-\_\-\-O\-U\-T}~0x02
+\begin{DoxyCompactList}\small\item\em E\-P\-\_\-\-O\-U\-T. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{group__xbcdeamon_ga1e4b1d1d1b6272a280f18efef4db3f5e}{Leds} \{ \\*
+{\bfseries all\-\_\-off} = 0x00, 
+\hyperlink{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5ea2040b2792c2d14984b958e00e6189b4b}{blink\-\_\-all} = 0x01, 
+\hyperlink{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5eaa69975e19b7da2c0d7251d995891a668}{flash\-\_\-1\-\_\-on} = 0x02, 
+\hyperlink{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5ea502a3fc79bff4af26fb485afb789af32}{flash\-\_\-2\-\_\-on} = 0x03, 
+\\*
+\hyperlink{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5eaa3bfcdd124be7e80d1e350b50aef738e}{flash\-\_\-3\-\_\-on} = 0x04, 
+\hyperlink{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5ea01f47e256143fe5f4771e17d440359fe}{flash\-\_\-4\-\_\-on} = 0x05, 
+\hyperlink{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5ea857f4b52703a580a0844f38bb35fd783}{led\-\_\-1\-\_\-on} = 0x06, 
+\hyperlink{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5eaeb5cc16081a91436d24e8d9ebafc6238}{led\-\_\-2\-\_\-on} = 0x07, 
+\\*
+\hyperlink{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5eac1dadd994482a729ef111458f3a69e2a}{led\-\_\-3\-\_\-on} = 0x08, 
+\hyperlink{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5ea656750bee9a9ac55cc579ce60c9b2f1d}{led\-\_\-4\-\_\-on} = 0x09, 
+\hyperlink{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5ea26d30288a9243336cb334fe193a7fd61}{rotate} = 0x0\-A, 
+\hyperlink{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5eab2d652b4cd2b87c2dc3004fdfdeb8eac}{blink\-\_\-select} = 0x0\-B, 
+\\*
+\hyperlink{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5ea4185d37fdbe5aa1fb945dfc42364965d}{blink\-\_\-slow} = 0x0\-C, 
+\hyperlink{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5ea7f564926136a18c80a8a14a53d0e98ce}{alt} = 0x0\-D
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{group__xbcdeamon_gae7cb117322f01a153aa80f498dd1a139}{set\-Controller\-Rumble} (libusb\-\_\-device\-\_\-handle $\ast$handle, uint16\-\_\-t speed)
+\begin{DoxyCompactList}\small\item\em Controll the Xbox 360 controller rumble actuator with the desired speed. \end{DoxyCompactList}\item 
+int \hyperlink{group__xbcdeamon_gacc1e0a36aea4db307a6700c13a74b4fb}{set\-Controller\-Leds} (libusb\-\_\-device\-\_\-handle $\ast$handle, \hyperlink{group__xbcdeamon_ga1e4b1d1d1b6272a280f18efef4db3f5e}{Leds} led)
+\begin{DoxyCompactList}\small\item\em Controll the L\-E\-D's from the Xbox 360 controller. \end{DoxyCompactList}\item 
+int \hyperlink{group__xbcdeamon_ga95c596cd7351f74efdcc094fb7e5def9}{get\-Controller\-Input} (libusb\-\_\-device\-\_\-handle $\ast$handle, \hyperlink{structbutton}{button} $\ast$b)
+\begin{DoxyCompactList}\small\item\em Retreives the state of the buttons and joysticks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Function prototypes and definitions for the controller. \begin{DoxyAuthor}{Author}
+A.\-W Janisse 
+\end{DoxyAuthor}
+\begin{DoxyRefDesc}{Bug}
+\item[\hyperlink{bug__bug000008}{Bug}]No known bugs.\end{DoxyRefDesc}
+
+
+\begin{DoxyVersion}{Version}
+1.\-0 First release. 
+\end{DoxyVersion}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{controller_8h_ab79ba3999449c3d32abd0462936ca52c}{\index{controller.\-h@{controller.\-h}!E\-P\-\_\-\-I\-N@{E\-P\-\_\-\-I\-N}}
+\index{E\-P\-\_\-\-I\-N@{E\-P\-\_\-\-I\-N}!controller.h@{controller.\-h}}
+\subsubsection[{E\-P\-\_\-\-I\-N}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-P\-\_\-\-I\-N~0x81}}\label{controller_8h_ab79ba3999449c3d32abd0462936ca52c}
+
+
+E\-P\-\_\-\-I\-N. 
+
+Constant for the endpoint in. \hypertarget{controller_8h_a3a942d7df9f25be538925b91fa1317c3}{\index{controller.\-h@{controller.\-h}!E\-P\-\_\-\-O\-U\-T@{E\-P\-\_\-\-O\-U\-T}}
+\index{E\-P\-\_\-\-O\-U\-T@{E\-P\-\_\-\-O\-U\-T}!controller.h@{controller.\-h}}
+\subsubsection[{E\-P\-\_\-\-O\-U\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\-P\-\_\-\-O\-U\-T~0x02}}\label{controller_8h_a3a942d7df9f25be538925b91fa1317c3}
+
+
+E\-P\-\_\-\-O\-U\-T. 
+
+Constant for the endpoint out. 

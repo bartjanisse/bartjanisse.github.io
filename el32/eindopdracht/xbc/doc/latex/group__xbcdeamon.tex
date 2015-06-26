@@ -1,2 +1,224 @@
-\section{Functions used by the xbcdeamon module}
-\label{group__xbcdeamon}\index{Functions used by the xbcdeamon module@{Functions used by the xbcdeamon module}}
+\hypertarget{group__xbcdeamon}{\section{Modules specific for the xbcdeamon}
+\label{group__xbcdeamon}\index{Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}}
+}
+\subsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \hyperlink{controller_8c}{controller.\-c}
+\begin{DoxyCompactList}\small\item\em Implementation for the controller. \end{DoxyCompactList}\item 
+file \hyperlink{controller_8h}{controller.\-h}
+\begin{DoxyCompactList}\small\item\em Function prototypes and definitions for the controller. \end{DoxyCompactList}\item 
+file \hyperlink{devices_8c}{devices.\-c}
+\begin{DoxyCompactList}\small\item\em Implementation for the devices. \end{DoxyCompactList}\item 
+file \hyperlink{devices_8h}{devices.\-h}
+\begin{DoxyCompactList}\small\item\em Function prototypes for the devices. \end{DoxyCompactList}\item 
+file \hyperlink{xbcdaemon_2main_8c}{main.\-c}
+\begin{DoxyCompactList}\small\item\em Main function and threads for the xbcdeamon application. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structdevice}{device}
+\begin{DoxyCompactList}\small\item\em structure which defines a U\-S\-B device \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__xbcdeamon_ga5e2fdecfea0fad3bdb8fa4eedf041a3d}{\#define \hyperlink{group__xbcdeamon_ga5e2fdecfea0fad3bdb8fa4eedf041a3d}{V\-E\-N\-D\-O\-R\-\_\-\-I\-D}~0x045e}\label{group__xbcdeamon_ga5e2fdecfea0fad3bdb8fa4eedf041a3d}
+
+\begin{DoxyCompactList}\small\item\em Constant for vendor id which is used to derive the handle. \end{DoxyCompactList}\item 
+\hypertarget{group__xbcdeamon_ga6b41096e44c646df97fba9581acb4b4a}{\#define \hyperlink{group__xbcdeamon_ga6b41096e44c646df97fba9581acb4b4a}{P\-R\-O\-D\-U\-C\-T\-\_\-\-I\-D}~0x028e}\label{group__xbcdeamon_ga6b41096e44c646df97fba9581acb4b4a}
+
+\begin{DoxyCompactList}\small\item\em Constant for product id which is used to derive the handle. \end{DoxyCompactList}\item 
+\hypertarget{group__xbcdeamon_gad1232c2aba214d204c53376b7488c8fb}{\#define \hyperlink{group__xbcdeamon_gad1232c2aba214d204c53376b7488c8fb}{R\-E\-F\-R\-\_\-\-T\-I\-M\-E\-\_\-\-M\-S}~100}\label{group__xbcdeamon_gad1232c2aba214d204c53376b7488c8fb}
+
+\begin{DoxyCompactList}\small\item\em Refresh time in ms for udating U\-S\-B devices. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{group__xbcdeamon_ga1e4b1d1d1b6272a280f18efef4db3f5e}{Leds} \{ \\*
+{\bfseries all\-\_\-off} = 0x00, 
+\hyperlink{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5ea2040b2792c2d14984b958e00e6189b4b}{blink\-\_\-all} = 0x01, 
+\hyperlink{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5eaa69975e19b7da2c0d7251d995891a668}{flash\-\_\-1\-\_\-on} = 0x02, 
+\hyperlink{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5ea502a3fc79bff4af26fb485afb789af32}{flash\-\_\-2\-\_\-on} = 0x03, 
+\\*
+\hyperlink{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5eaa3bfcdd124be7e80d1e350b50aef738e}{flash\-\_\-3\-\_\-on} = 0x04, 
+\hyperlink{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5ea01f47e256143fe5f4771e17d440359fe}{flash\-\_\-4\-\_\-on} = 0x05, 
+\hyperlink{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5ea857f4b52703a580a0844f38bb35fd783}{led\-\_\-1\-\_\-on} = 0x06, 
+\hyperlink{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5eaeb5cc16081a91436d24e8d9ebafc6238}{led\-\_\-2\-\_\-on} = 0x07, 
+\\*
+\hyperlink{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5eac1dadd994482a729ef111458f3a69e2a}{led\-\_\-3\-\_\-on} = 0x08, 
+\hyperlink{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5ea656750bee9a9ac55cc579ce60c9b2f1d}{led\-\_\-4\-\_\-on} = 0x09, 
+\hyperlink{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5ea26d30288a9243336cb334fe193a7fd61}{rotate} = 0x0\-A, 
+\hyperlink{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5eab2d652b4cd2b87c2dc3004fdfdeb8eac}{blink\-\_\-select} = 0x0\-B, 
+\\*
+\hyperlink{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5ea4185d37fdbe5aa1fb945dfc42364965d}{blink\-\_\-slow} = 0x0\-C, 
+\hyperlink{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5ea7f564926136a18c80a8a14a53d0e98ce}{alt} = 0x0\-D
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{group__xbcdeamon_gae7cb117322f01a153aa80f498dd1a139}{set\-Controller\-Rumble} (libusb\-\_\-device\-\_\-handle $\ast$handle, uint16\-\_\-t speed)
+\begin{DoxyCompactList}\small\item\em Controll the Xbox 360 controller rumble actuator with the desired speed. \end{DoxyCompactList}\item 
+int \hyperlink{group__xbcdeamon_gacc1e0a36aea4db307a6700c13a74b4fb}{set\-Controller\-Leds} (libusb\-\_\-device\-\_\-handle $\ast$handle, \hyperlink{group__xbcdeamon_ga1e4b1d1d1b6272a280f18efef4db3f5e}{Leds} led)
+\begin{DoxyCompactList}\small\item\em Controll the L\-E\-D's from the Xbox 360 controller. \end{DoxyCompactList}\item 
+int \hyperlink{group__xbcdeamon_ga95c596cd7351f74efdcc094fb7e5def9}{get\-Controller\-Input} (libusb\-\_\-device\-\_\-handle $\ast$handle, \hyperlink{structbutton}{button} $\ast$b)
+\begin{DoxyCompactList}\small\item\em Retreives the state of the buttons and joysticks. \end{DoxyCompactList}\item 
+libusb\-\_\-device\-\_\-handle $\ast$ \hyperlink{group__xbcdeamon_gaafd41f70aa2d9dcc024b5cfb13c51276}{get\-Device\-Handle} (uint8\-\_\-t id)
+\begin{DoxyCompactList}\small\item\em function to get the device handle based on the index \end{DoxyCompactList}\item 
+void \hyperlink{group__xbcdeamon_gad84b9ecb621527e815351576cad72439}{init\-Devices} (uint16\-\_\-t vendor\-\_\-id, uint16\-\_\-t product\-\_\-id)
+\begin{DoxyCompactList}\small\item\em function to initialize the libusb library an start the polling thread \end{DoxyCompactList}\item 
+\hypertarget{group__xbcdeamon_ga2fe23e62171552ba2c4bc5704159a906}{void \hyperlink{group__xbcdeamon_ga2fe23e62171552ba2c4bc5704159a906}{close\-Devices} ()}\label{group__xbcdeamon_ga2fe23e62171552ba2c4bc5704159a906}
+
+\begin{DoxyCompactList}\small\item\em function to close the libusb library and to stop the polling thread \end{DoxyCompactList}\item 
+\hypertarget{group__xbcdeamon_gae66f6b31b5ad750f1fe042a706a4e3d4}{int \hyperlink{group__xbcdeamon_gae66f6b31b5ad750f1fe042a706a4e3d4}{main} ()}\label{group__xbcdeamon_gae66f6b31b5ad750f1fe042a706a4e3d4}
+
+\begin{DoxyCompactList}\small\item\em main function for the apllication \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{group__xbcdeamon_ga1e4b1d1d1b6272a280f18efef4db3f5e}{\index{Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}!Leds@{Leds}}
+\index{Leds@{Leds}!Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}}
+\subsubsection[{Leds}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Leds}}}\label{group__xbcdeamon_ga1e4b1d1d1b6272a280f18efef4db3f5e}
+This enumeration contains all the command availlable to controll the L\-E\-D's. The function \hyperlink{group__xbcdeamon_gacc1e0a36aea4db307a6700c13a74b4fb}{set\-Controller\-Leds} can be used to controll the states of the indvidual L\-E\-D's. \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{blink\-\_\-all@{blink\-\_\-all}!Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}}\index{Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}!blink\-\_\-all@{blink\-\_\-all}}\item[{\em 
+\hypertarget{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5ea2040b2792c2d14984b958e00e6189b4b}{blink\-\_\-all}\label{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5ea2040b2792c2d14984b958e00e6189b4b}
+}]All led's off \index{flash\-\_\-1\-\_\-on@{flash\-\_\-1\-\_\-on}!Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}}\index{Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}!flash\-\_\-1\-\_\-on@{flash\-\_\-1\-\_\-on}}\item[{\em 
+\hypertarget{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5eaa69975e19b7da2c0d7251d995891a668}{flash\-\_\-1\-\_\-on}\label{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5eaa69975e19b7da2c0d7251d995891a668}
+}]All blinking \index{flash\-\_\-2\-\_\-on@{flash\-\_\-2\-\_\-on}!Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}}\index{Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}!flash\-\_\-2\-\_\-on@{flash\-\_\-2\-\_\-on}}\item[{\em 
+\hypertarget{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5ea502a3fc79bff4af26fb485afb789af32}{flash\-\_\-2\-\_\-on}\label{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5ea502a3fc79bff4af26fb485afb789af32}
+}]1 flashes, then on \index{flash\-\_\-3\-\_\-on@{flash\-\_\-3\-\_\-on}!Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}}\index{Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}!flash\-\_\-3\-\_\-on@{flash\-\_\-3\-\_\-on}}\item[{\em 
+\hypertarget{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5eaa3bfcdd124be7e80d1e350b50aef738e}{flash\-\_\-3\-\_\-on}\label{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5eaa3bfcdd124be7e80d1e350b50aef738e}
+}]2 flashes, then on \index{flash\-\_\-4\-\_\-on@{flash\-\_\-4\-\_\-on}!Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}}\index{Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}!flash\-\_\-4\-\_\-on@{flash\-\_\-4\-\_\-on}}\item[{\em 
+\hypertarget{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5ea01f47e256143fe5f4771e17d440359fe}{flash\-\_\-4\-\_\-on}\label{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5ea01f47e256143fe5f4771e17d440359fe}
+}]3 flashes, then on \index{led\-\_\-1\-\_\-on@{led\-\_\-1\-\_\-on}!Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}}\index{Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}!led\-\_\-1\-\_\-on@{led\-\_\-1\-\_\-on}}\item[{\em 
+\hypertarget{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5ea857f4b52703a580a0844f38bb35fd783}{led\-\_\-1\-\_\-on}\label{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5ea857f4b52703a580a0844f38bb35fd783}
+}]4 flashes, then on \index{led\-\_\-2\-\_\-on@{led\-\_\-2\-\_\-on}!Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}}\index{Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}!led\-\_\-2\-\_\-on@{led\-\_\-2\-\_\-on}}\item[{\em 
+\hypertarget{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5eaeb5cc16081a91436d24e8d9ebafc6238}{led\-\_\-2\-\_\-on}\label{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5eaeb5cc16081a91436d24e8d9ebafc6238}
+}]1 on \index{led\-\_\-3\-\_\-on@{led\-\_\-3\-\_\-on}!Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}}\index{Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}!led\-\_\-3\-\_\-on@{led\-\_\-3\-\_\-on}}\item[{\em 
+\hypertarget{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5eac1dadd994482a729ef111458f3a69e2a}{led\-\_\-3\-\_\-on}\label{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5eac1dadd994482a729ef111458f3a69e2a}
+}]2 on \index{led\-\_\-4\-\_\-on@{led\-\_\-4\-\_\-on}!Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}}\index{Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}!led\-\_\-4\-\_\-on@{led\-\_\-4\-\_\-on}}\item[{\em 
+\hypertarget{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5ea656750bee9a9ac55cc579ce60c9b2f1d}{led\-\_\-4\-\_\-on}\label{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5ea656750bee9a9ac55cc579ce60c9b2f1d}
+}]3 on \index{rotate@{rotate}!Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}}\index{Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}!rotate@{rotate}}\item[{\em 
+\hypertarget{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5ea26d30288a9243336cb334fe193a7fd61}{rotate}\label{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5ea26d30288a9243336cb334fe193a7fd61}
+}]4 on \index{blink\-\_\-select@{blink\-\_\-select}!Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}}\index{Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}!blink\-\_\-select@{blink\-\_\-select}}\item[{\em 
+\hypertarget{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5eab2d652b4cd2b87c2dc3004fdfdeb8eac}{blink\-\_\-select}\label{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5eab2d652b4cd2b87c2dc3004fdfdeb8eac}
+}]Rotating (e.\-g. 1-\/2-\/4-\/3) \index{blink\-\_\-slow@{blink\-\_\-slow}!Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}}\index{Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}!blink\-\_\-slow@{blink\-\_\-slow}}\item[{\em 
+\hypertarget{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5ea4185d37fdbe5aa1fb945dfc42364965d}{blink\-\_\-slow}\label{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5ea4185d37fdbe5aa1fb945dfc42364965d}
+}]previous setting will be used (all blinking, or 1, 2, 3 or 4 on). \index{alt@{alt}!Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}}\index{Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}!alt@{alt}}\item[{\em 
+\hypertarget{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5ea7f564926136a18c80a8a14a53d0e98ce}{alt}\label{group__xbcdeamon_gga1e4b1d1d1b6272a280f18efef4db3f5ea7f564926136a18c80a8a14a53d0e98ce}
+}]Slow blinking \end{description}
+\end{Desc}
+
+
+\subsection{Function Documentation}
+\hypertarget{group__xbcdeamon_ga95c596cd7351f74efdcc094fb7e5def9}{\index{Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}!get\-Controller\-Input@{get\-Controller\-Input}}
+\index{get\-Controller\-Input@{get\-Controller\-Input}!Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}}
+\subsubsection[{get\-Controller\-Input}]{\setlength{\rightskip}{0pt plus 5cm}int get\-Controller\-Input (
+\begin{DoxyParamCaption}
+\item[{libusb\-\_\-device\-\_\-handle $\ast$}]{handle, }
+\item[{{\bf button} $\ast$}]{b}
+\end{DoxyParamCaption}
+)}}\label{group__xbcdeamon_ga95c596cd7351f74efdcc094fb7e5def9}
+
+
+Retreives the state of the buttons and joysticks. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & is a pointer to the U\-S\-B device handle. \\
+\hline
+{\em b} & is a pointer to a button structure which will be filled with the values from the controller\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if succefull. 
+\end{DoxyReturn}
+\hypertarget{group__xbcdeamon_gaafd41f70aa2d9dcc024b5cfb13c51276}{\index{Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}!get\-Device\-Handle@{get\-Device\-Handle}}
+\index{get\-Device\-Handle@{get\-Device\-Handle}!Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}}
+\subsubsection[{get\-Device\-Handle}]{\setlength{\rightskip}{0pt plus 5cm}libusb\-\_\-device\-\_\-handle$\ast$ get\-Device\-Handle (
+\begin{DoxyParamCaption}
+\item[{uint8\-\_\-t}]{id}
+\end{DoxyParamCaption}
+)}}\label{group__xbcdeamon_gaafd41f70aa2d9dcc024b5cfb13c51276}
+
+
+function to get the device handle based on the index 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & is the controller id \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a handle to the the device 
+\end{DoxyReturn}
+\hypertarget{group__xbcdeamon_gad84b9ecb621527e815351576cad72439}{\index{Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}!init\-Devices@{init\-Devices}}
+\index{init\-Devices@{init\-Devices}!Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}}
+\subsubsection[{init\-Devices}]{\setlength{\rightskip}{0pt plus 5cm}void init\-Devices (
+\begin{DoxyParamCaption}
+\item[{uint16\-\_\-t}]{vendor\-\_\-id, }
+\item[{uint16\-\_\-t}]{product\-\_\-id}
+\end{DoxyParamCaption}
+)}}\label{group__xbcdeamon_gad84b9ecb621527e815351576cad72439}
+
+
+function to initialize the libusb library an start the polling thread 
+
+The polling threads constantly monitors if a U\-S\-B device is plugged in or out. When this happens the internal devicelist is updated accordingly. Only U\-S\-B devices which match the givven vendor\-\_\-id and product\-\_\-id will be put into the devices list.
+
+
+\begin{DoxyParams}{Parameters}
+{\em vendor\-\_\-id} & for the U\-S\-B device \\
+\hline
+{\em product\-\_\-id} & for the the device \\
+\hline
+\end{DoxyParams}
+\hypertarget{group__xbcdeamon_gacc1e0a36aea4db307a6700c13a74b4fb}{\index{Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}!set\-Controller\-Leds@{set\-Controller\-Leds}}
+\index{set\-Controller\-Leds@{set\-Controller\-Leds}!Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}}
+\subsubsection[{set\-Controller\-Leds}]{\setlength{\rightskip}{0pt plus 5cm}int set\-Controller\-Leds (
+\begin{DoxyParamCaption}
+\item[{libusb\-\_\-device\-\_\-handle $\ast$}]{handle, }
+\item[{{\bf Leds}}]{led}
+\end{DoxyParamCaption}
+)}}\label{group__xbcdeamon_gacc1e0a36aea4db307a6700c13a74b4fb}
+
+
+Controll the L\-E\-D's from the Xbox 360 controller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & is a pointer to the U\-S\-B device handle. \\
+\hline
+{\em led} & holds the desired pattern for the L\-E\-D's. See \hyperlink{group__xbcdeamon_ga1e4b1d1d1b6272a280f18efef4db3f5e}{Leds} for details\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if succefull. 
+\end{DoxyReturn}
+\hypertarget{group__xbcdeamon_gae7cb117322f01a153aa80f498dd1a139}{\index{Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}!set\-Controller\-Rumble@{set\-Controller\-Rumble}}
+\index{set\-Controller\-Rumble@{set\-Controller\-Rumble}!Modules specific for the xbcdeamon@{Modules specific for the xbcdeamon}}
+\subsubsection[{set\-Controller\-Rumble}]{\setlength{\rightskip}{0pt plus 5cm}int set\-Controller\-Rumble (
+\begin{DoxyParamCaption}
+\item[{libusb\-\_\-device\-\_\-handle $\ast$}]{handle, }
+\item[{uint16\-\_\-t}]{speed}
+\end{DoxyParamCaption}
+)}}\label{group__xbcdeamon_gae7cb117322f01a153aa80f498dd1a139}
+
+
+Controll the Xbox 360 controller rumble actuator with the desired speed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & is a pointer to the U\-S\-B device handle. \\
+\hline
+{\em speed} & for the rumble actuator.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if succefull. 
+\end{DoxyReturn}

@@ -1,3 +1,12 @@
+/*! \file commands.c
+ *  \ingroup common
+ * 	\brief Implementation for commands
+ *
+ * 	\author A.W Janisse
+ * 	\bug No known bugs.
+ *
+ * 	\version 1.0 	First release.
+*/
 
 #include <stdio.h>
 #include <stdlib.h>

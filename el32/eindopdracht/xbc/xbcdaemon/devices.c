@@ -1,12 +1,11 @@
-/*! \file Devices.c
-  	\brief Implementation for the Devices.
- 
-   	This is the implementation of the Devices.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
- 
-   	\author A.W Janisse
-   	\bug No known bugs.
-
-   	\version 1.0 	First release.
+/** \file devices.c
+ *  \ingroup xbcdeamon
+ * 	\brief Implementation for the devices
+ *
+ * 	\author A.W Janisse
+ * 	\bug No known bugs.
+ *
+ * 	\version 1.0 	First release.
 */
 
 #include <stdio.h>
@@ -19,19 +18,28 @@ static uint16_t product_id;
 
 static uint8_t running = 1;
 
-void *pollingThread();
+static void *pollingThread();
 
+/** \ingroup xbcdeamon
+ *  \brief structure which defines a USB device
+ */
 typedef struct{
-	int8_t bus;
-	int8_t address;
-	libusb_device_handle *handle;
+	int8_t bus;						//!<  Bus number to which the USB device is conected
+	int8_t address;					//!<  Address to which the USB device is connected
+	libusb_device_handle *handle;	//!<  Handle to the USB device
 } device;
 
-device devices[MAX_DEVS];
-device tmp[MAX_DEVS];
+static device devices[MAX_DEVS];
+static device tmp[MAX_DEVS];
 
-pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
-pthread_t 		thread;
+static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+static pthread_t 		thread;
+
+static uint8_t
+compareDevices(device *d1, device *d2)
+{
+	return (d1->bus == d2->bus) && (d1->address == d2->address);
+}
 
 static uint8_t
 claimHandle(libusb_device_handle *handle)
@@ -49,12 +57,6 @@ claimHandle(libusb_device_handle *handle)
         return (1);
     }
     return (0);
-}
-
-static uint8_t
-compareDevices(device *d1, device *d2)
-{
-	return (d1->bus == d2->bus) && (d1->address == d2->address);
 }
 
 void 
@@ -138,7 +140,10 @@ getDeviceHandle(uint8_t id)
 
 // Searches for the given device in the given list
 // if found return 1, else 0
-uint8_t
+/** \ingroup xbcdeamon
+ *  \brief function to chek if the given device is in the given list
+ */
+static uint8_t
 listContains(device devs[], device *dev)
 {
 	int i;
@@ -153,8 +158,8 @@ listContains(device devs[], device *dev)
 	return (0);
 }
 
-// Remove the give device from the given devices list. Threadsafe
-void
+// Remove the given device from the given devices list. Threadsafe
+static void
 listTryRemove(device devs[], device *dev)
 {
 	int i;
@@ -184,7 +189,7 @@ listTryRemove(device devs[], device *dev)
 }
 
 // Remove device from devices list if is not available anymore 
-void
+static void
 listClean()
 {
 	uint8_t 	i;
@@ -205,7 +210,7 @@ listClean()
 
 // Add unique device at the first availlable position in the give list.
 // This is threadsafe and the USB handle will be claimed
-void
+static void
 listTryAdd(device devs[], device *dev)
 {
 	uint8_t 	i;
@@ -244,7 +249,7 @@ listTryAdd(device devs[], device *dev)
 }
 
 // Put new found devives in the devices list
-void
+static void
 listUpdateDevices(device devs[])
 {
 	uint8_t 	i; 
@@ -255,7 +260,7 @@ listUpdateDevices(device devs[])
 	}
 }
 
-void
+static void
 getDevices()
 {
 	libusb_device 	**devs;
@@ -309,7 +314,7 @@ getDevices()
 	libusb_free_device_list(devs, 1);
 }
 
-void *
+static void *
 pollingThread()
 {
 	syslog(LOG_INFO, "Device polling thread is started");

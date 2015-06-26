@@ -1,0 +1,40 @@
+\hypertarget{controller_8c}{\section{xbcdaemon/controller.c File Reference}
+\label{controller_8c}\index{xbcdaemon/controller.\-c@{xbcdaemon/controller.\-c}}
+}
+
+
+Implementation for the controller.  
+
+
+{\ttfamily \#include $<$libusb-\/1.\-0/libusb.\-h$>$}\\*
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$assert.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}controller.\-h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{controller_8c_a45ba202b05caf39795aeca91b0ae547e}{\#define \hyperlink{controller_8c_a45ba202b05caf39795aeca91b0ae547e}{T\-I\-M\-E\-O\-U\-T}~1000}\label{controller_8c_a45ba202b05caf39795aeca91b0ae547e}
+
+\begin{DoxyCompactList}\small\item\em Time-\/out of 1000ms for U\-S\-B transfer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{group__xbcdeamon_gae7cb117322f01a153aa80f498dd1a139}{set\-Controller\-Rumble} (libusb\-\_\-device\-\_\-handle $\ast$handle, uint16\-\_\-t speed)
+\begin{DoxyCompactList}\small\item\em Controll the Xbox 360 controller rumble actuator with the desired speed. \end{DoxyCompactList}\item 
+int \hyperlink{group__xbcdeamon_gacc1e0a36aea4db307a6700c13a74b4fb}{set\-Controller\-Leds} (libusb\-\_\-device\-\_\-handle $\ast$handle, \hyperlink{group__xbcdeamon_ga1e4b1d1d1b6272a280f18efef4db3f5e}{Leds} led)
+\begin{DoxyCompactList}\small\item\em Controll the L\-E\-D's from the Xbox 360 controller. \end{DoxyCompactList}\item 
+int \hyperlink{group__xbcdeamon_ga95c596cd7351f74efdcc094fb7e5def9}{get\-Controller\-Input} (libusb\-\_\-device\-\_\-handle $\ast$handle, \hyperlink{structbutton}{button} $\ast$b)
+\begin{DoxyCompactList}\small\item\em Retreives the state of the buttons and joysticks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation for the controller. \begin{DoxyAuthor}{Author}
+A.\-W Janisse 
+\end{DoxyAuthor}
+\begin{DoxyRefDesc}{Bug}
+\item[\hyperlink{bug__bug000007}{Bug}]No known bugs.\end{DoxyRefDesc}
+
+
+\begin{DoxyVersion}{Version}
+1.\-0 First release. 
+\end{DoxyVersion}

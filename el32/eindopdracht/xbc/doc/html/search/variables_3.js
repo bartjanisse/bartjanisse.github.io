@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['lb',['LB',['../structbutton.html#ada81b06ca9633d27de104929011da3ec',1,'button']]],
-  ['left_5fstick_5fx',['Left_stick_X',['../structbutton.html#a301836b32a4bd9f8e4269df153eb55d7',1,'button']]],
-  ['left_5fstick_5fy',['Left_stick_Y',['../structbutton.html#a3fa918572febd2d9e75dbef1929cfe23',1,'button']]],
-  ['left_5ftrigger',['Left_trigger',['../structbutton.html#aab887f94fef5bd12e3d14838a15c7a10',1,'button']]],
-  ['logo',['LOGO',['../structbutton.html#a756d4aa3f95373a5058cb02a897d12cf',1,'button']]],
-  ['ls_5fpress',['LS_PRESS',['../structbutton.html#a5e73bda0e232c16c3ccf8d4f64c28112',1,'button']]]
+  ['d_5fdn',['D_DN',['../structbutton.html#a8b7fdb4bf84a17bfb298945e1d76b81b',1,'button']]],
+  ['d_5fleft',['D_LEFT',['../structbutton.html#adfe927f5dd4989b3e6086d63a0698dc3',1,'button']]],
+  ['d_5fright',['D_RIGHT',['../structbutton.html#a787f4350c7b6d6f8e265d85c40bbaee9',1,'button']]],
+  ['d_5fup',['D_UP',['../structbutton.html#a5c0a188da90fd9f779b09139f2255290',1,'button']]]
 ];
