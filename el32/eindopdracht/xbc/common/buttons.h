@@ -1,5 +1,5 @@
 /*! \file buttons.h
- *  \ingroup coomon
+ *  \ingroup common
  * 	\brief Implementation for the Devices.
  *
  *
